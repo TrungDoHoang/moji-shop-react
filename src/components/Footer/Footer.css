@@ -1,0 +1,38 @@
+.f-start, .f-end {
+    background-color: var(--pink-light);
+    color: var(--light);
+    margin-top: 40px;
+    padding: 24px 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.lazyautosizes {
+    height: 24px;
+    margin: 0 2px;
+}
+
+.pull-left {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+}
+
+.pull-left:hover {
+    color: #fff;
+}
+
+.logo-bct>img, .f-logo>img {
+    width: 130px;
+    height: auto;
+    margin: 10px auto;
+}
+
+.f-end {
+    margin-top: 2px;
+    padding: 10px 0;
+}
+
+.f-end>p {
+    margin-bottom: 0;
+}

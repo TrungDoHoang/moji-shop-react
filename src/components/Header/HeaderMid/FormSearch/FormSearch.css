@@ -1,0 +1,35 @@
+.header-search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .search-form {
+    display: flex;
+    border: 2px solid var(--pink-light);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .search-form-input {
+    border: none;
+    font-size: 1.5rem;
+    padding: 6px 10px;
+  }
+  
+  .search-form-input:focus {
+    border-color: currentColor !important;
+    box-shadow: none;
+  }
+  
+  .btn-search {
+    color: #fff;
+    padding: 0 10px;
+    background-color: var(--pink-light);
+    border: none;
+  }
+  
+  .btn-search:hover {
+    color: #fff;
+    background-color: var(--pink-light-secondary);
+  }

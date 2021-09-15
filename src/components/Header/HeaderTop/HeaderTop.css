@@ -1,0 +1,16 @@
+.header-top {
+    background-color: var(--pink-light);
+  }
+  
+  .header-top__link {
+    font-size: 1.4rem;
+    display: inline-block;
+    padding: 12px 8px;
+    color: var(--text-color-secondary);
+    font-weight: 600;
+  }
+  
+  .header-top__link:hover {
+    color: var(--text-color-secondary-hover);
+  }
+  

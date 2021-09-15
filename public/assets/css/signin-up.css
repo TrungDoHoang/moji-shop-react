@@ -1,0 +1,66 @@
+.main{
+    border:  1px solid #f5f5f5;
+    max-width: 600px;
+    margin: 35px auto;
+    padding: 0;
+}
+.main-heading{
+    box-shadow:  0 1px 3px rgba(146, 146, 146, 0.14);
+    border-bottom: 2px solid #cccccc63;
+    display: flex;
+}
+.main-heading-link{
+    display: inline-block;
+    padding: 10px 20px;
+    flex: 1;
+    color: var(--pink-light);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+.main-heading-link:hover{
+    color: var(--pink-light);
+    border-bottom: 2px solid var(--pink-light);
+}
+.active{
+    border-bottom: 2px solid var(--pink-light);
+}
+.main-input{
+    font-size: 1.6rem;
+    padding: 8px 12px;
+}
+.main-select{
+    font-size: 1.6rem;
+    padding: 8px 12px;
+}
+.main-input:focus{
+    border: 1px solid #ced4da;
+    box-shadow: none;
+}
+.submit-button{
+    width: 100%;
+    font-weight: 600;
+}
+.main > p,
+.forgot-password {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--dark);
+}
+.forgot-password:hover{
+    color: var(--pink-light);
+}
+.main > p{
+    margin-top: 20px;
+}
+
+.social-link{
+    font-size: 1.6rem;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+.g-g, 
+.g-g:hover {
+    color: #fff;
+    background: #ea4235;
+}
