@@ -6,7 +6,7 @@ export default function ProductItem(props) {
         <div className="col-lg-3 col-md-4 col-6">
             <div className="product">
                 <div className="product-img">
-                    <Link to={`/detail/${props.id}`} className="text-decoration-none d-block" title={props.name}>
+                    <Link to={`/detail/products?id=${props.id}`} className="text-decoration-none d-block" title={props.name}>
                         <img src={`/assets/images/product/${props.img}`} alt={props.name}/>
                     </Link>
                     <div className="product-action">
@@ -24,7 +24,7 @@ export default function ProductItem(props) {
                         </span>
                     </div>
                 </div>
-                <Link to={`/detail/${props.id}`} className="text-decoration-none" title={props.name}>
+                <Link to={`/detail/products?${props.id}`} className="text-decoration-none" title={props.name}>
                     <h4 className="product-name">{props.name}</h4>
                 </Link>
                 <p className="product-cost">{props.cost}đ</p>
