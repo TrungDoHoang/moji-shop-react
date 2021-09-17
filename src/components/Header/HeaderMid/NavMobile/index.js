@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import './NavMobile.css'
+import $ from 'jquery'
+
+
 
 export default function NavMobile() {
+    useEffect(()=> {
+        $('.nav-mobile-items').click(function() {
+            $('#toggle').click()
+        })
+    })
     return (
         <>
-            <input type="checkbox" name="toggle" id="toggle" hidden />
+            <input type="checkbox" name="toggle" id="toggle"  hidden/>
             <label className="toggle-btn d-flex d-lg-none col-2 justify-content-center align-items-center" htmlFor="toggle"><span className="material-icons-outlined">
                 segment
             </span></label>
@@ -17,16 +26,16 @@ export default function NavMobile() {
                     </span>
                 </label>
                 <div className="nav-mobile-items">
-                    <a href="./shop.html" className="header-top__link text-decoration-none">TẤT CẢ</a>
+                    <NavLink to="/shop" className="header-top__link text-decoration-none">TẤT CẢ</NavLink>
                 </div>
                 <div className="nav-mobile-items">
-                    <a href="./shop.html" className="header-top__link text-decoration-none">Sách vở</a>
+                    <Link to="/shop/sach_vo" className="header-top__link text-decoration-none">Sách vở</Link>
                 </div>
                 <div className="nav-mobile-items">
-                    <a href="./shop.html" className="header-top__link text-decoration-none">Dụng cụ học tập</a>
+                    <Link to="/shop/dung_cu" className="header-top__link text-decoration-none">Dụng cụ học tập</Link>
                 </div>
                 <div className="nav-mobile-items">
-                    <a href="./contact.html" className="header-top__link text-decoration-none">Liên hệ</a>
+                    <Link to="/contact" className="header-top__link text-decoration-none">Liên hệ</Link>
                 </div>
             </nav>
 

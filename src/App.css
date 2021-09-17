@@ -216,9 +216,6 @@ ion-icon {
   .header-top__link {
     font-size: 1.2rem;
   }
-  .nav-mobile {
-    width: 100vw;
-  }
   .link__logon:first-child::before {
     height: 40px;
     left: calc(100%);

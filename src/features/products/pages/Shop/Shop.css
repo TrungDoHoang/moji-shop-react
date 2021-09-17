@@ -1,0 +1,12 @@
+
+/* Products */
+.products-heading{
+    color: var(--pink-light);
+    flex: 5;
+    display: block;
+    border-bottom: 1px solid var(--pink-light);
+}
+.form-select{
+    flex: 1;
+    font-size: 1.6rem;
+}

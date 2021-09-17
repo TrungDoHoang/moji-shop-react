@@ -51,9 +51,9 @@ function Cart() {
                 <div className="total d-flex flex-column">
                     <div className="d-flex justify-content-between py-4">
                         <span>Thành tiền:</span>
-                        <div className="total-cost">{items.reduce((toltal,item) => {
-                            return toltal+item.cost*item.quantity;
-                        },0)}đ</div>
+                        <div className="total-cost">{items.reduce((toltal, item) => {
+                            return toltal + item.cost * item.quantity;
+                        }, 0)}đ</div>
                     </div>
                     <div className="go-to-cart btn btn-pink">Xem giỏ hàng</div>
                 </div>

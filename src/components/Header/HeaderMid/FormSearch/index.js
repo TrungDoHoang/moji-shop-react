@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './FormSearch.css'
 
 function FormSearch() {
@@ -12,10 +12,10 @@ function FormSearch() {
                     </span></div>
                 </form>
                 <span className="quick-search mt-2">
-                  <NavLink className="header__link text-decoration-none" to="/">Ốp điện thoại</NavLink>
-                  <NavLink className="header__link text-decoration-none" to="/">Quạt nhựa</NavLink>
-                  <NavLink className="header__link text-decoration-none" to="/">Sticker</NavLink>
-                  <NavLink className="header__link text-decoration-none" to="/">BT21</NavLink>
+                  <Link className="header__link text-decoration-none" to="/">Ốp điện thoại</Link>
+                  <Link className="header__link text-decoration-none" to="/">Quạt nhựa</Link>
+                  <Link className="header__link text-decoration-none" to="/">Sticker</Link>
+                  <Link className="header__link text-decoration-none" to="/">BT21</Link>
                 </span>
               </div>
     )

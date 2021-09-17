@@ -1,0 +1,24 @@
+import React, { useState } from 'react'
+import CategoryItemLv2 from './CategoryItemLv2'
+
+export default function CategoryItem({name, categories}) {
+    
+    return (
+        <li className="main-category-item">
+            <div className="d-flex justify-content-between align-items-center main-category-item--heading">
+                <span className="main-category-name">{name}</span>
+                <span className="down material-icons-outlined">
+                    expand_more
+                </span>
+                <span className="less material-icons-outlined">
+                    expand_less
+                </span>
+            </div>
+            <ul className="main-category-list-lv2 list-unstyled">
+                {categories.map(category => {
+                    return <CategoryItemLv2 key={category.id} id={category.id} name={category.name}/>
+                })}
+            </ul>
+        </li>
+    )
+}

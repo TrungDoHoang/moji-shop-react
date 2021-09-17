@@ -21,11 +21,11 @@ function HeaderMid() {
                     </div>
                     
                     <div className="header-logon col-3 col-md-4 col-lg-3 mt-4">
-                        <NavLink to="/signin" className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">Đăng
+                        <NavLink to="/user/signin" className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">Đăng
                             nhập</NavLink>
-                        <NavLink to="/signup" className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">Đăng
+                        <NavLink to="/user/signup" className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">Đăng
                             ký</NavLink>
-                        <NavLink to="/signin" className="icon-user-mobile d-flex align-items-center justify-content-center d-lg-none d-md-none header__link text-decoration-none">
+                        <NavLink to="/user/signin" className="icon-user-mobile d-flex align-items-center justify-content-center d-lg-none d-md-none header__link text-decoration-none">
                             <span className="material-icons-outlined">
                                 person
                             </span>

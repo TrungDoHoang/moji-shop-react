@@ -64,3 +64,8 @@
     display: block;
     margin-bottom: 8px;
 }
+@media (max-width: 767px) {
+    .nav-mobile {
+        width: 100vw;
+    }
+}
