@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import './Loading.scss'
+import './Loading.css'
 import './App.css';
 import { QueryParamProvider } from 'use-query-params';
 const Products = React.lazy(() => import('./features/products'))
@@ -12,7 +12,11 @@ const Contact = React.lazy(() => import('./features/contact'))
 function App() {
 
   return (
-    <Suspense fallback={<div className="loader"></div>}>
+    <Suspense fallback={
+      <div id="preloader">
+        <div id="loader"></div>
+      </div>
+    }>
       <QueryParamProvider>
         <BrowserRouter>
           <Header />
