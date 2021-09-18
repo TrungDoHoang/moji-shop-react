@@ -20,7 +20,7 @@ export default function NavMobile() {
             {/* Nav-mobile */}
             <label htmlFor="toggle" className="overlay d-none" />
             <nav className="nav-mobile">
-                <label htmlFor="toggle" className="nav-mobile-items float-end d-inline-block p-3">
+                <label htmlFor="toggle" className="float-end d-inline-block p-3">
                     <span className="material-icons-outlined">
                         close
                     </span>
