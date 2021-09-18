@@ -22,7 +22,8 @@ export default function Home() {
             { top: 100, opacity: 0 },
             0.2 // thời gian cách nhau giữa mỗi hiệu ứng
         )
-    })
+        window.scrollTo(0, 0)
+    },[])
 
     const more = () => {
         $('.more').css('display', 'flex')

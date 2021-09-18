@@ -22,7 +22,8 @@ export default function Shop() {
             { top: 100, opacity: 0 },
             0.2 // thời gian cách nhau giữa mỗi hiệu ứng
         )
-    })
+        window.scrollTo(0, 0)
+    },[])
     return (
         <div className="main">
             <div className="container">

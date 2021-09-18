@@ -28,7 +28,8 @@ export default function Detail() {
                 $(this).val(1)
             } 
         })
-    })
+        window.scrollTo(0, 0)
+    },[])
 
     const product = products.find(item => item.id === id)
     const addItemToCart = e => {
@@ -40,6 +41,7 @@ export default function Detail() {
             }
             dispatch(addToCart(item))
         }
+        window.scrollTo(0, 0)
     }
     if(product){
         return (
