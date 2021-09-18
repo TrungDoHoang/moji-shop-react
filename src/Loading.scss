@@ -6,7 +6,6 @@ $colors:
 $size: 2.5em;
 $thickness: 0.5em;
 
-// Calculated variables.
 $lat: ($size - $thickness) / 2;
 $offset: $lat - $thickness;
 
@@ -90,11 +89,6 @@ $offset: $lat - $thickness;
   }
 }
 
-
-
-/**
- * Attempt to center the whole thing!
- */
 
 html,
 body {
