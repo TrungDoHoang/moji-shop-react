@@ -1,41 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { cartSelector } from '../../app/reducers/cartSlice'
 import CartItem from './CartItem'
 import './Cart.css'
 
 function Cart() {
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            name: 'Squishy MJ Momo duck nháy mắt 7cm',
-            cost: 50000,
-            quantity: 2,
-            img: 'https://storage.googleapis.com/cdn.nhanh.vn/store/7534/ps/20210716/21071018_XX_thumb.JPG'
-        },
-        {
-            id: 2,
-            name: 'Kẹp tài liệu A4 Rabbit gourmet 22x31',
-            cost: 70000,
-            quantity: 1,
-            img: 'https://storage.googleapis.com/cdn.nhanh.vn/store/7534/ps/20210716/21070015_XX_thumb.JPG'
-        },
-        {
-            id: 3,
-            name: 'Sổ vở A5 MJ Little girl sweet mango fruit',
-            cost: 25000,
-            quantity: 1,
-            img: 'https://storage.googleapis.com/cdn.nhanh.vn/store/7534/ps/20210716/21060014_xx_thumb.jpg'
-        },
-
-    ])
-
+    const items = useSelector(cartSelector)
     return (
         <div className="header-cart">
             <span className="header-cart-icon material-icons-outlined">
                 shopping_bag
             </span>
-            <span className="header-cart-quantity d-flex justify-content-center align-items-center">3</span>
+            <span className={`header-cart-quantity justify-content-center align-items-center ${items.length !== 0 ? 'd-flex' : 'd-none'}`}>
+                {items.length}
+            </span>
             {/* Cart no item: add class no-item */}
-            <div className="header-cart-list">
+            <div className={`header-cart-list ${items.length === 0 ? 'no-item' : ''}`}>
                 {/* No item */}
                 <div className="list-no-item">
                     <img src="./assets/images/no-cart.png" alt="" className="header-cart-no-item-img" />
@@ -44,7 +24,7 @@ function Cart() {
                 {/* Has item */}
                 <ul className="cart-list-item">
                     {items.map(item => {
-                        return <CartItem key={item.id} name={item.name} cost={item.cost}
+                        return <CartItem key={item.id} id={item.id} name={item.name} cost={item.cost}
                             quantity={item.quantity} img={item.img} />
                     })}
                 </ul>
