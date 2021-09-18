@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Loading from './components/Loading';
 import './App.css';
 import { QueryParamProvider } from 'use-query-params';
 
@@ -12,7 +13,7 @@ const Contact = React.lazy(() => import('./features/contact'))
 function App() {
 
   return (
-    <Suspense fallback={<div>Loading ...</div>}>
+    <Suspense fallback={Loading}>
       <QueryParamProvider>
         <BrowserRouter>
           <Header />
