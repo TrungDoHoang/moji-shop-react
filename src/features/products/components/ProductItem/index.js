@@ -38,7 +38,7 @@ export default function ProductItem(props) {
                 <Link to={`/detail/products?id=${props.id}`} className="text-decoration-none" title={props.name}>
                     <h4 className="product-name">{props.name}</h4>
                 </Link>
-                <p className="product-cost">{props.cost}đ</p>
+                <p className="product-cost">{(props.cost).toLocaleString()}đ</p>
             </div>
         </div>
     )

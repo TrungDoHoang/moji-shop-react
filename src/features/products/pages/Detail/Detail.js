@@ -33,11 +33,13 @@ export default function Detail() {
     const product = products.find(item => item.id === id)
     const addItemToCart = e => {
         e.preventDefault()
-        const item = {
-            ...product,
-            quantity: Number.parseInt($('#quantity').val())
+        if(Number.parseInt($('#quantity').val()) > 0){
+            const item = {
+                ...product,
+                quantity: Number.parseInt($('#quantity').val())
+            }
+            dispatch(addToCart(item))
         }
-        dispatch(addToCart(item))
     }
     if(product){
         return (
@@ -80,7 +82,7 @@ export default function Detail() {
                                         Mã sản phẩm: {product.id}
                                     </div>
                                     <div className="product-details-cost text-start">
-                                        {product.cost}đ
+                                        {(product.cost).toLocaleString()}đ
                                     </div>
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
                                         <div className="form-check-color d-flex align-items-center">
