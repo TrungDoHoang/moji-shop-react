@@ -35,7 +35,7 @@ export default function Shop() {
                     {/* Categogy- mobile */}
                     <CategoryMobile />
                     <div className="col-lg-9 col-12 col-md-11">
-                        <NavProduct title="Sổ vở" />
+                        <NavProduct title="Tất cả sản phẩm" />
                         <div className="row g-4 mt-0">
                             {products.map(product => {
                                 return <ProductItem key={product.id} id={product.id} name={product.name}

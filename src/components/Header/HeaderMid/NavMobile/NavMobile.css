@@ -64,6 +64,11 @@
     display: block;
     margin-bottom: 8px;
 }
+.card-category{
+    width: 100%;
+    max-height: 34vh;
+    overflow-y: scroll;
+}
 @media (max-width: 767px) {
     .nav-mobile {
         width: 100vw;

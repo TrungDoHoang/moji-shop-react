@@ -1,53 +1,43 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { bookCategorySelector, toolCategorySelector } from '../../../app/reducers/categorySlice'
+import NavPcItem from './NavPcItem'
 
 function HeaderBot() {
-    return (
-        <div className="header-bot d-none d-lg-block ">
-        <div className="container">
-          <div className="row">
-            <div className="col text-start">
-              <Link to="/shop" className="header-top__link text-decoration-none">TẤT CẢ</Link>
-              <div className="nav-pc-item d-inline-block position-relative">
-                <Link to="/shop" className="header-top__link text-decoration-none">Sách vở</Link>
-                <ul className="category list-unstyled position-absolute top-100">
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Sách giáo khoa</Link>
-                  </li>
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Sách khoa học</Link>
-                  </li>
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Truyện ngôn tình</Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="nav-pc-item d-inline-block position-relative">
-                <Link to="/shop" className="header-top__link text-decoration-none">Dụng cụ học tập</Link>
-                <ul className="category list-unstyled position-absolute top-100">
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Bút ngộ nghĩnh</Link>
-                  </li>
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Balo thời trang</Link>
-                  </li>
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Thước kẻ</Link>
-                  </li>
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Đựng bút đa năng</Link>
-                  </li>
-                  <li className="category-item">
-                    <Link to="/shop" className="header-top__link text-decoration-none">Dụng cụ học tập khác</Link>
-                  </li>
-                </ul>
-              </div>
-              <Link to="/contact" className="header-top__link text-decoration-none">Liên hệ</Link>
+  const bookCategory = useSelector(bookCategorySelector)
+  const toolCategory = useSelector(toolCategorySelector)
+  return (
+    <div className="header-bot d-none d-lg-block ">
+      <div className="container">
+        <div className="row">
+          <div className="col text-start">
+            <Link to="/shop" className="header-top__link text-decoration-none">TẤT CẢ</Link>
+            <div className="nav-pc-item d-inline-block position-relative">
+              <div className="header-top__link text-decoration-none">Sách vở</div>
+              <ul className="category list-unstyled position-absolute top-100">
+                {bookCategory.map(book => <NavPcItem key={book.id}
+                  LinkTo={`/shop/product?category=${book.id}`} Name={book.name} />)}
+              </ul>
+            </div>
+            <div className="nav-pc-item d-inline-block position-relative">
+              <div className="header-top__link text-decoration-none">Dụng cụ học tập</div>
+              <ul className="category list-unstyled position-absolute top-100">
+                {toolCategory.map(tool => <NavPcItem key={tool.id}
+                  LinkTo={`/shop/product?category=${tool.id}`} Name={tool.name} />)}
+              </ul>
+            </div>
+            <div className="nav-pc-item d-inline-block position-relative">
+              <div className="header-top__link text-decoration-none">Liên hệ</div>
+              <ul className="category list-unstyled position-absolute top-100">
+                <NavPcItem LinkTo="/contact" Name="Hệ thống cửa hàng" />
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    )
+    </div >
+  )
 }
 
 export default HeaderBot

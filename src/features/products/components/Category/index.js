@@ -2,25 +2,13 @@ import React, { useState } from 'react'
 import $ from 'jquery'
 import CategoryItem from './CategoryItem'
 import './Category.css'
+import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice'
+import { useSelector } from 'react-redux'
 
 
 export default function Category() {
-    const [bookCategory, setBookCategory] = useState(
-        [
-            { id: 'sach_giao_khoa', name: 'Sách giáo khoa' },
-            { id: 'sach_khoa_hoc', name: 'Sách khoa học' },
-            { id: 'so_vo', name: 'Sổ vở' },
-            { id: 'truyen_ngon_tinh', name: 'Truyện ngôn tình' },
-        ]
-    )
-
-    const [toolCategory, setToolCategory] = useState([
-        { id: 'but_ngo_nghinh', name: 'Bút ngộ nghĩnh' },
-        { id: 'balo_thoi_trang', name: 'Balo thời trang' },
-        { id: 'thuoc_ke', name: 'Thước kẻ' },
-        { id: 'hop_but_da_nang', name: 'Hộp bút đa năng' },
-        { id: 'dung_cu_hoc_tap_khac', name: 'Dụng cụ học tập khác' },
-    ])
+    const bookCategory = useSelector(bookCategorySelector)
+    const toolCategory = useSelector(toolCategorySelector)
 
     const toggleOpen = (e) => {
         $(e.target).parent().toggleClass('open')

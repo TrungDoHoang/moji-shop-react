@@ -1,40 +1,53 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import {useQueryParam, NumberParam } from 'use-query-params'
+import { useQueryParam, NumberParam } from 'use-query-params'
 import $ from 'jquery'
 import './Detail.css'
 import { useSelector, useDispatch } from 'react-redux';
-import {addToCart} from '../../../../app/reducers/cartSlice'
+import { addToCart } from '../../../../app/reducers/cartSlice'
 import { productsSelector } from '../../../../app/reducers/productsSlice';
+import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice';
 
 export default function Detail() {
     const Err404 = React.lazy(() => import('../../../../components/404'))
     const [id, setId] = useQueryParam('id', NumberParam);
+
+    const products = useSelector(productsSelector)
+    const bookCategory = useSelector(bookCategorySelector)
+    const toolCategory = useSelector(toolCategorySelector)
     
-    const products = useSelector(productsSelector) 
     const dispatch = useDispatch()
 
     const product = products.find(item => item.id === id)
     document.title = product.name
+    const bookCategoryName = bookCategory.find(book => book.id === product.category) 
+    const toolCategoryName = toolCategory.find(tool => tool.id === product.category) 
+    let categoryName 
+    if(bookCategoryName){
+        categoryName = bookCategoryName.name
+    } else if(toolCategoryName){
+        categoryName = toolCategoryName.name
+    }
+    
 
     window.scrollTo(0, 0)
     const quantityRequired = e => {
         let val = $(e.target).val()
-            if(val < 1){
-                alert('Số lượng mua tối thiểu là 1')
-                $(e.target).val(1)
-            } 
+        if (val < 1) {
+            alert('Số lượng mua tối thiểu là 1')
+            $(e.target).val(1)
+        }
     }
 
     const colorChange = () => {
         let [name, ...last] = $('#name').text().split('-')
-            last = $('input[type=radio][name=color]:checked').val()
-            $('#name').text([name, last].join('-'))
+        last = $('input[type=radio][name=color]:checked').val()
+        $('#name').text([name, last].join('-'))
     }
 
     const addItemToCart = e => {
         e.preventDefault()
-        if(Number.parseInt($('#quantity').val()) > 0){
+        if (Number.parseInt($('#quantity').val()) > 0) {
             const item = {
                 ...product,
                 quantity: Number.parseInt($('#quantity').val())
@@ -43,7 +56,7 @@ export default function Detail() {
         }
         window.scrollTo(0, 0)
     }
-    if(product){
+    if (product) {
         return (
             <div className="container text-center">
                 <div className="row">
@@ -51,8 +64,8 @@ export default function Detail() {
                         <nav aria-label="breadcrumb">
                             <ul className="breadcrumb">
                                 <li className="breadcrumb-item"><Link to="/" className="header__link text-decoration-none">Trang chủ</Link></li>
-                                <li className="breadcrumb-item"><Link to="/shop" className="header__link text-decoration-none">Dụng
-                                    cụ học tập</Link></li>
+                                <li className="breadcrumb-item"><Link to={`/shop/product?category=${product.category}`} className="header__link text-decoration-none">
+                                    {categoryName}</Link></li>
                                 <li className="breadcrumb-item active">{product.name}</li>
                             </ul>
                         </nav>
@@ -89,15 +102,15 @@ export default function Detail() {
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
                                         <div onChange={colorChange} className="form-check-color d-flex align-items-center">
                                             <label> Màu sắc:</label>
-                                            <input type="radio" defaultValue="Đen" title="Đen" name="color" 
-                                            onChange={colorChange} style={{ backgroundColor: '#000' }} />
-                                            <input type="radio" defaultValue="Trắng" title="Trắng" name="color" 
-                                             style={{ backgroundColor: '#fff' }} />
+                                            <input type="radio" defaultValue="Đen" title="Đen" name="color"
+                                                onChange={colorChange} style={{ backgroundColor: '#000' }} />
+                                            <input type="radio" defaultValue="Trắng" title="Trắng" name="color"
+                                                style={{ backgroundColor: '#fff' }} />
                                         </div>
                                         <div className="form-check-quantity d-flex align-items-center w-50">
                                             <label htmlFor="quantity" className="w-50"> Số lượng: </label>
-                                            <input type="number" name="quantity" min={1} defaultValue={1} id="quantity" 
-                                            className="form-control me-auto" onBlur={quantityRequired} />
+                                            <input type="number" name="quantity" min={1} defaultValue={1} id="quantity"
+                                                className="form-control me-auto" onBlur={quantityRequired} />
                                         </div>
                                         <button className="btn btn-pink mt-4">Thêm vào giỏ hàng</button>
                                     </form>
@@ -134,10 +147,10 @@ export default function Detail() {
                     </div>
                 </div>
             </div >
-    
+
         )
     }
-    return(
+    return (
         <Err404 />
     )
 }

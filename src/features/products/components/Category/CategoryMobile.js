@@ -1,24 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice'
+import $ from 'jquery'
 import './Category.css'
 import CategoryItem from './CategoryItem'
 
 export default function CategoryMobile() {
-    const [bookCategory, setBookCategory] = useState(
-        [
-            { id: 'sach_giao_khoa', name: 'Sách giáo khoa' },
-            { id: 'sach_khoa_hoc', name: 'Sách khoa học' },
-            { id: 'so_vo', name: 'Sổ vở' },
-            { id: 'truyen_ngon_tinh', name: 'Truyện ngôn tình' },
-        ]
-    )
+    const bookCategory = useSelector(bookCategorySelector)
+    const toolCategory = useSelector(toolCategorySelector)
 
-    const [toolCategory, setToolCategory] = useState([
-        { id: 'but_ngo_nghinh', name: 'Bút ngộ nghĩnh' },
-        { id: 'balo_thoi_trang', name: 'Balo thời trang' },
-        { id: 'thuoc_ke', name: 'Thước kẻ' },
-        { id: 'hop_but_da_nang', name: 'Hộp bút đa năng' },
-        { id: 'dung_cu_hoc_tap_khac', name: 'Dụng cụ học tập khác' },
-    ])
+    const toggleOpen = (e) => {
+        $(e.target).parent().toggleClass('open')
+    }
+
     return (
         <div className="category-mobile d-lg-none">
             <input type="checkbox" name="filter" id="filter" hidden />
@@ -45,8 +39,8 @@ export default function CategoryMobile() {
                     </span>
                 </div>
                 <ul className="main-category-list list-unstyled mt-3">
-                    <CategoryItem key={1} name="Sổ vở" categories={bookCategory} />
-                    <CategoryItem key={2} name="Dụng cụ học tập" categories={toolCategory} />
+                    <CategoryItem key={1} name="Sổ vở" categories={bookCategory} toggleOpen={toggleOpen} />
+                    <CategoryItem key={2} name="Dụng cụ học tập" categories={toolCategory} toggleOpen={toggleOpen} />
                 </ul>
             </div>
         </div>

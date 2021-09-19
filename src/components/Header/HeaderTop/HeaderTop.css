@@ -8,6 +8,7 @@
     padding: 12px 8px;
     color: var(--text-color-secondary);
     font-weight: 600;
+    cursor: pointer;
   }
   
   .header-top__link:hover {
