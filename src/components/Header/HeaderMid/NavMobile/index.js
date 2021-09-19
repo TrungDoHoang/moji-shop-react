@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './NavMobile.css'
 import $ from 'jquery'
@@ -6,7 +6,7 @@ import $ from 'jquery'
 
 
 export default function NavMobile() {
-    useEffect(()=> {
+    const toggleNavMobile = useRef(()=> {
         $('.nav-mobile-items').click(function() {
             $('#toggle').click()
         })
@@ -19,7 +19,7 @@ export default function NavMobile() {
             </span></label>
             {/* Nav-mobile */}
             <label htmlFor="toggle" className="overlay d-none" />
-            <nav className="nav-mobile">
+            <nav className="nav-mobile" ref={toggleNavMobile.current}>
                 <label htmlFor="toggle" className="float-end d-inline-block p-3">
                     <span className="material-icons-outlined">
                         close

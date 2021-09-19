@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './User.css'
 
 export default function Signup() {
+    document.title = 'Đăng ký'
     return (
         <div className="container text-center">
             <div className="row">

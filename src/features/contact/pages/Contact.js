@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import $ from 'jquery'
 import './Contact.css'
 
 export default function Contact() {
-    useEffect(() => {
+    document.title = 'Hệ thống các cửa hàng hiện nay'
+    const changTab = useRef(() => {
         const tabs = Array.from($(".tab-item"))
         const panes = $('.tab-pane')
 
@@ -22,7 +23,7 @@ export default function Contact() {
 
     })
     return (
-        <div className="container text-center">
+        <div className="container text-center" ref={changTab.current}>
             <div className="row">
                 {/* <div class="m-auto"> */}
                 <div className="main mt-4">
@@ -76,7 +77,7 @@ export default function Contact() {
                                             9h - 22h
                                         </div>
                                         <div className="store-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59582.461376054256!2d105.74907541260619!3d21.036533426339165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aba257897c07%3A0x92bf9bdd0bcec4bc!2sMoji%20Shop!5e0!3m2!1svi!2s!4v1631028012406!5m2!1svi!2s" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
+                                            <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59582.461376054256!2d105.74907541260619!3d21.036533426339165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aba257897c07%3A0x92bf9bdd0bcec4bc!2sMoji%20Shop!5e0!3m2!1svi!2s!4v1631028012406!5m2!1svi!2s" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +109,7 @@ export default function Contact() {
                                             9h - 22h
                                         </div>
                                         <div className="store-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59582.461376054256!2d105.74907541260619!3d21.036533426339165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aba257897c07%3A0x92bf9bdd0bcec4bc!2sMoji%20Shop!5e0!3m2!1svi!2s!4v1631028012406!5m2!1svi!2s" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
+                                            <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59582.461376054256!2d105.74907541260619!3d21.036533426339165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aba257897c07%3A0x92bf9bdd0bcec4bc!2sMoji%20Shop!5e0!3m2!1svi!2s!4v1631028012406!5m2!1svi!2s" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +141,7 @@ export default function Contact() {
                                             9h - 22h
                                         </div>
                                         <div className="store-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59582.461376054256!2d105.74907541260619!3d21.036533426339165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aba257897c07%3A0x92bf9bdd0bcec4bc!2sMoji%20Shop!5e0!3m2!1svi!2s!4v1631028012406!5m2!1svi!2s" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
+                                            <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59582.461376054256!2d105.74907541260619!3d21.036533426339165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aba257897c07%3A0x92bf9bdd0bcec4bc!2sMoji%20Shop!5e0!3m2!1svi!2s!4v1631028012406!5m2!1svi!2s" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
                                         </div>
                                     </div>
                                 </div>
@@ -174,7 +175,7 @@ export default function Contact() {
                                             9h - 22h
                                         </div>
                                         <div className="store-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.011332308888!2d106.703583!3d10.772747!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x687c002236b0f822!2sMoji%20Shop!5e0!3m2!1svi!2sus!4v1631031896991!5m2!1svi!2sus" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
+                                            <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.011332308888!2d106.703583!3d10.772747!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x687c002236b0f822!2sMoji%20Shop!5e0!3m2!1svi!2sus!4v1631031896991!5m2!1svi!2sus" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +207,7 @@ export default function Contact() {
                                             9h - 22h
                                         </div>
                                         <div className="store-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.011332308888!2d106.703583!3d10.772747!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x687c002236b0f822!2sMoji%20Shop!5e0!3m2!1svi!2sus!4v1631031896991!5m2!1svi!2sus" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
+                                            <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.011332308888!2d106.703583!3d10.772747!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x687c002236b0f822!2sMoji%20Shop!5e0!3m2!1svi!2sus!4v1631031896991!5m2!1svi!2sus" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +239,7 @@ export default function Contact() {
                                             9h - 22h
                                         </div>
                                         <div className="store-map">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.011332308888!2d106.703583!3d10.772747!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x687c002236b0f822!2sMoji%20Shop!5e0!3m2!1svi!2sus!4v1631031896991!5m2!1svi!2sus" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
+                                            <iframe title="Google Map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15678.011332308888!2d106.703583!3d10.772747!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x687c002236b0f822!2sMoji%20Shop!5e0!3m2!1svi!2sus!4v1631031896991!5m2!1svi!2sus" width={600} height={450} style={{ border: 0 }} allowFullScreen loading="lazy" />
                                         </div>
                                     </div>
                                 </div>

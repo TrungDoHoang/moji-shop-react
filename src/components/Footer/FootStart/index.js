@@ -64,22 +64,22 @@ export default function FootStart() {
               </div>
               <div className="f-lo-social col-xl-2 col-md-3 col-12">
                 <Link to="/" className="f-logo text-center">
-                  <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="./assets/images/logo-f.png" data-src="./assets/images/logo-f.png" alt="logo" sizes="107px" />
+                  <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="/assets/images/logo-f.png" data-src="/assets/images/logo-f.png" alt="logo" sizes="107px" />
                 </Link>
                 <h3 className="f-title mt-3">Hãy kết nối với chúng mình</h3>
                 <div className="social text-start ms-4">
                   <a target="_blank" rel="noreferrer noopener" className="text-decoration-none" href="https://www.instagram.com/mojivn">
-                    <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="./assets/images/social-color-insta.png" data-src="./assets/images/social-color-insta.png" alt="instagram" sizes="24px" />
+                    <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="/assets/images/social-color-insta.png" data-src="/assets/images/social-color-insta.png" alt="instagram" sizes="24px" />
                   </a>
                   <a target="_blank" rel="noreferrer noopener" className="text-decoration-none" href="https://www.facebook.com/mojivietnam">
-                    <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="./assets/images/fb-logo.png" data-src="./assets/images/fb-logo.png" alt="facebook" sizes="24px" />
+                    <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="/assets/images/fb-logo.png" data-src="/assets/images/fb-logo.png" alt="facebook" sizes="24px" />
                   </a>
                   <a target="_blank" rel="noreferrer noopener" className="text-decoration-none" href="https://www.youtube.com/channel/UCld80kfDOf0yUeKV7_hv6cw?ab_channel=MojiChannel">
-                    <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="./assets/images/social-color-youtube.png" data-src="./assets/images/social-color-youtube.png" alt="youtube" sizes="34px" />
+                    <img data-sizes="auto" className="lazyautosizes ls-is-cached lazyloaded" src="/assets/images/social-color-youtube.png" data-src="/assets/images/social-color-youtube.png" alt="youtube" sizes="34px" />
                   </a>
                 </div>
                 <a className="logo-bct" href="http://online.gov.vn/Home/WebDetails/34491?AspxAutoDetectCookieSupport=1" target="_blank" rel="noreferrer noopener" title="Đã thông báo Bộ Công Thương">
-                  <img className="lazyautosizes ls-is-cached lazyloaded" data-sizes="auto" src="./assets/images/dathongbaobocongthuong.png" data-src="./assets/images/dathongbaobocongthuong.png" alt="Đã thông báo Bộ Công Thương" sizes="118px" />
+                  <img className="lazyautosizes ls-is-cached lazyloaded" data-sizes="auto" src="/assets/images/dathongbaobocongthuong.png" data-src="/assets/images/dathongbaobocongthuong.png" alt="Đã thông báo Bộ Công Thương" sizes="118px" />
                 </a>
               </div>
             </div>

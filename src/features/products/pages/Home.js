@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useRef } from 'react'
 import { productsSelector } from '../../../app/reducers/productsSlice'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -15,16 +15,17 @@ export default function Home() {
         return newArr
     }, [])
 
-    useEffect(() => {
+    const loadProductsEffect = useRef(() => {
         TweenMax.staggerFrom(
             $('.product'), // phần tử được chọn
             1, // thời gian chuyển động
             { top: 100, opacity: 0 },
             0.2 // thời gian cách nhau giữa mỗi hiệu ứng
         )
-        window.scrollTo(0, 0)
-    },[])
-
+    })
+    
+    window.scrollTo(0, 0)
+    document.title = 'Moji Shop'
     const more = () => {
         $('.more').css('display', 'flex')
         $('.new-products-more').hide()
@@ -33,7 +34,7 @@ export default function Home() {
     return (
         <>
             <SlideGroup />
-            <div className="main">
+            <div className="main" ref={loadProductsEffect.current}>
                 <div className="container">
                     <div className="row mt-5">
                         <div className="col-12">

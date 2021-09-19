@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import $ from 'jquery'
+import React, { useState } from 'react'
 import './Category.css'
 import CategoryItem from './CategoryItem'
 

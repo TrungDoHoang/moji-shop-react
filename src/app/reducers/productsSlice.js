@@ -1,4 +1,4 @@
-import {createSlice, nanoid} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 const productsSlice = createSlice({
     name: 'products',
@@ -125,11 +125,23 @@ const productsSlice = createSlice({
                 img: '21070013_XX_thumb.JPG'
             },
         ],
+        resultSearch: []
     },
     reducers: {
-        getNewProducts: (state,action)=>{
-            const products = action.payload
-            state.allProducts = products.reverse()
+        searchProducts: (state, action) => {
+            function normalizeStr(str) {
+                return str.normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/đ/g, 'd').replace(/Đ/g, 'D');
+            }
+            var search_string = action.payload.toLowerCase()
+            state.resultSearch = state.allProducts.filter(i => {
+                return (i.name.toLowerCase().indexOf(search_string) != -1
+                    || search_string.indexOf(i.name.toLowerCase()) != -1
+                    || normalizeStr(i.name.toLowerCase()).indexOf(search_string) != -1
+                    || search_string.indexOf(normalizeStr(i.name.toLowerCase())) != -1
+                )
+            })
         }
     }
 })
@@ -138,9 +150,10 @@ const productsSlice = createSlice({
 const productsReducer = productsSlice.reducer
 
 // export action
-export const {getNewProducts} = productsSlice.actions
+export const { searchProducts } = productsSlice.actions
 
 // selector
 export const productsSelector = state => state.productsReducer.allProducts
+export const productsSearchSelector = state => state.productsReducer.resultSearch
 
 export default productsReducer

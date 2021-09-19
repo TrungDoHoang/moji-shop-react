@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useRef } from 'react'
 
 export default function MultiCarousel() {
-    useEffect(() => {
+
+    const ref = useRef(()=>{
         let multiCarousel = document.querySelector('.multi-carousel')
         let items = multiCarousel.querySelectorAll('.carousel .carousel-item')
-
+        
         items.forEach((el) => {
             const minPerSlide = 4
             let next = el.nextElementSibling
@@ -21,7 +22,7 @@ export default function MultiCarousel() {
     })
     return (
         <>
-            <div className="container multi-carousel text-center mt-5 my-3">
+            <div ref={ref.current} className="container multi-carousel text-center mt-5 my-3">
                 <div className="row mx-auto my-auto justify-content-center">
                     <div id="recipeCarousel" className="carousel slide col-12" data-bs-ride="carousel">
                         <div className="carousel-inner" role="listbox">

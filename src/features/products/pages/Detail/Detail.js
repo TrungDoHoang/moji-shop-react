@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import {useQueryParam, NumberParam } from 'use-query-params'
 import $ from 'jquery'
@@ -14,24 +14,24 @@ export default function Detail() {
     const products = useSelector(productsSelector) 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        $('input[type=radio][name=color]').change(function() {
-            let [name, ...last] = $('#name').text().split('-')
-            last = $('input[type=radio][name=color]:checked').val()
-            $('#name').text([name, last].join('-'))
-            // $('#name').text(`${name}-${$('input[type=radio][name=color]:checked').val()}`)
-        })
-        $('input[name=quantity][type=number]').blur(function() {
-            let val = $(this).val()
+    const product = products.find(item => item.id === id)
+    document.title = product.name
+
+    window.scrollTo(0, 0)
+    const quantityRequired = e => {
+        let val = $(e.target).val()
             if(val < 1){
                 alert('Số lượng mua tối thiểu là 1')
-                $(this).val(1)
+                $(e.target).val(1)
             } 
-        })
-        window.scrollTo(0, 0)
-    },[])
+    }
 
-    const product = products.find(item => item.id === id)
+    const colorChange = () => {
+        let [name, ...last] = $('#name').text().split('-')
+            last = $('input[type=radio][name=color]:checked').val()
+            $('#name').text([name, last].join('-'))
+    }
+
     const addItemToCart = e => {
         e.preventDefault()
         if(Number.parseInt($('#quantity').val()) > 0){
@@ -87,14 +87,17 @@ export default function Detail() {
                                         {(product.cost).toLocaleString()}đ
                                     </div>
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
-                                        <div className="form-check-color d-flex align-items-center">
+                                        <div onChange={colorChange} className="form-check-color d-flex align-items-center">
                                             <label> Màu sắc:</label>
-                                            <input type="radio" defaultValue="Đen" title="Đen" name="color" style={{ backgroundColor: '#000' }} />
-                                            <input type="radio" defaultValue="Trắng" title="Trắng" name="color" style={{ backgroundColor: '#fff' }} />
+                                            <input type="radio" defaultValue="Đen" title="Đen" name="color" 
+                                            onChange={colorChange} style={{ backgroundColor: '#000' }} />
+                                            <input type="radio" defaultValue="Trắng" title="Trắng" name="color" 
+                                             style={{ backgroundColor: '#fff' }} />
                                         </div>
                                         <div className="form-check-quantity d-flex align-items-center w-50">
                                             <label htmlFor="quantity" className="w-50"> Số lượng: </label>
-                                            <input type="number" name="quantity" min={1} defaultValue={1} id="quantity" className="form-control me-auto" />
+                                            <input type="number" name="quantity" min={1} defaultValue={1} id="quantity" 
+                                            className="form-control me-auto" onBlur={quantityRequired} />
                                         </div>
                                         <button className="btn btn-pink mt-4">Thêm vào giỏ hàng</button>
                                     </form>

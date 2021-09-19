@@ -1,7 +1,7 @@
 import { TweenMax } from 'gsap/gsap-core'
-import React, { useEffect } from 'react'
-import {useSelector } from 'react-redux'
-import {productsSelector} from '../../../../app/reducers/productsSlice'
+import React, { useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { productsSelector } from '../../../../app/reducers/productsSlice'
 import $ from 'jquery'
 import Category from '../../components/Category'
 import CategoryMobile from '../../components/Category/CategoryMobile'
@@ -14,18 +14,19 @@ import ProductItem from '../../components/ProductItem'
 export default function Shop() {
     const products = useSelector(productsSelector)
     // const dispatch = useDispatch()
-    
-    useEffect(() => {
+
+    const loadProductsEffect = useRef(() => {
         TweenMax.staggerFrom(
             $('.product'), // phần tử được chọn
             1, // thời gian chuyển động
             { top: 100, opacity: 0 },
             0.2 // thời gian cách nhau giữa mỗi hiệu ứng
         )
-        window.scrollTo(0, 0)
-    },[])
+    })
+    document.title = 'Shop'
+    window.scrollTo(0, 0)
     return (
-        <div className="main">
+        <div className="main" ref={loadProductsEffect.current}>
             <div className="container">
                 <div className="row mt-5 gx-5">
                     <div className="col-lg-3 d-lg-block d-none">
