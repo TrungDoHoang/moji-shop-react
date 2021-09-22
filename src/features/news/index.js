@@ -1,18 +1,18 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Contact from './pages/Contact'
+import News from './pages/News'
 
-function contact(props) {
+function news(props) {
     const Err404 = React.lazy(() => import('../../components/404'))
     return (
         <Switch>
-            <Route path="/contact" component={Contact} />
+            <Route path="/news" component={News} />
             <Route component={Err404} />
         </Switch>
     )
 }
 
-contact.propTypes = {}
+news.propTypes = {}
 
-export default contact
+export default news
 

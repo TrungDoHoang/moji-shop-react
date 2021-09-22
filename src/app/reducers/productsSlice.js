@@ -325,10 +325,10 @@ const productsSlice = createSlice({
             }
             var search_string = action.payload.toLowerCase()
             state.resultSearch = state.allProducts.filter(i => {
-                return (i.name.toLowerCase().indexOf(search_string) != -1
-                    || search_string.indexOf(i.name.toLowerCase()) != -1
-                    || normalizeStr(i.name.toLowerCase()).indexOf(search_string) != -1
-                    || search_string.indexOf(normalizeStr(i.name.toLowerCase())) != -1
+                return (i.name.toLowerCase().indexOf(search_string) !== -1
+                    || search_string.indexOf(i.name.toLowerCase()) !== -1
+                    || normalizeStr(i.name.toLowerCase()).indexOf(search_string) !== -1
+                    || search_string.indexOf(normalizeStr(i.name.toLowerCase())) !== -1
                 )
             })
         },

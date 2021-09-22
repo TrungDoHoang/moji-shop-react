@@ -39,7 +39,7 @@ export default function CategoryMobile() {
                     </span>
                 </div>
                 <ul className="main-category-list list-unstyled mt-3">
-                    <CategoryItem key={1} name="Sổ vở" categories={bookCategory} toggleOpen={toggleOpen} />
+                    <CategoryItem key={1} name="Sách vở" categories={bookCategory} toggleOpen={toggleOpen} />
                     <CategoryItem key={2} name="Dụng cụ học tập" categories={toolCategory} toggleOpen={toggleOpen} />
                 </ul>
             </div>

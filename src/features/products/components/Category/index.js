@@ -26,7 +26,7 @@ export default function Category() {
                 </span>
             </div>
             <ul className="main-category-list list-unstyled mt-4">
-                <CategoryItem key={3} name="Sổ vở" categories={bookCategory} toggleOpen ={toggleOpen} />
+                <CategoryItem key={3} name="Sách vở" categories={bookCategory} toggleOpen ={toggleOpen} />
                 <CategoryItem key={4} name="Dụng cụ học tập" categories={toolCategory} toggleOpen ={toggleOpen}/>
             </ul>
         </div>

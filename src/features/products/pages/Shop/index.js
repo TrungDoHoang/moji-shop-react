@@ -23,8 +23,11 @@ export default function Shop() {
             0.2 // thời gian cách nhau giữa mỗi hiệu ứng
         )
     })
-    document.title = 'Shop'
+    window.onload = function() {
+        window.scrollTo(0, 0)
+    }
     window.scrollTo(0, 0)
+    document.title = 'Shop'
     return (
         <div className="main" ref={loadProductsEffect.current}>
             <div className="container">
