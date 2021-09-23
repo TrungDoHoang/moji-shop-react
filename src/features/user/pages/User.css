@@ -4,7 +4,7 @@
     margin: 35px auto;
     padding: 0;
 }
-.main-heading{
+.main-form-heading{
     box-shadow:  0 1px 3px rgba(146, 146, 146, 0.14);
     border-bottom: 2px solid #cccccc63;
     display: flex;
@@ -21,7 +21,7 @@
     color: var(--pink-light);
     border-bottom: 2px solid var(--pink-light);
 }
-.active{
+.form--active{
     border-bottom: 2px solid var(--pink-light);
 }
 .main-input{

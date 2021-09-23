@@ -9,8 +9,8 @@ export default function Signin() {
             <div className="row">
                 {/* <div class="m-auto"> */}
                 <div className="main-log">
-                    <div className="main-heading">
-                        <Link to="signin" className="main-heading-link text-decoration-none active">Đăng nhập</Link>
+                    <div className="main-form-heading">
+                        <Link to="signin" className="main-heading-link text-decoration-none form--active">Đăng nhập</Link>
                         <Link to="signup" className="main-heading-link text-decoration-none">Đăng ký</Link>
                     </div>
                     <form method="POST" className="main-form">
