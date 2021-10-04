@@ -39,12 +39,6 @@ export default function Detail() {
         }
     }
 
-    const colorChange = () => {
-        let [name, ...last] = $('#name').text().split('-')
-        last = $('input[type=radio][name=color]:checked').val()
-        $('#name').text([name, last].join('-'))
-    }
-
     const addItemToCart = e => {
         e.preventDefault()
         if (Number.parseInt($('#quantity').val()) > 0) {
@@ -100,13 +94,6 @@ export default function Detail() {
                                         {(product.cost).toLocaleString()}đ
                                     </div>
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
-                                        <div onChange={colorChange} className="form-check-color d-flex align-items-center">
-                                            <label> Màu sắc:</label>
-                                            <input type="radio" defaultValue="Đen" title="Đen" name="color"
-                                                onChange={colorChange} style={{ backgroundColor: '#000' }} />
-                                            <input type="radio" defaultValue="Trắng" title="Trắng" name="color"
-                                                style={{ backgroundColor: '#fff' }} />
-                                        </div>
                                         <div className="form-check-quantity d-flex align-items-center w-50">
                                             <label htmlFor="quantity" className="w-50"> Số lượng: </label>
                                             <input type="number" name="quantity" min={1} defaultValue={1} id="quantity"
@@ -144,6 +131,10 @@ export default function Detail() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="mota text-start">
+                        <h1><b>Mô tả</b></h1>
+                        {product.mota}
                     </div>
                 </div>
             </div >

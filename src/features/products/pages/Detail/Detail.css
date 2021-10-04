@@ -134,7 +134,7 @@
 #quantity{
     font-size: 1.6rem;
 }
-.shipping{
+.shipping, .mota{
     font-size: 1.4rem;
     font-weight: 600;
 }
