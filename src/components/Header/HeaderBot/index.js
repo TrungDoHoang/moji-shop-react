@@ -7,6 +7,7 @@ import NavPcItem from './NavPcItem'
 function HeaderBot() {
   const bookCategory = useSelector(bookCategorySelector)
   const toolCategory = useSelector(toolCategorySelector)
+  
   return (
     <div className="header-bot d-none d-lg-block ">
       <div className="container">
@@ -16,15 +17,15 @@ function HeaderBot() {
             <div className="nav-pc-item d-inline-block position-relative">
               <div className="header-top__link text-decoration-none">Sách vở</div>
               <ul className="category list-unstyled position-absolute top-100">
-                {bookCategory.map(book => <NavPcItem key={book.id}
-                  LinkTo={`/shop/product?category=${book.id}`} Name={book.name} />)}
+                {bookCategory.map(book => <NavPcItem key={book.TenVanTat}
+                  LinkTo={`/shop/product?category=${book.TenVanTat}`} Name={book.TenChuDe} />)}
               </ul>
             </div>
             <div className="nav-pc-item d-inline-block position-relative">
               <div className="header-top__link text-decoration-none">Dụng cụ học tập</div>
               <ul className="category list-unstyled position-absolute top-100">
-                {toolCategory.map(tool => <NavPcItem key={tool.id}
-                  LinkTo={`/shop/product?category=${tool.id}`} Name={tool.name} />)}
+                {toolCategory.map(tool => <NavPcItem key={tool.TenVanTat}
+                  LinkTo={`/shop/product?category=${tool.TenVanTat}`} Name={tool.TenChuDe} />)}
               </ul>
             </div>
             <div className="nav-pc-item d-inline-block position-relative">

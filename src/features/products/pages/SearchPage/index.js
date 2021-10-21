@@ -1,7 +1,7 @@
 import { TweenMax } from 'gsap'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { productsSearchSelector, searchProducts } from '../../../../app/reducers/productsSlice'
+import { productSearch, productsSearchSelector } from '../../../../app/reducers/productsSlice'
 import Pagination from '../../components/Pagination'
 import ProductItem from '../../components/ProductItem'
 import $ from 'jquery'
@@ -16,7 +16,7 @@ export default function SearchPage() {
     const [keySearch, setKeySearch] = useQueryParam('key', StringParam);
     useEffect(()=>{
         if(keySearch){
-            dispatch(searchProducts(keySearch))  
+            dispatch(productSearch(keySearch))  
             TweenMax.staggerFrom(
                 $('.product'), // phần tử được chọn
                 1, // thời gian chuyển động

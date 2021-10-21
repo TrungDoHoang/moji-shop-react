@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import $ from 'jquery'
 import CategoryItem from './CategoryItem'
 import './Category.css'
-import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice'
-import { useSelector } from 'react-redux'
+import { bookCategorySelector, getCategories, toolCategorySelector } from '../../../../app/reducers/categorySlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export default function Category() {
     const bookCategory = useSelector(bookCategorySelector)
     const toolCategory = useSelector(toolCategorySelector)
+
+    const dispatch = useDispatch()
+    useEffect(()=> {
+        dispatch(getCategories())
+    },[dispatch])
 
     const toggleOpen = (e) => {
         $(e.target).parent().toggleClass('open')

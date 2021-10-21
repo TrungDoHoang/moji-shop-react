@@ -1,7 +1,7 @@
 import { TweenMax } from 'gsap/gsap-core'
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterByCategory, productsByCategorySelector } from '../../../../app/reducers/productsSlice'
+import { productsByCat, productsByCategorySelector } from '../../../../app/reducers/productsSlice'
 import $ from 'jquery'
 import Category from '../../components/Category'
 import CategoryMobile from '../../components/Category/CategoryMobile'
@@ -9,31 +9,25 @@ import NavProduct from '../../components/NavProduct'
 // import Pagination from '../../components/Pagination'
 import './Shop.css'
 import ProductItem from '../../components/ProductItem'
-import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice'
+import { allCategorySelector } from '../../../../app/reducers/categorySlice'
 import { useQueryParam, StringParam } from 'use-query-params'
 import { useHistory } from 'react-router'
 
 
 export default function ShopByCategory() {
     const products = useSelector(productsByCategorySelector)
-    const bookCategory = useSelector(bookCategorySelector) 
-    const toolCategory = useSelector(toolCategorySelector) 
+    const categories = useSelector(allCategorySelector)
     const Err404 = React.lazy(() => import('../../../../components/404'))
-    const [categoryId, setCategoryId] = useQueryParam('category', StringParam)
+    const [categorySlug, setCategorySlug] = useQueryParam('category', StringParam)
     const location = useHistory()
 
-    const bookCategoryName = bookCategory.find(book => book.id === categoryId) 
-    const toolCategoryName = toolCategory.find(tool => tool.id === categoryId) 
-    let categoryName 
-    if(bookCategoryName){
-        categoryName = bookCategoryName.name
-    } else if(toolCategoryName){
-        categoryName = toolCategoryName.name
-    }
+    let category = (categories.find(prd => prd.TenVanTat === categorySlug))
+    let categoryName = category ? category.TenChuDe : ''
+    
     const dispatch = useDispatch()
-
+    
     useEffect(()=> {
-        dispatch(filterByCategory(categoryId))
+        dispatch(productsByCat(categorySlug))
         window.scrollTo(0, 0)
     },[location.location])
 

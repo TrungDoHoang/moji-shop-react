@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import NavMobile from './NavMobile'
 import Logo from './Logo'
@@ -14,9 +14,9 @@ function HeaderMid() {
         // name: 'Trung Hoàng',
         // password: 'abc'
     })
-    useEffect(()=> {
-        setUser(JSON.parse(localStorage.getItem('user')))
-    },[user])
+    // useEffect(()=> {
+    //     setUser(JSON.parse(localStorage.getItem('user')))
+    // },[user])
     const logOut = e => {
         e.preventDefault();
         setUser({})

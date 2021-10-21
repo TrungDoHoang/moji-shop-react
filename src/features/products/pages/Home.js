@@ -13,7 +13,7 @@ export default function Home() {
     const newProducts = products.reduce((newArr, product) => {
         newArr.unshift(product)
         return newArr
-    }, [])
+    },[])
 
     const loadProductsEffect = useRef(() => {
         let product = $(".new-products > .col-lg-3.col-md-4.col-6")

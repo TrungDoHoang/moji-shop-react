@@ -13,7 +13,6 @@ import ProductItem from '../../components/ProductItem'
 
 export default function Shop() {
     const products = useSelector(productsSelector)
-    // const dispatch = useDispatch()
 
     const loadProductsEffect = useRef(() => {
         TweenMax.staggerFrom(

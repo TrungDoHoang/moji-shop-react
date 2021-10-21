@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './NavMobile.css'
 import $ from 'jquery'
-import CategoryItem from '../../../../features/products/components/Category/CategoryItem'
 import { useSelector } from 'react-redux'
 import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice'
 import NavMobileItem from './NavMobileItem'
@@ -38,13 +37,13 @@ export default function NavMobile() {
                 </div>
                 <h4 className="mt-2">Sách vở</h4> <hr />
                 <div className="card-category">
-                    {bookCategory.map(book => <NavMobileItem key={book.id}
-                        LinkTo={`/shop/product?category=${book.id}`} Name={book.name} />)}
+                    {bookCategory.map(book => <NavMobileItem key={book.MaChuDe}
+                        LinkTo={`/shop/product?category=${book.TenVanTat}`} Name={book.TenChuDe} />)}
                 </div>
                 <h4 className="mt-2">Dụng cụ học tập</h4> <hr />
                 <div className="card-category">
-                    {toolCategory.map(tool => <NavMobileItem key={tool.id}
-                        LinkTo={`/shop/product?category=${tool.id}`} Name={tool.name} />)}
+                    {toolCategory.map(tool => <NavMobileItem key={tool.MaChuDe}
+                        LinkTo={`/shop/product?category=${tool.TenVanTat}`} Name={tool.TenChuDe} />)}
                 </div>
                 <h4 className="mt-2">Liên hệ</h4> <hr />
                 <div className="nav-mobile-items">

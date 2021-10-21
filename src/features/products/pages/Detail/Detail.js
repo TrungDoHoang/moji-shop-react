@@ -1,34 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { useQueryParam, NumberParam } from 'use-query-params'
 import $ from 'jquery'
 import './Detail.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../../../app/reducers/cartSlice'
-import { productsSelector } from '../../../../app/reducers/productsSlice';
-import { bookCategorySelector, toolCategorySelector } from '../../../../app/reducers/categorySlice';
+import { productDetail, productDetailSelector } from '../../../../app/reducers/productsSlice';
 
 export default function Detail() {
     const Err404 = React.lazy(() => import('../../../../components/404'))
     const [id, setId] = useQueryParam('id', NumberParam);
 
-    const products = useSelector(productsSelector)
-    const bookCategory = useSelector(bookCategorySelector)
-    const toolCategory = useSelector(toolCategorySelector)
-    
+    const product = useSelector(productDetailSelector)
     const dispatch = useDispatch()
-
-    const product = products.find(item => item.id === id)
-    document.title = product.name
-    const bookCategoryName = bookCategory.find(book => book.id === product.category) 
-    const toolCategoryName = toolCategory.find(tool => tool.id === product.category) 
-    let categoryName 
-    if(bookCategoryName){
-        categoryName = bookCategoryName.name
-    } else if(toolCategoryName){
-        categoryName = toolCategoryName.name
-    }
+    useEffect(()=> {
+        dispatch(productDetail(id))
+    },[])
     
+    document.title = product.name
+    let categoryName = product['TenChuDe']
 
     window.scrollTo(0, 0)
     const quantityRequired = e => {
@@ -36,6 +26,10 @@ export default function Detail() {
         if (val < 1) {
             alert('Số lượng mua tối thiểu là 1')
             $(e.target).val(1)
+        }
+        if(val > product.SoLuong) {
+            alert('Số lượng mua tối thiểu là ' + product.SoLuong)
+            $(e.target).val(product.SoLuong)
         }
     }
 
@@ -50,7 +44,7 @@ export default function Detail() {
         }
         window.scrollTo(0, 0)
     }
-    if (product) {
+    if (product.cost) {
         return (
             <div className="container text-center">
                 <div className="row">
@@ -90,13 +84,22 @@ export default function Detail() {
                                     <div className="product-details-id text-start">
                                         Mã sản phẩm: {product.id}
                                     </div>
+                                    <div className="product-details-id text-start">
+                                        Nhà cung cấp: {product.TenNCC}
+                                    </div>
+                                    <div className="product-details-id text-start">
+                                        {product.TenNXB === "" ? "": `Nhà xuất bản: ${product.TenNXB}`}
+                                    </div>
+                                    <div className="product-details-id text-start">
+                                        Số lượng hiện có: {product.SoLuong} sản phẩm
+                                    </div>
                                     <div className="product-details-cost text-start">
                                         {(product.cost).toLocaleString()}đ
                                     </div>
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
                                         <div className="form-check-quantity d-flex align-items-center w-50">
                                             <label htmlFor="quantity" className="w-50"> Số lượng: </label>
-                                            <input type="number" name="quantity" min={1} defaultValue={1} id="quantity"
+                                            <input type="number" name="quantity" min={1} defaultValue={1} max={product.SoLuong} id="quantity"
                                                 className="form-control me-auto" onBlur={quantityRequired} />
                                         </div>
                                         <button className="btn btn-pink mt-4">Thêm vào giỏ hàng</button>

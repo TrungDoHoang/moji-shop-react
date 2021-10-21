@@ -16,7 +16,7 @@ export default function CategoryItem({name, categories, toggleOpen}) {
             </div>
             <ul className="main-category-list-lv2 list-unstyled">
                 {categories.map(category => {
-                    return <CategoryItemLv2 key={category.id} id={category.id} name={category.name}/>
+                    return <CategoryItemLv2 key={category.MaChuDe} slug={category.TenVanTat} name={category.TenChuDe}/>
                 })}
             </ul>
         </li>
