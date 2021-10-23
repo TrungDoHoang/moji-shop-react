@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { loginAPI } from '../../../app/reducers/userSlice'
+import { useHistory } from 'react-router'
+import $ from 'jquery'
 import './User.css'
 
 export default function Signin() {
     document.title = 'Đăng nhập'
+    const dispatch = useDispatch()
+    const [username, setUsername] = useState('') 
+    const [password, setPassword] = useState('')
+
+    const location = useHistory()
+    
+    const signin = async(e) => {
+        e.preventDefault()
+        let data = {
+            "username": username,
+            "password": password
+        }
+        dispatch(loginAPI(data)).unwrap()
+            .then((result) => {
+                if(result){
+                    switch(result.code) {
+                        case 200:
+                            alert(result.success)
+                            location.replace('/')
+                            break
+                        case 201:
+                            alert(result.error)
+                            $('#username').focus()
+                            break
+                        default: return
+                    }
+                }
+            })
+    }
+
     return (
         <div className="container text-center">
             <div className="row">
@@ -13,12 +47,12 @@ export default function Signin() {
                         <Link to="signin" className="main-heading-link text-decoration-none form--active">Đăng nhập</Link>
                         <Link to="signup" className="main-heading-link text-decoration-none">Đăng ký</Link>
                     </div>
-                    <form method="POST" className="main-form">
+                    <form onSubmit={signin} className="main-form">
                         <div className="m-4">
-                            <input type="text" className="main-input form-control" required placeholder="Nhập email hoặc tên đăng nhập" />
+                            <input type="text" id="username" className="main-input form-control" value={username} onChange={e => {setUsername(e.target.value)}} required placeholder="Nhập email hoặc tên đăng nhập" />
                         </div>
                         <div className="m-4">
-                            <input type="password" className="main-input form-control" required placeholder="Mật khẩu " />
+                            <input type="password" className="main-input form-control" value={password} onChange={e => {setPassword(e.target.value)}} required placeholder="Mật khẩu " />
                         </div>
                         <div className="m-4">
                             <button type="submit" className="submit-button btn btn-pink">Đăng nhập</button>
@@ -27,7 +61,7 @@ export default function Signin() {
                     <Link to="/" className="forgot-password main-link text-decoration-none">Quên mật khẩu</Link>
                     <p>Hoặc đăng nhập với</p>
                     <div className="social m-4 d-flex flex-column">
-                        <a href="https://www.facebook.com" target="_blank" rel="noreferrer noopener" className="f-b social-link text-decoration-none d-flex align-items-center justify-content-center">
+                        <a href="https://www.facebook.com" target="_blank" rel="noreferrer noopener" className="f-b-login social-link text-decoration-none d-flex align-items-center justify-content-center">
                             <ion-icon name="logo-facebook" />
                             Đăng nhập với Facebook
                         </a>

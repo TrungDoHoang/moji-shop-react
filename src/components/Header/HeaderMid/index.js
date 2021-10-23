@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router'
 import NavMobile from './NavMobile'
 import Logo from './Logo'
 import FormSearch from './FormSearch'
 import Cart from '../../Cart'
 import './HeaderMid.css'
-import { isEmptyObject } from 'jquery'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, userSelector, logOutAccount } from '../../../app/reducers/userSlice'
 
 function HeaderMid() {
-    
-    const [user, setUser] = useState({
-        // username: 'hoangtrung',
-        // name: 'Trung Hoàng',
-        // password: 'abc'
-    })
-    // useEffect(()=> {
-    //     setUser(JSON.parse(localStorage.getItem('user')))
-    // },[user])
+    const user = useSelector(userSelector)
+    const dispatch = useDispatch()
+    const location = useHistory()
+    const path = useLocation()
+    useEffect(()=> {
+        dispatch(getUser())
+    },[path])
     const logOut = e => {
         e.preventDefault();
-        setUser({})
-        localStorage.setItem('user', JSON.stringify({}))
+        dispatch(logOutAccount())
+        location.replace('/user/signin')
     }
     return (
         <div className="header-content">
@@ -35,9 +35,9 @@ function HeaderMid() {
                     </div>
 
                     <div className="header-logon col-3 col-md-4 col-lg-3 mt-4">
-                        {!isEmptyObject(user) ? 
+                        { user.success == 1 ? 
                         (<><NavLink to="/" className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">
-                            {user.name}
+                            {user.user.TenKH}
                         </NavLink>
                         <NavLink to="/" onClick={logOut} className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">
                             Thoát
@@ -57,7 +57,7 @@ function HeaderMid() {
                                 person
                             </span>
                         </NavLink></>)
-}
+                        }
                         <Cart />
                     </div>
                     {/* Search mobile */}

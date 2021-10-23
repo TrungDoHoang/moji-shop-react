@@ -201,7 +201,7 @@ html, body {
   z-index: 10;
 }
 
-.f-b, .f-b:hover {
+.f-b, .f-b-login, .f-b:hover {
   background: #2e4b88;
   color: #fff;
 }
