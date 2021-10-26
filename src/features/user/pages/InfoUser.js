@@ -25,7 +25,7 @@ function InfoUser() {
                     setAddress(res.user.DiaChi)
                 }else location.replace('/user/signin')
             })
-    },[])
+    },[location.location])
 
     const update = (e) => {
         e.preventDefault()

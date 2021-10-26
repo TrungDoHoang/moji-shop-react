@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from 'axios'
+import API from '../axios'
 
 export const registerAPI = createAsyncThunk('user/register', (data) => {
-    return axios({
+    return API({
         method: 'POST',
-        url: 'http://localhost:8080/php/btlcnpm/api/account/register.php',
+        url: 'php/btlcnpm/api/account/register.php',
         data
     })
     .then((response) => response.data)
@@ -12,9 +12,9 @@ export const registerAPI = createAsyncThunk('user/register', (data) => {
 })
 export const updateAPI = createAsyncThunk('user/update', (data) => {
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
-    return axios({
+    return API({
         method: 'PUT',
-        url: 'http://localhost:8080/php/btlcnpm/api/account/update.php',
+        url: 'php/btlcnpm/api/account/update.php',
         headers: {"Authorization" : `Bearer ${token}`} ,
         data
     })
@@ -23,9 +23,9 @@ export const updateAPI = createAsyncThunk('user/update', (data) => {
 })
 export const changePassAPI = createAsyncThunk('user/changePassword', (data) => {
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
-    return axios({
+    return API({
         method: 'PUT',
-        url: 'http://localhost:8080/php/btlcnpm/api/account/changepass.php',
+        url: 'php/btlcnpm/api/account/changepass.php',
         headers: {"Authorization" : `Bearer ${token}`} ,
         data
     })
@@ -33,9 +33,9 @@ export const changePassAPI = createAsyncThunk('user/changePassword', (data) => {
     .catch((error) => error.message)
 })
 export const loginAPI = createAsyncThunk('user/login', (data) => {
-    return axios({
+    return API({
         method: 'POST',
-        url: 'http://localhost:8080/php/btlcnpm/api/account/login.php',
+        url: 'php/btlcnpm/api/account/login.php',
         data
     })
     .then((response) => response.data)
@@ -43,8 +43,8 @@ export const loginAPI = createAsyncThunk('user/login', (data) => {
 })
 export const getUser = createAsyncThunk('user/getUser', () => {
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
-    return axios.get(
-        'http://localhost:8080/php/btlcnpm/api/account/user.php',
+    return API.get(
+        'php/btlcnpm/api/account/user.php',
         { headers: {"Authorization" : `Bearer ${token}`} }
     )
     .then((response) => response.data)

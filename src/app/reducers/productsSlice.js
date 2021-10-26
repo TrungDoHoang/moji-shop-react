@@ -1,23 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
+import API from '../axios'
 
 export const getProducts = createAsyncThunk('products/get', () => {
-    return axios.get('http://localhost:8080/php/btlcnpm/api/product/read.php')
+    return API.get('php/btlcnpm/api/product/read.php')
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
 export const productDetail = createAsyncThunk('products/getDetail', (id) => {
-    return axios.get(`http://localhost:8080/php/btlcnpm/api/product/show.php?id=${id}`)
+    return API.get(`php/btlcnpm/api/product/show.php?id=${id}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
 export const productsByCat = createAsyncThunk('products/getByCats', (id) => {
-    return axios.get(`http://localhost:8080/php/btlcnpm/api/product/readbycat.php?machude=${id}`)
+    return API.get(`php/btlcnpm/api/product/readbycat.php?machude=${id}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
 export const productSearch = createAsyncThunk('products/search', (key) => {
-    return axios.get(`http://localhost:8080/php/btlcnpm/api/product/search.php?key=${key}`)
+    return API.get(`php/btlcnpm/api/product/search.php?key=${key}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })

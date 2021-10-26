@@ -10,11 +10,11 @@ function CartItem({ id, name, cost, quantity, img }) {
     }
     return (
         <li className="cart-item">
-            <Link to="/" className="cart-item-name text-decoration-none">
+            <Link to={`/detail/products?id=${id}`} className="cart-item-name text-decoration-none">
                 <img src={`/assets/images/product/${img}`} alt="" className="cart-item-img" />
             </Link>
             <div className="d-flex flex-column ms-4 justify-content-between">
-                <Link to="/" title={name} className="cart-item-name text-decoration-none">{name}</Link>
+                <Link to={`/detail/products?id=${id}`} title={name} className="cart-item-name text-decoration-none">{name}</Link>
                 <span className="cart-item-cost">Đơn giá: {cost.toLocaleString()}đ</span>
             </div>
             <div className="d-flex flex-column ms-4 justify-content-center align-items-center">

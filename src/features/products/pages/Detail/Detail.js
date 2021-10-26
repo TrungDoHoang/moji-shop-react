@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useQueryParam, NumberParam } from 'use-query-params'
 import $ from 'jquery'
 import './Detail.css'
@@ -10,12 +10,13 @@ import { productDetail, productDetailSelector } from '../../../../app/reducers/p
 export default function Detail() {
     const Err404 = React.lazy(() => import('../../../../components/404'))
     const [id, setId] = useQueryParam('id', NumberParam);
+    const location = useHistory()
 
     const product = useSelector(productDetailSelector)
     const dispatch = useDispatch()
     useEffect(()=> {
         dispatch(productDetail(id))
-    },[])
+    },[location.location])
     
     document.title = product.name
     let categoryName = product['TenChuDe']

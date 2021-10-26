@@ -114,30 +114,7 @@
     top: 300px;
     z-index: 20;
 }
-.pagination{
-    font-size: 1.8rem;
-    border-radius: 10px;
-}
-.page-link{
-    padding: 4px 12px;
-    background-color: #fff;
-    color: var(--dark);
-}
-.page-link:hover{
-    background-color: var(--pink-light);
-    border-color: var(--pink-light);
-    color: #fff;
-    box-shadow: none;
-}
-.page-link:focus{
-    box-shadow: none;
-    color: var(--dark);
-}
-.page-item.active .page-link{
-    background-color: var(--pink-light);
-    border-color: var(--pink-light);
-    box-shadow: none;
-}
+
 @media (max-width: 767px) {
     .main-category-filter{
         width: 85vw;

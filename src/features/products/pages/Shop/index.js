@@ -1,5 +1,5 @@
 import { TweenMax } from 'gsap/gsap-core'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { productsSelector } from '../../../../app/reducers/productsSlice'
 import $ from 'jquery'
@@ -9,11 +9,23 @@ import NavProduct from '../../components/NavProduct'
 import Pagination from '../../components/Pagination'
 import './Shop.css'
 import ProductItem from '../../components/ProductItem'
+import { useQueryParam, NumberParam } from 'use-query-params'
+import { useHistory } from 'react-router'
 
 
 export default function Shop() {
     const products = useSelector(productsSelector)
+    const [page, setPage] = useQueryParam('_page', NumberParam)
+    const location = useHistory()
+    let currentPage =  page || 1  && page < 5 ? page : 1
+    console.log(currentPage)
 
+    useEffect(()=> {
+    },[location.location])
+    
+    if(products){
+        console.log(currentPage)
+    }
     const loadProductsEffect = useRef(() => {
         TweenMax.staggerFrom(
             $('.product'), // phần tử được chọn
