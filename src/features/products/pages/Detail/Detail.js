@@ -72,13 +72,13 @@ export default function Detail() {
                                                 <a href="https://www.facebook.com/"
                                                     target="_blank" rel="noreferrer noopener"
                                                     className="d-flex align-items-center">
-                                                    <ion-icon name="logo-facebook" className="f-b" />
+                                                    <ion-icon name="logo-facebook" id="f-b" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div className="favorite d-flex align-items-center ms-2">
-                                            <ion-icon name="heart-outline" className="heart-border" />
-                                            <ion-icon name="heart" className="heart" />
+                                            <ion-icon name="heart-outline" class="heart-border" />
+                                            <ion-icon name="heart" class="heart" />
                                         </div>
                                     </div>
                                     <div className="product-details-id text-start">
