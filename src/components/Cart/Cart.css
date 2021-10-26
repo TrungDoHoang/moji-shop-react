@@ -138,6 +138,8 @@
   }
   
   .cart-item-delete {
+    background-color: transparent;
+    border: none;
     cursor: pointer;
   }
   

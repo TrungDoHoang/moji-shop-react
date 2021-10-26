@@ -10,6 +10,28 @@ export const registerAPI = createAsyncThunk('user/register', (data) => {
     .then((response) => response.data)
     .catch((error) => error.message)
 })
+export const updateAPI = createAsyncThunk('user/update', (data) => {
+    let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
+    return axios({
+        method: 'PUT',
+        url: 'http://localhost:8080/php/btlcnpm/api/account/update.php',
+        headers: {"Authorization" : `Bearer ${token}`} ,
+        data
+    })
+    .then((response) => response.data)
+    .catch((error) => error.message)
+})
+export const changePassAPI = createAsyncThunk('user/changePassword', (data) => {
+    let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
+    return axios({
+        method: 'PUT',
+        url: 'http://localhost:8080/php/btlcnpm/api/account/changepass.php',
+        headers: {"Authorization" : `Bearer ${token}`} ,
+        data
+    })
+    .then((response) => response.data)
+    .catch((error) => error.message)
+})
 export const loginAPI = createAsyncThunk('user/login', (data) => {
     return axios({
         method: 'POST',
@@ -69,14 +91,21 @@ const userSlice = createSlice({
 
         [getUser.fulfilled]: (state, action) => {
             let data = action.payload
-            if(data){
-                state.user = data
+            if(data && data.status === 200){
+                state.user = data.user
             }
         },
         [getUser.rejected]: (state, action) => {
             console.error('Truyền dữ liệu lấy thông tin người dùng không thành công!')
         },
 
+        [updateAPI.rejected]: (state, action) => {
+            console.error('Truyền dữ liệu update thông tin người dùng không thành công!')
+        },
+
+        [changePassAPI.rejected]: (state, action) => {
+            console.error('Truyền dữ liệu thay đổi mật khẩu người dùng không thành công!')
+        }
     }
 })
 

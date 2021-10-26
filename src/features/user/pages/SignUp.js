@@ -36,7 +36,7 @@ export default function Signup() {
             "DienThoai": tel,
             "NgaySinh": date
         }
-        dispatch(registerAPI(data))
+        dispatch(registerAPI(data)).unwrap()
             .then((registerResult) => {
                 if(registerResult){
                     switch(registerResult.code) {

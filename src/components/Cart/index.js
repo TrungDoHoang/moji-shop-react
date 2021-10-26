@@ -1,11 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { cartSelector } from '../../app/reducers/cartSlice'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartSelector, getCart } from '../../app/reducers/cartSlice'
 import CartItem from './CartItem'
 import './Cart.css'
 
 function Cart() {
     const items = useSelector(cartSelector)
+    const dispatch = useDispatch()
+    useEffect(()=> {
+        dispatch(getCart())
+    },[window.location])
     return (
         <div className="header-cart">
             <span className="header-cart-icon material-icons-outlined">
@@ -18,7 +22,7 @@ function Cart() {
             <div className={`header-cart-list ${items.length === 0 ? 'no-item' : ''}`}>
                 {/* No item */}
                 <div className="list-no-item">
-                    <img src="./assets/images/no-cart.png" alt="" className="header-cart-no-item-img" />
+                    <img src="/assets/images/no-cart.png" alt="" className="header-cart-no-item-img" />
                     <span className="header-cart-no-item-msg">Chưa có sản phẩm</span>
                 </div>
                 {/* Has item */}

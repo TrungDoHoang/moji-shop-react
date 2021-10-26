@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import {deleteInCart} from '../../app/reducers/cartSlice'
+import { useDispatch } from 'react-redux'
+import { deleteInCart } from '../../app/reducers/cartSlice'
 
-function CartItem({id, name, cost, quantity, img}) {
+function CartItem({ id, name, cost, quantity, img }) {
     const dispatch = useDispatch()
-    const deleteSignItem = (id) =>{
+    const deleteSignItem = (id) => {
         dispatch(deleteInCart(id))
     }
     return (
@@ -19,9 +19,12 @@ function CartItem({id, name, cost, quantity, img}) {
             </div>
             <div className="d-flex flex-column ms-4 justify-content-center align-items-center">
                 <span className="cart-item-quantity">x{quantity}</span>
-                <span className="cart-item-delete material-icons-outlined" onClick={deleteSignItem.bind(this, id)} >
-                    delete
-                </span>
+                <button className="cart-item-delete">
+                    <span className=" material-icons-outlined" onClick={deleteSignItem.bind(this, id)} >
+                        delete
+                    </span>
+
+                </button>
             </div>
         </li>
 
