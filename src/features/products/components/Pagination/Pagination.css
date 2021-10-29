@@ -17,7 +17,7 @@
     box-shadow: none;
     color: var(--dark);
 }
-.active {
+.page-link.active {
     background-color: var(--pink-light);
     border-color: var(--pink-light);
     box-shadow: none;

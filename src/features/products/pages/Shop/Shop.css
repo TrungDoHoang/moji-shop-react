@@ -4,6 +4,7 @@
     color: var(--pink-light);
     flex: 5;
     display: block;
+    padding: 3.5px 0;
     border-bottom: 1px solid var(--pink-light);
 }
 .form-select{

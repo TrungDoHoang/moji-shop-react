@@ -1,4 +1,15 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import API from '../axios'
+
+export const payBill = createAsyncThunk('cart/payBill', (data) => {
+    return API({
+        method: 'POST',
+        url: 'bill/create.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -7,34 +18,61 @@ const cartSlice = createSlice({
         ]
     },
     reducers: {
-        getCart: (state,action) =>{
+        getCart: (state, action) => {
             let cartItem = sessionStorage.getItem('cart') ? JSON.parse(sessionStorage.getItem('cart')) : []
-            state.productsInCart = cartItem
+
+            state.productsInCart = cartItem.map(item => {
+                    return {
+                        ...item,
+                        cost: Number.parseInt(item.cost),
+                        SoLuong: Number.parseInt(item.SoLuong),
+                        quantity: Number.parseInt(item.quantity)
+                    }
+                })
         },
         addToCart: (state, action) => {
             const product = action.payload
-            if(!state.productsInCart.find(item => item.id === product.id)) {
+            if (!state.productsInCart.find(item => item.id === product.id)) {
                 state.productsInCart = [
                     product,
                     ...state.productsInCart
                 ]
             }
-            else{
+            else {
                 state.productsInCart.find(item => item.id === product.id).quantity += product.quantity
             }
             alert('Đã thêm ' + product.name + ' vào giỏ hàng!!')
             sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
+        updateCart: (state, action) => {
+            const product = action.payload
+            state.productsInCart.find(item => item.id === product.id).quantity = product.quantity
+            sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+        },
+
         deleteInCart: (state, action) => {
             const itemId = action.payload
             const quantities = state.productsInCart.find(item => item.id === itemId).quantity
-            if(quantities > 1){
+            if (quantities > 1) {
                 state.productsInCart.find(item => item.id === itemId).quantity--
             }
             else {
                 state.productsInCart = state.productsInCart.filter(item => item.id !== itemId)
             }
             sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+        },
+        destroyItem: (state, action) => {
+            const itemId = action.payload
+            state.productsInCart = state.productsInCart.filter(item => item.id !== itemId)
+        }
+    },
+    extraReducers: {
+        [payBill.fulfilled]: (state, action) => {
+            state.productsInCart = []
+            sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+        },
+        [payBill.rejected]: (state, action) => {
+            console.error("Đặt hàng thất bại, server không phản hồi!")
         }
     }
 })
@@ -42,7 +80,7 @@ const cartSlice = createSlice({
 export const cartReducer = cartSlice.reducer
 
 // export actions
-export const {getCart, addToCart, deleteInCart} = cartSlice.actions
+export const { getCart, addToCart, updateCart, deleteInCart, destroyItem } = cartSlice.actions
 
 // export selecttor
 export const cartSelector = state => state.cartReducer.productsInCart

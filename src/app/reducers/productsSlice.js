@@ -2,22 +2,22 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import API from '../axios'
 
 export const getProducts = createAsyncThunk('products/get', () => {
-    return API.get('php/btlcnpm/api/product/read.php')
+    return API.get('product/read.php')
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
 export const productDetail = createAsyncThunk('products/getDetail', (id) => {
-    return API.get(`php/btlcnpm/api/product/show.php?id=${id}`)
+    return API.get(`product/show.php?id=${id}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
 export const productsByCat = createAsyncThunk('products/getByCats', (id) => {
-    return API.get(`php/btlcnpm/api/product/readbycat.php?machude=${id}`)
+    return API.get(`product/readbycat.php?machude=${id}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
 export const productSearch = createAsyncThunk('products/search', (key) => {
-    return API.get(`php/btlcnpm/api/product/search.php?key=${key}`)
+    return API.get(`product/search.php?key=${key}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
@@ -379,6 +379,7 @@ const productsSlice = createSlice({
         //         mota: 'Cuốn Đi Qua Hoa Cúc là tập truyện dài của Nguyễn Nhật Ánh, mở đầu câu truyện tác giả kể lại tuổi ấu thơ hồn nhiên của nhân vật trong truyện, kết hợp với tả cảnh ở miền quê, những ngôi nhà nằm dọc hai bên đường đá sỏi dọc theo hai bên hàng dâm bụt và cả cây sứ cây bàng tỏa bóng mát, tỏa hương thơm trước sân nhà. Một nét vẽ nên thơ thật đầm ấm ở một vùng quê xa xôi tác giả dường như làm ấm lòng cho người đọc. Thật vậy mỗi cốt truyện của Nguyễn Nhật Ánh đã phác họa lên một nét quê hương ngọt ngào, một thời ấu thơ đẹp, một tình yêu của tuổi học trò cũng hòa lẫn tình yêu khát khao của bao lứa tuổi. Cuốn truyện dài Đi Qua Hoa Cúc là một trong những tác phẩm tuyệt tác hay của tác giả làm thôi thúc người đọc thêm nhiều ấn tượng và sự lôi cuốn tràn dâng trong lòng bạn đọc.'
         //     },
         ],
+        currentProduct: [],
         resultSearch: [],
         productDetail: {},
         productsByCategory: [],
@@ -461,6 +462,9 @@ const productsSlice = createSlice({
             console.error("Get product by category from database not success!!")
         },
 
+        [productSearch.pending]: (state, action) => {
+            state.resultSearch = []
+        },
         [productSearch.fulfilled]: (state, action) => {
             let data = action.payload.product
             if(data){

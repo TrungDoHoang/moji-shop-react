@@ -23,15 +23,25 @@ export default function ShopByCategory() {
 
     let category = (categories.find(prd => prd.TenVanTat === categorySlug))
     let categoryName = category ? category.TenChuDe : ''
-    
+
     const dispatch = useDispatch()
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         dispatch(productsByCat(categorySlug))
         window.scrollTo(0, 0)
-    },[location.location])
+    }, [location.location])
+
+    if (products.length === 0) {
+        throw dispatch(productsByCat(categorySlug))
+    }
 
     const loadProductsEffect = useRef(() => {
+        let product = $(".filter > .col-lg-3.col-md-4.col-6")
+        product.hide()
+        product.slice(0, 8).show()
+        if ($(".filter > .col-lg-3.col-md-4.col-6:hidden").length === 0) {
+            $(".new-products-more").hide();
+        }
         TweenMax.staggerFrom(
             $('.product'), // phần tử được chọn
             1, // thời gian chuyển động
@@ -39,7 +49,13 @@ export default function ShopByCategory() {
             0.2 // thời gian cách nhau giữa mỗi hiệu ứng
         )
     })
-    if(categoryName){
+    const more = () => {
+        $(".filter > .col-lg-3.col-md-4.col-6:hidden").slice(0, 4).slideDown();
+        if ($(".filter > .col-lg-3.col-md-4.col-6:hidden").length === 0) {
+            $(".new-products-more").fadeOut('slow');
+        }
+    }
+    if (categoryName) {
         document.title = categoryName
         return (
             <div className="main" ref={loadProductsEffect.current}>
@@ -52,12 +68,15 @@ export default function ShopByCategory() {
                         <CategoryMobile />
                         <div className="col-lg-9 col-12 col-md-11">
                             <NavProduct title={categoryName} />
-                            <div className="row g-4 mt-0">
+                            <div className="filter row g-4 mt-0">
                                 {products.map(product => {
                                     return <ProductItem key={product.id} id={product.id} name={product.name}
-                                        cost={product.cost} img={product.img} />
+                                        cost={product.cost} img={product.img} SoLuong={product.SoLuong}/>
                                 })}
                                 {/* <Pagination /> */}
+                            </div>
+                            <div className="col-12 text-center mt-5">
+                                <div className="btn btn-pink new-products-more" onClick={more}>Xem thêm</div>
                             </div>
                         </div>
                     </div>

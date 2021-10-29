@@ -4,51 +4,56 @@ import API from '../axios'
 export const registerAPI = createAsyncThunk('user/register', (data) => {
     return API({
         method: 'POST',
-        url: 'php/btlcnpm/api/account/register.php',
+        url: 'account/register.php',
         data
     })
-    .then((response) => response.data)
-    .catch((error) => error.message)
+        .then((response) => response.data)
+        .catch((error) => error.message)
 })
 export const updateAPI = createAsyncThunk('user/update', (data) => {
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
     return API({
         method: 'PUT',
-        url: 'php/btlcnpm/api/account/update.php',
-        headers: {"Authorization" : `Bearer ${token}`} ,
+        url: 'account/update.php',
+        headers: { "Authorization": `Bearer ${token}` },
         data
     })
-    .then((response) => response.data)
-    .catch((error) => error.message)
+        .then((response) => response.data)
+        .catch((error) => error.message)
 })
 export const changePassAPI = createAsyncThunk('user/changePassword', (data) => {
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
     return API({
         method: 'PUT',
-        url: 'php/btlcnpm/api/account/changepass.php',
-        headers: {"Authorization" : `Bearer ${token}`} ,
+        url: 'account/changepass.php',
+        headers: { "Authorization": `Bearer ${token}` },
         data
     })
-    .then((response) => response.data)
-    .catch((error) => error.message)
+        .then((response) => response.data)
+        .catch((error) => error.message)
 })
 export const loginAPI = createAsyncThunk('user/login', (data) => {
     return API({
         method: 'POST',
-        url: 'php/btlcnpm/api/account/login.php',
+        url: 'account/login.php',
         data
     })
-    .then((response) => response.data)
-    .catch((error) => error.message)
+        .then((response) => response.data)
+        .catch((error) => error.message)
 })
 export const getUser = createAsyncThunk('user/getUser', () => {
     let token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
     return API.get(
-        'php/btlcnpm/api/account/user.php',
-        { headers: {"Authorization" : `Bearer ${token}`} }
+        'account/user.php',
+        { headers: { "Authorization": `Bearer ${token}` } }
     )
-    .then((response) => response.data)
-    .catch((error) => error.message)
+        .then((response) => response.data)
+        .catch((error) => error.message)
+})
+export const getOrder = createAsyncThunk('user/getOrder', (id) => {
+    return API.get('bill/read.php?_MaKH='+id,)
+        .then((response) => response.data)
+        .catch((error) => error.message)
 })
 
 
@@ -57,7 +62,8 @@ const userSlice = createSlice({
     initialState: {
         user: {},
         register: {},
-        login: {}
+        login: {},
+        order: []
     },
     reducers: {
         logOutAccount: (state, action) => {
@@ -68,7 +74,7 @@ const userSlice = createSlice({
     extraReducers: {
         [registerAPI.fulfilled]: (state, action) => {
             let data = action.payload
-            if(data) {
+            if (data) {
                 state.register = data
             }
         },
@@ -78,9 +84,9 @@ const userSlice = createSlice({
 
         [loginAPI.fulfilled]: (state, action) => {
             let data = action.payload
-            if(data){
+            if (data) {
                 state.login = data
-                if(data.code === 200){
+                if (data.code === 200) {
                     localStorage.setItem('token', action.payload.token)
                 }
             }
@@ -91,7 +97,7 @@ const userSlice = createSlice({
 
         [getUser.fulfilled]: (state, action) => {
             let data = action.payload
-            if(data && data.status === 200){
+            if (data && data.status === 200) {
                 state.user = data.user
             }
         },
@@ -105,6 +111,19 @@ const userSlice = createSlice({
 
         [changePassAPI.rejected]: (state, action) => {
             console.error('Truyền dữ liệu thay đổi mật khẩu người dùng không thành công!')
+        },
+
+        [getOrder.fulfilled]: (state, action) => {
+            let data = action.payload
+            if(data.bill){
+                state.order = data.bill.map(item => ({
+                    ...item,
+                    Total: Number.parseInt(item.Total).toLocaleString()
+                }))
+            }
+        },
+        [getOrder.rejected]: (state, action) => {
+            console.error('Truyền dữ liệu lấy danh sách đơn hàng không thành công!')
         }
     }
 })
@@ -116,6 +135,7 @@ export const userReducer = userSlice.reducer
 export const userSelector = state => state.userReducer.user
 export const registerSelector = state => state.userReducer.register
 export const loginSelector = state => state.userReducer.login
+export const orderSelector = state => state.userReducer.order
 
 // export actions
 export const { logOutAccount } = userSlice.actions

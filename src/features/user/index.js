@@ -1,5 +1,8 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { isEmptyObject } from 'jquery'
+import React, { Suspense } from 'react'
+import { useSelector } from 'react-redux'
+import { Route, Switch, useHistory } from 'react-router-dom'
+import { userSelector } from '../../app/reducers/userSlice'
 import ChangePass from './pages/ChangePass'
 import InfoUser from './pages/InfoUser'
 import Order from './pages/Order'
@@ -9,7 +12,9 @@ import SignUp from './pages/SignUp'
 
 function user(props) {
     const Err404 = React.lazy(() => import('../../components/404'))
+    
     return (
+        <Suspense fallback={<div>Loading...</div>}>
         <Switch>
             <Route path="/user/info" component={InfoUser} />
             <Route path="/user/order" component={Order} />
@@ -18,6 +23,7 @@ function user(props) {
             <Route path="/user/signup" component={SignUp} />
             <Route component={Err404} />
         </Switch>
+        </Suspense>
     )
 }
 

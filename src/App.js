@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { getProducts } from './app/reducers/productsSlice';
 import { getCategories } from './app/reducers/categorySlice';
 const Products = React.lazy(() => import('./features/products'))
+const Cart = React.lazy(() => import('./features/cart'))
 const User = React.lazy(() => import('./features/user'))
 const Contact = React.lazy(() => import('./features/contact'))
 const News = React.lazy(() => import('./features/news'))
@@ -35,6 +36,7 @@ function App() {
             <Route path="/user" component={User} />
             <Route path="/contact" component={Contact} />
             <Route path="/news" component={News} />
+            <Route path="/cart" component={Cart} />
             <Route path="/" component={Products} />
           </Switch>
           <ScrollToTop/>

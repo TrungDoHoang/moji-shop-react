@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     // toggle cart
     if ($('.header-cart')) {
-        $('.header-cart').click(() => {
+        $('.header-cart-icon').click(() => {
             $('.header-cart-list').toggleClass('open')
         })
     }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { cartSelector, getCart } from '../../app/reducers/cartSlice'
 import CartItem from './CartItem'
 import './Cart.css'
+import { Link } from 'react-router-dom'
 
 function Cart() {
     const items = useSelector(cartSelector)
@@ -39,7 +40,7 @@ function Cart() {
                             return toltal + item.cost * item.quantity;
                         }, 0)).toLocaleString()}đ</div>
                     </div>
-                    <div className="go-to-cart btn btn-pink">Xem giỏ hàng</div>
+                    <Link to="/cart" className="go-to-cart btn btn-pink">Xem giỏ hàng</Link>
                 </div>
             </div>
         </div>

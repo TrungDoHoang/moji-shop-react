@@ -1,42 +1,52 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import InfomationUser from '../components/InfomationUser/InfomationUser'
 import DataTable from 'react-data-table-component';
 import './User.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrder, getUser, orderSelector, userSelector } from '../../../app/reducers/userSlice';
 
 function Order() {
+    const dispatch = useDispatch()
+    const location = useHistory()
+    const user = useSelector(userSelector)
+    const order = useSelector(orderSelector)
+    useEffect(()=> {
+        dispatch(getUser()).unwrap()
+            .then(res => {
+                if(!res || res.status !== 200){
+                    location.replace('/user/signin')
+                }
+                else{
+                    dispatch(getOrder(user.MaKH))
+                }
+            })
+    },[])
+
     const styleTitle = {
         fontSize: '1.7rem',
         fontWeight: 'bold'
     }
-    const data = [
-        {
-            SoHDB: 1,
-            NgayBan: '15-01-2000',
-            Cost: 200000,
-            Status: 1
-        }
-    ]
+    const data = order
     const columns = [
         {
-            selector: 'SoHDB',
+            selector: row => row.SoHDB,
             name: 'Mã HDB',
             sortable: true
         },
         {
             name: 'Ngày bán',
-            selector: 'NgayBan',
+            selector: row => row.NgayBan,
             sortable: true
         },
         {
             name: 'Tổng tiền',
-            selector: 'Cost',
+            selector: row => row.Total,
             sortable: true,
-
         },
         {
             name: 'Trạng thái',
-            selector: 'Status',
+            selector: row => row.Status,
             sortable: true
         },
     ]

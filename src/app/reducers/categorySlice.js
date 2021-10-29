@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import API from '../axios'
 
 export const getCategories = createAsyncThunk('category/get', () => {
-    return API.get('php/btlcnpm/api/category/read.php')
+    return API.get('category/read.php')
                 .then((response) => response.data)
                 .catch(err => err.message)
 })

@@ -36,10 +36,10 @@ export default function Detail() {
 
     const addItemToCart = e => {
         e.preventDefault()
-        if (Number.parseInt($('#quantity').val()) > 0) {
+        if (Number.parseInt($('#detailQuantity').val()) > 0) {
             const item = {
                 ...product,
-                quantity: Number.parseInt($('#quantity').val())
+                quantity: Number.parseInt($('#detailQuantity').val())
             }
             dispatch(addToCart(item))
         }
@@ -100,7 +100,7 @@ export default function Detail() {
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
                                         <div className="form-check-quantity d-flex align-items-center w-50">
                                             <label htmlFor="quantity" className="w-50"> Số lượng: </label>
-                                            <input type="number" name="quantity" min={1} defaultValue={1} max={product.SoLuong} id="quantity"
+                                            <input type="number" name="quantity" min={1} defaultValue={1} max={product.SoLuong} id="detailQuantity"
                                                 className="form-control me-auto" onBlur={quantityRequired} />
                                         </div>
                                         <button className="btn btn-pink mt-4">Thêm vào giỏ hàng</button>
