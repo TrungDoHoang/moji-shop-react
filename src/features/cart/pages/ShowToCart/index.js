@@ -27,7 +27,6 @@ function ShowToCart() {
                                 <th width="10%">Thao tác</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {items.map(item => {
                                 return <TableCartItem key={item.id} id={item.id} name={item.name} cost={item.cost}

@@ -15,6 +15,7 @@ const Cart = React.lazy(() => import('./features/cart'))
 const User = React.lazy(() => import('./features/user'))
 const Contact = React.lazy(() => import('./features/contact'))
 const News = React.lazy(() => import('./features/news'))
+const Admin = React.lazy(() => import('./features/admin'))
 function App() {
 
   const dispatch = useDispatch()
@@ -31,8 +32,8 @@ function App() {
     }>
       <QueryParamProvider>
         <BrowserRouter>
-          <Header />
           <Switch>
+            <Route path="/admin" component={Admin} />
             <Route path="/user" component={User} />
             <Route path="/contact" component={Contact} />
             <Route path="/news" component={News} />
@@ -40,7 +41,6 @@ function App() {
             <Route path="/" component={Products} />
           </Switch>
           <ScrollToTop/>
-          <Footer />
         </BrowserRouter>
       </QueryParamProvider>
     </Suspense>

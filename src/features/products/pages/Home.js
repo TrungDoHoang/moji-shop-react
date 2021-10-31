@@ -1,7 +1,8 @@
 import React, { Suspense, useEffect, useRef } from 'react'
 import { getProducts, productsSelector } from '../../../app/reducers/productsSlice'
+import { getUser } from '../../../app/reducers/userSlice'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import MultiCarousel from '../components/MultiCarousel'
 import ProductItem from '../components/ProductItem';
 import SlideGroup from '../components/SlideGroup'
@@ -11,9 +12,22 @@ import $ from 'jquery'
 export default function Home() {
     const products = useSelector(productsSelector)
     const dispatch = useDispatch()
+    const location = useHistory()
     if(products.length === 0){
         throw dispatch(getProducts())
     }
+
+    useEffect(()=> {
+        dispatch(getUser()).unwrap()
+            .then(res => {
+                if(res.user){
+                    if(res.user.MaNV !== "0"){
+                        location.replace('/admin')
+                    }
+                }
+            })
+    },[location.location])
+
     const newProducts = products.reduce((newArr, product) => {
         newArr.unshift(product)
         return newArr

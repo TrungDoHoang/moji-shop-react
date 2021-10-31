@@ -6,6 +6,8 @@ import Detail from './pages/Detail/Detail'
 import SearchPage from './pages/SearchPage'
 import ShopByCategory from './pages/Shop/ShopByCategory'
 import '../../Loading.css'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 function products() {
     const Err404 = React.lazy(() => import('../../components/404'))
@@ -15,6 +17,7 @@ function products() {
                 <div id="loader"></div>
             </div>
         }>
+            <Header/>
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/search/:slug" component={SearchPage} />
@@ -25,6 +28,7 @@ function products() {
                 <Route path="/shop/dung_cu" component={Shop} />
                 <Route component={Err404} />
             </Switch>
+            <Footer/>
         </Suspense>
     )
 }

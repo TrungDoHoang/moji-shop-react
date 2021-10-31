@@ -44,6 +44,7 @@ html, body {
   font-family: var(--font-family-sans-serif);
   min-height: 100vh;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* main */

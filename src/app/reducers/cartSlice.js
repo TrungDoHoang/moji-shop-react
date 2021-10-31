@@ -19,7 +19,7 @@ const cartSlice = createSlice({
     },
     reducers: {
         getCart: (state, action) => {
-            let cartItem = sessionStorage.getItem('cart') ? JSON.parse(sessionStorage.getItem('cart')) : []
+            let cartItem = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
 
             state.productsInCart = cartItem.map(item => {
                     return {
@@ -42,12 +42,12 @@ const cartSlice = createSlice({
                 state.productsInCart.find(item => item.id === product.id).quantity += product.quantity
             }
             alert('Đã thêm ' + product.name + ' vào giỏ hàng!!')
-            sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+            localStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
         updateCart: (state, action) => {
             const product = action.payload
             state.productsInCart.find(item => item.id === product.id).quantity = product.quantity
-            sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+            localStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
 
         deleteInCart: (state, action) => {
@@ -59,7 +59,7 @@ const cartSlice = createSlice({
             else {
                 state.productsInCart = state.productsInCart.filter(item => item.id !== itemId)
             }
-            sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+            localStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
         destroyItem: (state, action) => {
             const itemId = action.payload
@@ -69,7 +69,7 @@ const cartSlice = createSlice({
     extraReducers: {
         [payBill.fulfilled]: (state, action) => {
             state.productsInCart = []
-            sessionStorage.setItem('cart', JSON.stringify(state.productsInCart))
+            localStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
         [payBill.rejected]: (state, action) => {
             console.error("Đặt hàng thất bại, server không phản hồi!")

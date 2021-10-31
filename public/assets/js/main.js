@@ -6,6 +6,7 @@ $(document).ready(function () {
             $('.header-cart-list').toggleClass('open')
         })
     }
+
     // Hiệu ứng xuất hiện của product
     // if (document.querySelector('.product')) {
     //     TweenMax.staggerFrom(

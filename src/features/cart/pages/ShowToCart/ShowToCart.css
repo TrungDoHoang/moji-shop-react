@@ -88,3 +88,7 @@ td .total {
     display: inline-block;
     padding: 0;
 }
+
+.dataTables_wrapper{
+    font-size: 1.6rem;
+  }
