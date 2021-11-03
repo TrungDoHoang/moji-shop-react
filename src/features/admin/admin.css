@@ -169,7 +169,6 @@
 
 .content-box p span {
   float: right;
-  background-color: #ddd;
   padding: 3px 10px;
   font-size: 15px;
 }
@@ -198,10 +197,15 @@ table {
 }
 
 td, th {
-  text-align: left;
+  text-align: center;
   padding: 15px;
   font-size: 1.6rem;
   border-bottom: 1px solid #81818140;
+}
+
+td button i ,
+a i {
+  font-size: 2rem!important;
 }
 
 tr{

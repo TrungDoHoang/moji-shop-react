@@ -2,7 +2,8 @@ import React from 'react'
 import HeaderCard from '../../components/HeaderCard'
 
 function Dashboard() {
-    
+    window.scrollTo(0, 0)
+    document.title = 'Dashboard'
 
     return (
         <>

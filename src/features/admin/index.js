@@ -6,6 +6,8 @@ import Sidenav from './components/Sidenav'
 import HeaderAdmin from './components/HeaderAdmin'
 import Products from './pages/Products'
 import Customer from './pages/Customer'
+import CreatePr from './pages/Products/Create'
+import HoaDon from './pages/HoaDon'
 
 function user(props) {
     
@@ -21,8 +23,10 @@ function user(props) {
                     <Switch>
                         <Redirect exact from="/admin" to="/admin/dashboard" />
                         <Route path="/admin/dashboard" component={Dashboard} />
+                        <Route path="/admin/products/create" component={CreatePr} />
                         <Route path="/admin/products" component={Products} />
                         <Route path="/admin/customer" component={Customer} />
+                        <Route path="/admin/bill" component={HoaDon} />
                         <Route component={Err404} />
                     </Switch>
                     <div className="clearfix" />

@@ -1,40 +1,91 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { data } from 'jquery'
 import API from '../axios'
 
 export const getSan_pham = createAsyncThunk('admin/getSan_pham', () => {
     return API.get('product/read.php')
-                .then((response) => response.data)
-                .catch(err => err.message)
+        .then((response) => response.data)
+        .catch(err => err.message)
 })
+export const createSan_pham = createAsyncThunk('admin/createSan_pham', (data) => {
+    return API.post('product/create.php', data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const updateSan_pham = createAsyncThunk('admin/updateSan_pham', (data) => {
+    return API.put('product/update.php', data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteSan_pham = createAsyncThunk('admin/deleteSan_pham', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'product/delete.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+
 export const getChu_de = createAsyncThunk('admin/getChu_de', () => {
     return API.get('category/read.php')
-                .then((response) => response.data)
-                .catch(err => err.message)
+        .then((response) => response.data)
+        .catch(err => err.message)
 })
 export const getNha_cc = createAsyncThunk('admin/getNha_cc', () => {
     return API.get('nhacc/read.php')
-                .then((response) => response.data)
-                .catch(err => err.message)
+        .then((response) => response.data)
+        .catch(err => err.message)
 })
 export const getNha_xb = createAsyncThunk('admin/getNha_xb', () => {
     return API.get('nhaxb/read.php')
-                .then((response) => response.data)
-                .catch(err => err.message)
+        .then((response) => response.data)
+        .catch(err => err.message)
 })
+
 export const getKhach_hang = createAsyncThunk('admin/getKhach_hang', () => {
     return API.get('customer/read.php')
-                .then((response) => response.data)
-                .catch(err => err.message)
+        .then((response) => response.data)
+        .catch(err => err.message)
 })
+export const updateKhach_hang = createAsyncThunk('admin/updateKhach_hang', (data) => {
+    return API.put('customer/update.php',data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteKhach_hang = createAsyncThunk('admin/deleteKhach_hang', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'customer/delete.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+
 export const getHoa_don = createAsyncThunk('admin/getHoa_don', () => {
     return API.get('hoadon/read.php')
-                .then((response) => response.data)
-                .catch(err => err.message)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const updateHoa_don = createAsyncThunk('admin/updateHoa_don', (data) => {
+    return API.put('hoadon/update.php',data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteHoa_don = createAsyncThunk('admin/deleteHoa_don', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'hoadon/delete.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
 })
 
 const adminSlice = createSlice({
     name: 'admin',
-    initialState:{
+    initialState: {
         san_pham: [],
         chu_de: [],
         nha_cc: [],
@@ -42,10 +93,13 @@ const adminSlice = createSlice({
         khach_hang: [],
         hoa_don: [],
     },
-    extraReducers:{
+    reducers:{
+        
+    },
+    extraReducers: {
         [getSan_pham.fulfilled]: (state, action) => {
             let data = action.payload.product
-            if(data){
+            if (data) {
                 state.san_pham = data.map(product => ({
                     ...product,
                     cost: Number.parseInt(product.cost),
@@ -57,10 +111,37 @@ const adminSlice = createSlice({
         [getSan_pham.rejected]: (state, action) => {
             console.log("Get sản phẩm thất bại")
         },
+        [createSan_pham.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.san_pham = []
+            }
+        },
+        [createSan_pham.rejected]: (state, action) => {
+            console.log("Create sản phẩm thất bại")
+        },
+        [updateSan_pham.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.san_pham = []
+            }
+        },
+        [updateSan_pham.rejected]: (state, action) => {
+            console.log("Update sản phẩm thất bại")
+        },
+        [deleteSan_pham.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.san_pham = []
+            }
+        },
+        [deleteSan_pham.rejected]: (state, action) => {
+            console.log("Delete sản phẩm thất bại")
+        },
 
         [getChu_de.fulfilled]: (state, action) => {
             let data = action.payload.category
-            if(data){
+            if (data) {
                 state.chu_de = data.map(item => ({
                     ...item,
                     isSach: Number.parseInt(item.isSach),
@@ -73,7 +154,7 @@ const adminSlice = createSlice({
 
         [getNha_cc.fulfilled]: (state, action) => {
             let data = action.payload.nhacc
-            if(data){
+            if (data) {
                 state.nha_cc = data
             }
         },
@@ -83,7 +164,7 @@ const adminSlice = createSlice({
 
         [getNha_xb.fulfilled]: (state, action) => {
             let data = action.payload.nhaxb
-            if(data){
+            if (data) {
                 state.nha_xb = data
             }
         },
@@ -93,22 +174,58 @@ const adminSlice = createSlice({
 
         [getKhach_hang.fulfilled]: (state, action) => {
             let data = action.payload.customer
-            if(data){
+            if (data) {
                 state.khach_hang = data
             }
         },
         [getKhach_hang.rejected]: (state, action) => {
             console.log("Get khách hàng thất bại")
         },
+        [updateKhach_hang.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.khach_hang = []
+            }
+        },
+        [updateKhach_hang.rejected]: (state, action) => {
+            console.log("update khách hàng thất bại")
+        },
+        [deleteKhach_hang.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.khach_hang = []
+            }
+        },
+        [deleteKhach_hang.rejected]: (state, action) => {
+            console.log("update khách hàng thất bại")
+        },
 
         [getHoa_don.fulfilled]: (state, action) => {
             let data = action.payload.hoadon
-            if(data){
+            if (data) {
                 state.hoa_don = data
             }
         },
         [getHoa_don.rejected]: (state, action) => {
             console.log("Get hóa đơn thất bại")
+        },
+        [updateHoa_don.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.hoa_don = []
+            }
+        },
+        [updateHoa_don.rejected]: (state, action) => {
+            console.log("update hóa đơn thất bại")
+        },
+        [deleteHoa_don.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.hoa_don = []
+            }
+        },
+        [deleteHoa_don.rejected]: (state, action) => {
+            console.log("update hóa đơn thất bại")
         },
     }
 })
