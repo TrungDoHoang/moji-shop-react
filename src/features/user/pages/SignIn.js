@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loginAPI } from '../../../app/reducers/userSlice'
+import swal from 'sweetalert2'
 import { useHistory } from 'react-router'
 import $ from 'jquery'
 import './User.css'
@@ -25,7 +26,7 @@ export default function Signin() {
                 if(result){
                     switch(result.code) {
                         case 200:
-                            alert(result.success)
+                            swal.fire('Success',result.success,'success')
                             location.replace('/')
                             break
                         case 201:

@@ -2,6 +2,7 @@ import { isEmptyObject } from 'jquery'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
+import wal from 'sweetalert2'
 import { cartSelector, payBill } from '../../../../app/reducers/cartSlice'
 import { userSelector } from '../../../../app/reducers/userSlice'
 import TableCartItem from '../../components/TableCartItem'
@@ -36,7 +37,7 @@ function PayPage() {
         dispatch(payBill(data)).unwrap()
             .then(res => {
                 if (res.code === 200) {
-                    alert(res.success)
+                    wal.fire('Success!',res.success,'success')
                     location.replace('/')
                 }
                 else alert(res.error)
