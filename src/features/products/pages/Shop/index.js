@@ -6,17 +6,16 @@ import $ from 'jquery'
 import Category from '../../components/Category'
 import CategoryMobile from '../../components/Category/CategoryMobile'
 import NavProduct from '../../components/NavProduct'
-import Pagination from '../../components/Pagination'
 import './Shop.css'
-import ProductItem from '../../components/ProductItem'
 import { useQueryParam, NumberParam } from 'use-query-params'
 import { useHistory } from 'react-router'
+import PaginatedItems from '../../components/PaginatedItems'
 
 
 export default function Shop() {
     const products = useSelector(productsSelector)
     const dispatch = useDispatch()
-    if(products.length === 0){
+    if (products.length === 0) {
         throw dispatch(getProducts())
     }
     // const [page, setPage] = useQueryParam('_page', NumberParam)
@@ -26,7 +25,7 @@ export default function Shop() {
 
     // useEffect(()=> {
     // },[location.location])
-    
+
     // if(products){
     //     console.log(currentPage)
     // }
@@ -51,7 +50,7 @@ export default function Shop() {
         }
     }
 
-    window.onload = function() {
+    window.onload = function () {
         window.scrollTo(0, 0)
     }
     window.scrollTo(0, 0)
@@ -68,11 +67,7 @@ export default function Shop() {
                     <div className="col-lg-9 col-12 col-md-11">
                         <NavProduct title="Tất cả sản phẩm" />
                         <div className="shop row g-4 mt-0">
-                            {products.map(product => {
-                                return <ProductItem key={product.id} id={product.id} name={product.name}
-                                    cost={product.cost} img={product.img} SoLuong={product.SoLuong}/>
-                            })}
-                            {/* <Pagination /> */}
+                            <PaginatedItems itemsPerPage={8} items={products}/>
                         </div>
                         <div className="col-12 text-center mt-5">
                             <div className="btn btn-pink new-products-more" onClick={more}>Xem thêm</div>

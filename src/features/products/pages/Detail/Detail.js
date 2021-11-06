@@ -6,6 +6,7 @@ import './Detail.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../../../../app/reducers/cartSlice'
 import { productDetail, productDetailSelector } from '../../../../app/reducers/productsSlice';
+import Swal from 'sweetalert2';
 
 export default function Detail() {
     const Err404 = React.lazy(() => import('../../../../components/404'))
@@ -25,11 +26,11 @@ export default function Detail() {
     const quantityRequired = e => {
         let val = $(e.target).val()
         if (val < 1) {
-            alert('Số lượng mua tối thiểu là 1')
+            Swal.fire('Cảnh báo','<h1>Số lượng mua tối thiểu là 1</h1>','warning')
             $(e.target).val(1)
         }
         if(val > product.SoLuong) {
-            alert('Số lượng mua tối thiểu là ' + product.SoLuong)
+            Swal.fire('Cảnh báo','<h1>Số lượng mua tối đa là ' + product.SoLuong+'</h1>','warning')
             $(e.target).val(product.SoLuong)
         }
     }

@@ -8,6 +8,7 @@ import Products from './pages/Products'
 import Customer from './pages/Customer'
 import CreatePr from './pages/Products/Create'
 import HoaDon from './pages/HoaDon'
+import ChitietHD from './pages/HoaDon/ChitietHD'
 
 function user(props) {
     
@@ -26,6 +27,7 @@ function user(props) {
                         <Route path="/admin/products/create" component={CreatePr} />
                         <Route path="/admin/products" component={Products} />
                         <Route path="/admin/customer" component={Customer} />
+                        <Route exact path="/admin/bill/:slug" component={ChitietHD} />
                         <Route path="/admin/bill" component={HoaDon} />
                         <Route component={Err404} />
                     </Switch>

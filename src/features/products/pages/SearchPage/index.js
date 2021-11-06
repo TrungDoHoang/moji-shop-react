@@ -2,12 +2,12 @@ import { TweenMax } from 'gsap'
 import React, { Suspense, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productSearch, productsSearchSelector } from '../../../../app/reducers/productsSlice'
-import Pagination from '../../components/Pagination'
 import ProductItem from '../../components/ProductItem'
 import $ from 'jquery'
 import { useQueryParam, StringParam } from 'use-query-params'
 import { useHistory } from 'react-router'
 import Err404 from '../../../../components/404'
+import PaginatedItems from '../../components/PaginatedItems'
 
 export default function SearchPage() {
     let products = useSelector(productsSearchSelector)
@@ -62,12 +62,7 @@ export default function SearchPage() {
                             <h2 to="/shop" className="new-products-heading text-decoration-none">Kết quả tìm kiếm theo: {keySearch}</h2>
                         </div>
                         <div className="searchItem row g-5 mt-5">
-                            {products.map(product => {
-                                return <ProductItem key={product.id} id={product.id} name={product.name}
-                                    cost={product.cost} img={product.img} />
-                            })}
-                            {/* <Pagination /> */}
-
+                            <PaginatedItems itemsPerPage={8} items={products} />
                         </div>
                         <div className="col-12 text-center mt-5">
                             <div className="btn btn-pink new-products-more" onClick={more}>Xem thêm</div>

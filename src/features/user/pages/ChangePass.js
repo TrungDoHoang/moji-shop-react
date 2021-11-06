@@ -6,6 +6,7 @@ import md5 from 'md5'
 import { changePassAPI, getUser, logOutAccount, userSelector } from '../../../app/reducers/userSlice'
 import InfomationUser from '../components/InfomationUser/InfomationUser'
 import './User.css'
+import Swal from 'sweetalert2'
 
 function ChangePass() {
     const user = useSelector(userSelector)
@@ -27,15 +28,15 @@ function ChangePass() {
     const update = (e) => {
         e.preventDefault()
         if(md5(password) !== user.MatKhau) {
-            alert('Mật khẩu cũ không chính xác!')
+            Swal.fire('Thất bại','<h1>Mật khẩu cũ không chính xác!</h1>','error')
             $('#pass').focus()
             return
         }else if(newPass !== newPassAgain) {
-            alert('Mật khẩu mới và xác nhận mật khẩu mới phải giống nhau!')
+            Swal.fire('Thất bại','<h1>Mật khẩu mới và xác nhận mật khẩu mới phải giống nhau!</h1>','error')
             $('#newPassAgain').focus()
             return
         }else if(password === newPass){
-            alert('Mật khẩu mới và mật khẩu cũ phải khác nhau!')
+            Swal.fire('Thất bại','<h1>Mật khẩu mới và mật khẩu cũ phải khác nhau!</h1>','error')
             $('#newPass').focus()
             return
         }
@@ -47,14 +48,14 @@ function ChangePass() {
                 if(Result){
                     switch(Result.success) {
                         case 1:
-                            alert(Result.message)
+                            Swal.fire('Thành công','<h1>'+Result.message+'</h1>','success')
                             dispatch(logOutAccount())
                             location.replace('/user/signin')
                             // location.replace('/')
                             break
                         case 0:
                             $('#pass').focus()
-                            alert(Result.message)
+                            Swal.fire('Thất bại','<>'+Result.message+'</h1>','error')
                             break
                         default: return
                     }

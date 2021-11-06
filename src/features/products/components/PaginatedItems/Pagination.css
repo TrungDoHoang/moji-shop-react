@@ -1,0 +1,24 @@
+.pagination{
+    font-size: 1.8rem;
+    border-radius: 10px;
+}
+.page-link{
+    padding: 4px 12px;
+    background-color: #fff;
+    color: var(--dark);
+}
+.page-link:hover{
+    background-color: var(--pink-light);
+    border-color: var(--pink-light);
+    color: #fff;
+    box-shadow: none;
+}
+.page-link:focus{
+    box-shadow: none;
+    color: var(--dark);
+}
+.active .page-link{
+    background-color: var(--pink-light) !important;
+    border-color: var(--pink-light) !important;
+    box-shadow: none;
+}

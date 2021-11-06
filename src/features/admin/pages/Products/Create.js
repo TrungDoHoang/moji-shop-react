@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react'
 import $ from 'jquery'
+import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
 import { chu_deSelector, createSan_pham, getChu_de, getNha_cc, getNha_xb, nha_ccSelector, nha_xbSelector, san_phamSelector } from '../../../../app/reducers/adminSlice'
 import { Link, useHistory } from 'react-router-dom'
 
 function CreatePr() {
-    document.title="Thêm mới sản phẩm"
+    document.title = "Thêm mới sản phẩm"
     window.scrollTo(0, 0)
     const [newTenSP, setNewTenSP] = useState('')
     const [newMaCD, setNewMaCD] = useState('')
@@ -52,7 +53,7 @@ function CreatePr() {
         dispatch(createSan_pham(data)).unwrap()
             .then(res => {
                 if (res.code) {
-                    alert(res.message)
+                    Swal.fire('Save','<h1>'+res.message+'</h1>','success')
                     location.replace('/admin/products')
                 }
                 else {
@@ -63,7 +64,10 @@ function CreatePr() {
     return (
         <div id="add" className="box-8 mt-5" ref={myRef.current}>
             <div className="content-box">
-                <p>Thêm sản phẩm</p>
+                <p>Thêm sản phẩm <span>
+                    <button type="button" className="btn btn-pink" onClick={() => location.goBack()}>
+                        Trở về
+                    </button></span></p>
                 <br />
                 <div>
                     <form id="formAdd" onSubmit={addSubmit}>

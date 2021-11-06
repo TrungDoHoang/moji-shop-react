@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import Swal from 'sweetalert2'
 import API from '../axios'
 
 export const payBill = createAsyncThunk('cart/payBill', (data) => {
@@ -41,7 +42,7 @@ const cartSlice = createSlice({
             else {
                 state.productsInCart.find(item => item.id === product.id).quantity += product.quantity
             }
-            alert('Đã thêm ' + product.name + ' vào giỏ hàng!!')
+            Swal.fire('Success','<h1>Đã thêm ' + product.name + ' vào giỏ hàng!!</h1>','success')
             localStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
         updateCart: (state, action) => {

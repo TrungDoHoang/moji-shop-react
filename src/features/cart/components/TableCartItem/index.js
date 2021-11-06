@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { destroyItem, updateCart } from '../../../../app/reducers/cartSlice'
 import $ from 'jquery'
+import Swal from 'sweetalert2'
 
 export default function TableCartItem({ id, name, cost, quantity, img, soluong, read }) {
     const dispatch = useDispatch()
@@ -19,12 +20,12 @@ export default function TableCartItem({ id, name, cost, quantity, img, soluong, 
     const quantityRequired = e => {
         let val = $(e.target).val()
         if (val < 1) {
-            alert('Số lượng mua tối thiểu là 1')
+            Swal.fire('Cảnh báo','<h1>Số lượng mua tối thiểu là 1</h1>','warning')
             $(e.target).val(1)
             val = 1
         }
         if (val > soluong) {
-            alert('Số lượng mua tối thiểu là ' + soluong)
+            Swal.fire('Cảnh báo','<h1>Số lượng mua tối thiểu là ' + soluong+'</h1>','warning')
             $(e.target).val(soluong)
             val = soluong
         }

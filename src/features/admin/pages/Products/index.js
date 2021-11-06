@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import 'datatables.net'
+import Swal from 'sweetalert2'
 import $ from 'jquery'
 import { chu_deSelector, deleteSan_pham, getChu_de, getNha_cc, getNha_xb, getSan_pham, nha_ccSelector, nha_xbSelector, san_phamSelector, updateSan_pham } from '../../../../app/reducers/adminSlice'
 import { Link, useHistory } from 'react-router-dom'
@@ -90,25 +91,46 @@ function Products() {
                     alert(res.message)
                 }
             })
-            
-        }
+
+    }
 
     const deleteItem = id => {
         const data = {
-            'MaSanPham' : id
+            'MaSanPham': id.id
         }
-        dispatch(deleteSan_pham(data)).unwrap()
-            .then(res => {
-                if (res.code) {
-                    alert(res.message)
-                    window.location.reload()
-                }
-                else {
-                    alert(res.message)
-                }
-            })
+        Swal.fire({
+            title: `<h1>Bạn có thật sự muốn xóa ${id.name}?</h1>`,
+            showDenyButton: true,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: 'No',
+            customClass: {
+                cancelButton: 'size-2',
+                confirmButton: 'size-2',
+                denyButton: 'size-2',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                return dispatch(deleteSan_pham(data)).unwrap()
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+                return Promise.reject()
+            } else {
+                return Promise.reject()
+            }
+        }).then(res => {
+            if (res.code) {
+                // window.location.reload()
+                Swal.fire('Saved!', '<h1>'+res.message+'</h1>', 'success')
+            }
+            else {
+                alert(res.message)
+            }
+        })
+
     }
-        
+
     const [editMaSP, setEditMaSP] = useState('')
     const [editTenSP, setEditTenSP] = useState('')
     const [editMaCD, setEditMaCD] = useState('')
@@ -150,8 +172,8 @@ function Products() {
                                     <td>{(item.cost).toLocaleString()}</td>
                                     <td>{item.isSach === 0 ? 'Đồ dùng' : 'Sách'}</td>
                                     <td>{item.SoLuong}</td>
-                                    <td><button onClick={e => { editProduct(item) }} className="btn btn-info"><i className="ace-icon fa fa-pencil-square-o bigger-120"></i></button> 
-                                    <button onClick={e => { deleteItem(item.id)}} className="btn btn-danger delete-prompt ms-1"><i className="ace-icon fa fa-trash-o bigger-120"></i></button></td>
+                                    <td><button onClick={e => { editProduct(item) }} className="btn btn-info"><i className="ace-icon fa fa-pencil-square-o bigger-120"></i></button>
+                                        <button onClick={e => { deleteItem(item) }} className="btn btn-danger delete-prompt ms-1"><i className="ace-icon fa fa-trash-o bigger-120"></i></button></td>
                                 </tr>
                             ))}
                         </tbody>

@@ -5,6 +5,7 @@ import $ from 'jquery'
 import './User.css'
 import { registerAPI } from '../../../app/reducers/userSlice'
 import { useHistory } from 'react-router'
+import Swal from 'sweetalert2'
 
 export default function Signup() {
     document.title = 'Đăng ký'
@@ -23,7 +24,7 @@ export default function Signup() {
     const signup = (e) => {
         e.preventDefault()
         if(password !== passwordAgain) {
-            alert('Mật khẩu và nhập lại mật khẩu phải giống nhau')
+            Swal.fire('Error','<h1>Mật khẩu và nhập lại mật khẩu phải giống nhau</h1>','error')
             $('#passwordAgain').focus()
             return
         }
@@ -41,18 +42,18 @@ export default function Signup() {
                 if(registerResult){
                     switch(registerResult.code) {
                         case 200:
-                            alert(registerResult.success)
+                            Swal.fire('Thành công','<h1>'+registerResult.success+'</h1>', 'success')
                             location.replace('/user/signin')
                             break
                         case 201:
                             $('#username').focus()
-                            alert(registerResult.error)
+                            Swal.fire('Thất bại','<h1>'+registerResult.error+'</h1>',"error")
                             break
                         case 202:
-                            alert(registerResult.error)
+                            Swal.fire('Thất bại','<h1>'+registerResult.error+'</h1>',"error")
                             break
                         case 203:
-                            alert(registerResult.error)
+                            Swal.fire('Thất bại','<h1>'+registerResult.error+'</h1>',"error")
                             break
                         default: return
                     }

@@ -3,14 +3,15 @@ import $ from 'jquery'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteHoa_don, getHoa_don, getKhach_hang, hoa_donSelector, khach_hangSelector, updateHoa_don } from '../../../../app/reducers/adminSlice'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function HoaDon() {
     const hoa_don = useSelector(hoa_donSelector)
     const khach_hang = useSelector(khach_hangSelector)
-    useEffect(()=> {
+    useEffect(() => {
         $("#main").scrollTop(0)
         document.title = 'Hóa đơn'
-    },[hoa_don])
+    }, [hoa_don])
     const [editMaKH, setEditMaKH] = useState('')
     const [editSoHDB, setEditSoHDB] = useState('')
     const [editNgayBan, setEditNgayBan] = useState('')
@@ -60,30 +61,48 @@ function HoaDon() {
         dispatch(updateHoa_don(data)).unwrap()
             .then(res => {
                 if (res.code) {
-                    alert(res.message)
+                    Swal.fire('Saved!', '<h1>' + res.message + '</h1>', 'success')
                     cancel()
                 }
                 else {
-                    alert(res.message)
+                    Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
                 }
             })
-            
-        }
+
+    }
 
     const deleteHD = id => {
         const data = {
-            'SoHDB' : id
+            'SoHDB': id
         }
-        dispatch(deleteHoa_don(data)).unwrap()
-            .then(res => {
-                if (res.code) {
-                    alert(res.message)
-                    window.location.reload()
-                }
-                else {
-                    alert(res.message)
-                }
-            })
+        Swal.fire({
+            title: `<h1>Bạn có thật sự muốn xóa hóa đơn ${id}?</h1>`,
+            showDenyButton: true,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: 'No',
+            customClass: {
+
+                cancelButton: 'btn btn-danger size-2',
+                confirmButton: 'btn btn-success size-2',
+                denyButton: 'btn btn-default size-2',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteHoa_don(data)).unwrap()
+                    .then(res => {
+                        if (res.code) {
+                            Swal.fire('Saved!', '<h1>' + res.message + '</h1>', 'success')
+                        }
+                        else {
+                            Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
+                        }
+                    })
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
     }
     return (
         <div className="col-div-8" ref={myRef.current}>
@@ -108,11 +127,11 @@ function HoaDon() {
                                     <td>{item.SoHDB}</td>
                                     <td>{item.TenKH}</td>
                                     <td>{item.NgayBan}</td>
-                                    <td>{item.Status === '0' ? 'Đang giao' : 'Đã giao' }</td>
+                                    <td>{item.Status === '0' ? 'Đang giao' : 'Đã giao'}</td>
                                     <td>{Number.parseInt(item.Total).toLocaleString()}</td>
-                                    <td><button onClick={e => { editHD(item) }} className="btn btn-info"><i className="ace-icon fa fa-pencil-square-o bigger-120"></i></button>
-                                        <button onClick={e => { deleteHD(item.MaKH) }} className="btn btn-danger delete-prompt ms-1"><i className="ace-icon fa fa-trash-o bigger-120"></i></button>
-                                        <Link to={"/admin/bill/show?sohdb="+item.SoHDB} className="btn btn-info text-decoration-none ms-1"><i className="ace-icon fa fa-eye bigger-120"></i></Link>
+                                    <td><button title="Sửa" onClick={e => { editHD(item) }} className="btn btn-info"><i className="ace-icon fa fa-pencil-square-o bigger-120"></i></button>
+                                        <button title="Xóa" onClick={e => { deleteHD(item.SoHDB) }} className="btn btn-danger delete-prompt ms-1"><i className="ace-icon fa fa-trash-o bigger-120"></i></button>
+                                        <Link title="Xem chi tiết" to={"/admin/bill/show?sohdb=" + item.SoHDB} className="btn btn-info text-decoration-none ms-1"><i className="ace-icon fa fa-eye bigger-120"></i></Link>
                                     </td>
                                 </tr>
                             ))}
@@ -156,7 +175,7 @@ function HoaDon() {
                                     <option value="1">Đã giao</option>
                                 </select>
                             </div>
-                            
+
                             <button type="submit" className="btn btn-pink mt-5">Lưu lại</button>
                             <button type="reset" onClick={e => {
                                 e.preventDefault()

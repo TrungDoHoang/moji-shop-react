@@ -14,6 +14,17 @@ export default function Signin() {
     const [password, setPassword] = useState('')
 
     const location = useHistory()
+    const Toast = swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', swal.stopTimer)
+          toast.addEventListener('mouseleave', swal.resumeTimer)
+        }
+      })
     
     const signin = async(e) => {
         e.preventDefault()
@@ -26,7 +37,11 @@ export default function Signin() {
                 if(result){
                     switch(result.code) {
                         case 200:
-                            swal.fire('Success',result.success,'success')
+                            Toast.fire({
+                                icon: 'success',
+                                title: '<h3>'+result.success+'</h3>',
+                            })
+                            // swal.fire('Success',result.success,'success')
                             location.replace('/')
                             break
                         case 201:

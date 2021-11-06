@@ -82,6 +82,34 @@ export const deleteHoa_don = createAsyncThunk('admin/deleteHoa_don', (data) => {
         .then((response) => response.data)
         .catch(err => err.message)
 })
+export const getCTHoa_don = createAsyncThunk('admin/getCTHoa_don', (id) => {
+    return API.get('hoadon/show.php?sohdb='+id)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const updateCTHoa_don = createAsyncThunk('admin/updateCTHoa_don', (data) => {
+    return API.put('hoadon/updatect.php',data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const createCTHoa_don = createAsyncThunk('admin/createCTHoa_don', (data) => {
+    return API({
+        method: 'POST',
+        url: 'hoadon/createct.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteCTHoa_don = createAsyncThunk('admin/deleteCTHoa_don', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'hoadon/deletect.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
 
 const adminSlice = createSlice({
     name: 'admin',
@@ -92,6 +120,7 @@ const adminSlice = createSlice({
         nha_xb: [],
         khach_hang: [],
         hoa_don: [],
+        cthoa_don: [],
     },
     reducers:{
         
@@ -209,6 +238,15 @@ const adminSlice = createSlice({
         [getHoa_don.rejected]: (state, action) => {
             console.log("Get hóa đơn thất bại")
         },
+        [getCTHoa_don.fulfilled]: (state, action) => {
+            let data = action.payload.cthoadon
+            if (data) {
+                state.cthoa_don = data
+            }
+        },
+        [getCTHoa_don.rejected]: (state, action) => {
+            console.log("Get chi tiết hóa đơn thất bại")
+        },
         [updateHoa_don.fulfilled]: (state, action) => {
             let data = action.payload
             if (data.code) {
@@ -218,6 +256,15 @@ const adminSlice = createSlice({
         [updateHoa_don.rejected]: (state, action) => {
             console.log("update hóa đơn thất bại")
         },
+        [updateCTHoa_don.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.cthoa_don = []
+            }
+        },
+        [updateCTHoa_don.rejected]: (state, action) => {
+            console.log("update chi tiết hóa đơn thất bại")
+        },
         [deleteHoa_don.fulfilled]: (state, action) => {
             let data = action.payload
             if (data.code) {
@@ -226,6 +273,24 @@ const adminSlice = createSlice({
         },
         [deleteHoa_don.rejected]: (state, action) => {
             console.log("update hóa đơn thất bại")
+        },
+        [deleteCTHoa_don.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.cthoa_don = []
+            }
+        },
+        [deleteCTHoa_don.rejected]: (state, action) => {
+            console.log("Xóa chi tiết hóa đơn thất bại")
+        },
+        [createCTHoa_don.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.cthoa_don = []
+            }
+        },
+        [createCTHoa_don.rejected]: (state, action) => {
+            console.log("Thêm chi tiết hóa đơn thất bại")
         },
     }
 })
@@ -239,5 +304,6 @@ export const nha_ccSelector = state => state.adminReducer.nha_cc
 export const nha_xbSelector = state => state.adminReducer.nha_xb
 export const khach_hangSelector = state => state.adminReducer.khach_hang
 export const hoa_donSelector = state => state.adminReducer.hoa_don
+export const cthoa_donSelector = state => state.adminReducer.cthoa_don
 
 export default adminReducer

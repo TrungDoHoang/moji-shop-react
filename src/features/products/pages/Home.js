@@ -78,7 +78,7 @@ export default function Home() {
 
                         </div>
                     </div>
-                    <div className="row mt-5">
+                    {/* <div className="row mt-5">
                         <div className="col-12">
                             <div className="new-products mt-5 mb-5">
                                 <Link to="/shop" className="new-products-heading text-decoration-none">Chủ đề mới</Link>
@@ -93,7 +93,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <MultiCarousel />

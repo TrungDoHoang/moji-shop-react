@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { hoa_donSelector, khach_hangSelector, nha_ccSelector, san_phamSelector } from '../../../../app/reducers/adminSlice'
+import { chu_deSelector, hoa_donSelector, khach_hangSelector, san_phamSelector } from '../../../../app/reducers/adminSlice'
 
 function HeaderCard() {
     const products = useSelector(san_phamSelector)
     const khach_hang = useSelector(khach_hangSelector)
-    const nha_cc = useSelector(nha_ccSelector)
+    const chu_de = useSelector(chu_deSelector)
     const don_hang = useSelector(hoa_donSelector)
     return (
         <div>
@@ -31,7 +31,7 @@ function HeaderCard() {
             </div>
             <div className="col-div-3">
                 <div className="box">
-                    <p>{nha_cc.length} <br /><span>Nhà cung cấp</span></p>
+                    <p>{chu_de.length} <br /><span>Loại sản phẩm</span></p>
                     <i className="fa fa-tasks box-icon" />
                 </div>
             </div>

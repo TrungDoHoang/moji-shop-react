@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { getUser, updateAPI } from '../../../app/reducers/userSlice'
 import InfomationUser from '../components/InfomationUser/InfomationUser'
 import './User.css'
+import Swal from 'sweetalert2'
 
 function InfoUser() {
     const [email, setEmail] = useState('')
@@ -41,12 +42,12 @@ function InfoUser() {
                 if(Result){
                     switch(Result.success) {
                         case 1:
-                            alert(Result.message)
+                            Swal.fire('Thành công','<h1>'+Result.message+'</h1>','success')
                             location.replace('/')
                             break
                         case 0:
                             $('#name').focus()
-                            alert(Result.message)
+                            Swal.fire('Thất bại','<>'+Result.message+'</h1>','error')
                             break
                         default: return
                     }

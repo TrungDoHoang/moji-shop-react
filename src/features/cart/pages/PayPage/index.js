@@ -40,7 +40,7 @@ function PayPage() {
                     wal.fire('Success!',res.success,'success')
                     location.replace('/')
                 }
-                else alert(res.error)
+                else wal.fire('Error!',res.error,'error')
             })
     }
 
