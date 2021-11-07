@@ -16,7 +16,10 @@ function user(props) {
     const Err404 = React.lazy(() => import('../../components/404'))
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>}>
             <Header />
             <Switch>
                 <Route path="/user/info" component={InfoUser} />

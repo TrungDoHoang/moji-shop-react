@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
-import $ from 'jquery'
+import $, { isEmptyObject } from 'jquery'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser, userSelector } from '../../../../app/reducers/userSlice'
+import { getUser, logOutAccount, userSelector } from '../../../../app/reducers/userSlice'
+import Swal from 'sweetalert2'
 import { getChu_de, getHoa_don, getKhach_hang, getNha_cc, getNha_xb, getSan_pham } from '../../../../app/reducers/adminSlice'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 function HeaderAdmin() {
     const dispatch = useDispatch()
@@ -17,8 +19,23 @@ function HeaderAdmin() {
         dispatch(getNha_xb())
         dispatch(getNha_cc())
         nav()
-    },[location.location])
+    }, [location.location])
     const user = useSelector(userSelector)
+    if (isEmptyObject(user)) {
+        Swal.fire('Cảnh báo', '<h1>Bạn phải đăng nhập để vào trang này</h1>', 'warning')
+        .then(res => {
+            if(res.isConfirmed){
+                location.replace('/user/signin')
+            }
+        })
+    } else if(user.MaNV == 0) {
+        Swal.fire('Cảnh báo', '<h1>Bạn không phải Admin để vào trang này</h1>', 'warning')
+        .then(res => {
+            if(res.isConfirmed){
+                location.replace('/')
+            }
+        })
+    }
 
     const nav = () => {
         $("#mySidenav").css('width', '70px');
@@ -43,6 +60,10 @@ function HeaderAdmin() {
         $(".nav2").css('display', 'none');
     }
 
+    const logOut = () => {
+        dispatch(logOutAccount())
+    }
+
     return (
         <div className="head">
             <div className="col-div-6">
@@ -50,10 +71,14 @@ function HeaderAdmin() {
                 <span style={{ fontSize: '30px', cursor: 'pointer', color: '#272c4a' }} className="nav2" onClick={nav2}>☰ Dashboard</span>
             </div>
             <div className="col-div-6">
-                <div className="profile">
+                <Link to="/admin/account" className="profile text-decoration-none">
                     <img src="/assets/images/avatar.png" className="pro-img" />
                     <p>{user.TenNV} <span>{user.TenQuyen}</span></p>
-                </div>
+                </Link>
+                <ul className="user-nav">
+                    <li><Link to="/admin/account/changepass" className="text-decoration-none">Đổi mật khẩu</Link></li>
+                    <li onClick={logOut}>Đăng xuất</li>
+                </ul>
             </div>
             <div className="clearfix" />
         </div>

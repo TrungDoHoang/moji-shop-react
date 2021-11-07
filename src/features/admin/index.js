@@ -9,6 +9,8 @@ import Customer from './pages/Customer'
 import CreatePr from './pages/Products/Create'
 import HoaDon from './pages/HoaDon'
 import ChitietHD from './pages/HoaDon/ChitietHD'
+import UserADM from './pages/UserADM'
+import ChangePass from './pages/UserADM/ChangePass'
 
 function user(props) {
     
@@ -24,6 +26,8 @@ function user(props) {
                     <Switch>
                         <Redirect exact from="/admin" to="/admin/dashboard" />
                         <Route path="/admin/dashboard" component={Dashboard} />
+                        <Route path="/admin/account/changepass" component={ChangePass} />
+                        <Route path="/admin/account" component={UserADM} />
                         <Route path="/admin/products/create" component={CreatePr} />
                         <Route path="/admin/products" component={Products} />
                         <Route path="/admin/customer" component={Customer} />

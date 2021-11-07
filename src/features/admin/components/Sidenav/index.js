@@ -10,7 +10,7 @@ function Sidenav() {
             <NavLink to="/admin/customer" title="Khách hàng" activeClassName="active" className="icon-a"><i className="fa fa-users icons" /> &nbsp;&nbsp;Customers</NavLink>
             <NavLink to="/admin/bill" title="Hóa đơn" activeClassName="active" className="icon-a"><i className="fa fa-shopping-bag icons" /> &nbsp;&nbsp;Orders</NavLink>
             <NavLink to="/admin/abc" activeClassName="active" className="icon-a"><i className="fa fa-tasks icons" /> &nbsp;&nbsp;Inventory</NavLink>
-            <NavLink to="/admin/abc" activeClassName="active" className="icon-a"><i className="fa fa-user icons" /> &nbsp;&nbsp;Accounts</NavLink>
+            <NavLink to="/admin/account" activeClassName="active" className="icon-a"><i className="fa fa-user icons" /> &nbsp;&nbsp;Accounts</NavLink>
             <NavLink to="/admin/abc" activeClassName="active" className="icon-a"><i className="fa fa-list-alt icons" /> &nbsp;&nbsp;News</NavLink>
         </div>
     )

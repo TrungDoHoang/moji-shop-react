@@ -4,7 +4,7 @@ import 'datatables.net'
 import Swal from 'sweetalert2'
 import $ from 'jquery'
 import { chu_deSelector, deleteSan_pham, getChu_de, getNha_cc, getNha_xb, getSan_pham, nha_ccSelector, nha_xbSelector, san_phamSelector, updateSan_pham } from '../../../../app/reducers/adminSlice'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Products() {
     const products = useSelector(san_phamSelector)

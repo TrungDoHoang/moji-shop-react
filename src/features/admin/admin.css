@@ -78,6 +78,7 @@
 .col-div-6 {
   width: 50%;
   float: left;
+  position: relative;
 }
 
 .profile {
@@ -105,6 +106,68 @@
   font-size: 1.3rem;
   display: block;
   color: #8e8b8b;
+}
+.profile:hover ~ .user-nav{
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 10;
+}
+
+.user-nav::before{
+  content: "";
+  width: 200px;
+  height: 40px;
+  background-color: transparent;
+  display: block;
+  position: absolute;
+  top: -30px;
+}
+.user-nav:hover{
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 10;
+}
+.user-nav{
+  transform: translateY(80%);
+  transition: all 0.5s;
+  opacity: 0;
+  width: 200px;
+  position: absolute;
+  z-index: -1;
+  list-style: none;
+  font-size: 1.8rem;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 1px 1px 5px #ccc;
+  top: 100%;
+  right: 0;
+}
+
+.user-nav li{
+  padding: 5px 15px;
+  cursor: pointer;
+  margin: 0px;
+}
+.user-nav li:hover, .user-nav li:hover a{
+  color: #fff!important;
+  background-color: var(--pink-light);
+}
+
+.user-nav li a{
+  color: #1b203d;
+}
+
+.user-nav li:first-child{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.user-nav li:last-child {
+  border-top: 0.5px solid #ccc;
+  color: red;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .col-div-3 {
