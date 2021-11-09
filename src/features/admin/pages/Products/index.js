@@ -84,11 +84,11 @@ function Products() {
         dispatch(updateSan_pham(data)).unwrap()
             .then(res => {
                 if (res.code) {
-                    alert(res.message)
+                    Swal.fire('Saved!', '<h1>' + res.message + '</h1>', 'success')
                     cancel()
                 }
                 else {
-                    alert(res.message)
+                    Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
                 }
             })
 
@@ -122,10 +122,10 @@ function Products() {
         }).then(res => {
             if (res.code) {
                 // window.location.reload()
-                Swal.fire('Saved!', '<h1>'+res.message+'</h1>', 'success')
+                Swal.fire('Saved!', '<h1>' + res.message + '</h1>', 'success')
             }
             else {
-                alert(res.message)
+                Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
             }
         })
 
@@ -197,6 +197,8 @@ function Products() {
                                 <input type="text" className="form-control" value={editTenSP} onChange={e => { setEditTenSP(e.target.value) }} placeholder="Tên sản phẩm" required />
                             </div>
                             <div className="mt-3">
+                                <label>Chủ đề</label>
+                                <br />
                                 <select name="editChuDe" className="form-control" value={editMaCD} onChange={e => { setEditMaCD(e.target.value) }} required >
                                     <option value="" disabled>--Chọn chủ đề--</option>
                                     {chu_de.map(item => (
@@ -205,6 +207,8 @@ function Products() {
                                 </select>
                             </div>
                             <div className="mt-3">
+                                <label>Nhà xuất bản</label>
+                                <br />
                                 <select name="editNXB" className="form-control" value={editMaNXB} onChange={e => { setEditMaNXB(e.target.value) }} required >
                                     <option value="" disabled>--Chọn Nhà xuất bản--</option>
                                     {nhaxb.map(item => (
@@ -213,6 +217,8 @@ function Products() {
                                 </select>
                             </div>
                             <div className="mt-3">
+                                <label>Nhà cung cấp</label>
+                                <br />
                                 <select name="editNCC" className="form-control" value={editMaNCC} onChange={e => { setEditMaNCC(e.target.value) }} required >
                                     <option value="" disabled>--Chọn nhà cung cấp--</option>
                                     {nha_cc.map(item => (
@@ -221,6 +227,8 @@ function Products() {
                                 </select>
                             </div>
                             <div className="mt-3">
+                                <label>Thể loại sản phẩm</label>
+                                <br />
                                 <select name="editSach" className="form-control" value={editIsSach} onChange={e => { setEditIsSach(e.target.value) }} required >
                                     <option value="" disabled>--Chọn loại sản phẩm--</option>
                                     <option value="0">Đồ dùng học tập</option>

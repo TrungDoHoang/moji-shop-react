@@ -139,6 +139,7 @@
 .shipping, .mota{
     font-size: 1.4rem;
     font-weight: 600;
+    white-space: pre-line;
 }
 .shipping span{
     margin-right: 6px;

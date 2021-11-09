@@ -1,0 +1,13 @@
+.content__news__header,
+.content__news__body,
+.content__news__end {
+    font-size: 1.6rem;
+    white-space: pre-line   ;
+}
+
+.content__news__end{
+    font-style: italic;
+}
+.text-14{
+    font-size: 1.4rem;
+}

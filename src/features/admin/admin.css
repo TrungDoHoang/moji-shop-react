@@ -104,7 +104,7 @@
 .profile p span {
   font-weight: 400;
   font-size: 1.3rem;
-  display: block;
+  display: block!important;
   color: #8e8b8b;
 }
 .profile:hover ~ .user-nav{
@@ -335,4 +335,8 @@ tr{
 
 .dataTables_wrapper{
   font-size: 1.6rem;
+}
+.mt-3 label {
+  font-size: 1.8rem;
+  font-weight: 600;
 }

@@ -11,6 +11,8 @@ import HoaDon from './pages/HoaDon'
 import ChitietHD from './pages/HoaDon/ChitietHD'
 import UserADM from './pages/UserADM'
 import ChangePass from './pages/UserADM/ChangePass'
+import Manager from './pages/Manager'
+import News from './pages/News'
 
 function user(props) {
     
@@ -28,6 +30,8 @@ function user(props) {
                         <Route path="/admin/dashboard" component={Dashboard} />
                         <Route path="/admin/account/changepass" component={ChangePass} />
                         <Route path="/admin/account" component={UserADM} />
+                        <Route path="/admin/news" component={News} />
+                        <Route path="/admin/manager" component={Manager} />
                         <Route path="/admin/products/create" component={CreatePr} />
                         <Route path="/admin/products" component={Products} />
                         <Route path="/admin/customer" component={Customer} />

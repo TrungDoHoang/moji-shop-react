@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 import $ from 'jquery'
 import { deleteKhach_hang, getKhach_hang, khach_hangSelector, updateKhach_hang } from '../../../../app/reducers/adminSlice'
 
 export default function Customer() {
     const khach_hang = useSelector(khach_hangSelector)
-    useEffect(()=> {
+    useEffect(() => {
         $("#main").scrollTop(0)
         document.title = 'Khách hàng'
-    },[khach_hang])
+    }, [khach_hang])
     const [editMaKH, setEditMaKH] = useState('')
     const [editTenKH, setEditTenKH] = useState('')
     const [editDiaChi, setEditDiaChi] = useState('')
@@ -55,30 +56,47 @@ export default function Customer() {
         dispatch(updateKhach_hang(data)).unwrap()
             .then(res => {
                 if (res.code) {
-                    alert(res.message)
+                    Swal.fire('Saved!', '<h1>' + res.message + '</h1>', 'success')
                     cancel()
                 }
                 else {
-                    alert(res.message)
+                    Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
                 }
             })
-            
-        }
+
+    }
 
     const deleteKH = id => {
         const data = {
-            'MaKH' : id
+            'MaKH': id
         }
-        dispatch(deleteKhach_hang(data)).unwrap()
-            .then(res => {
-                if (res.code) {
-                    alert(res.message)
-                    window.location.reload()
-                }
-                else {
-                    alert(res.message)
-                }
-            })
+        Swal.fire({
+            title: `<h1>Bạn có thật sự muốn xóa khách hàng ${id}?</h1>`,
+            showDenyButton: true,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            customClass: {
+
+                cancelButton: 'btn btn-danger size-2',
+                confirmButton: 'btn btn-success size-2',
+                denyButton: 'btn btn-default size-2',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteKhach_hang(data)).unwrap()
+                    .then(res => {
+                        if (res.code) {
+                            Swal.fire('Saved!', '<h1>' + res.message + '</h1>', 'success')
+                        }
+                        else {
+                            Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
+                        }
+                    })
+            } else {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
     }
     return (
         <div className="col-div-8" ref={myRef.current}>

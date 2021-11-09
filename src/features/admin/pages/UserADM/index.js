@@ -63,32 +63,32 @@ function UserADM() {
                         <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
                     </div>
                     <hr />
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="name">Họ tên: <span>(*)</span></label>
                         <input type="text" id="name" className="main-input form-control" 
                         value={name || ''} onChange={e => { setName(e.target.value) }} placeholder="Họ tên (*)" required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="date">Ngày sinh: <span>(*)</span></label>
                         <input type="date" id="date" className="main-input form-control" 
                         value={date || ''} onChange={e => { setDate(e.target.value) }} required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="tel">Điện thoại: <span>(*)</span></label>
                         <input type="tel" id="tel" className="main-input form-control" 
                         value={tel || ''} onChange={e => { setTel(e.target.value) }} placeholder="Điện thoại (*)" required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="email">Email: <span>(*)</span></label>
                         <input type="email" id="email" className="main-input form-control" 
                         value={email||''} onChange={e => { setEmail(e.target.value) }} placeholder="Email (*)" required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="address">Địa chỉ: <span>(*)</span></label>
                         <input type="text" id="address" className="main-input form-control" 
                         value={address|| ''} onChange={e => { setAddress(e.target.value) }} placeholder="Địa chỉ chi tiết (*)" required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <button type="submit" className="submit-button btn btn-pink">Cập nhật</button>
                     </div>
                 </form>

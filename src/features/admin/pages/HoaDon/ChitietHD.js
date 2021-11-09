@@ -64,13 +64,13 @@ export default function ChitietHD() {
     }
     const quantityRequired = e => {
         let val = Number.parseInt($(e.target).val())
-        
+
         if (val < 1) {
-            Swal.fire('Cảnh báo','<h1>Số lượng mua tối thiểu là 1</h1>','warning')
+            Swal.fire('Cảnh báo', '<h1>Số lượng mua tối thiểu là 1</h1>', 'warning')
             $(e.target).val(1)
         }
-        if(val > soLuong) {
-            Swal.fire('Cảnh báo','<h1>Số lượng mua tối đa là ' + soLuong +'</h1>','warning')
+        if (val > soLuong) {
+            Swal.fire('Cảnh báo', '<h1>Số lượng mua tối đa là ' + soLuong + '</h1>', 'warning')
             $(e.target).val(soLuong)
         }
     }
@@ -217,6 +217,8 @@ export default function ChitietHD() {
                                 <input type="text" className="form-control" value={sohdb} placeholder="Số hóa đơn" readOnly />
                             </div>
                             <div className="mt-3">
+                                <label>Sản phẩm</label>
+                                <br />
                                 <select name="editSanPham" className="form-control" value={editMaSanPham} onChange={e => { setEditMaSanPham(e.target.value); returnSL(e.target.value) }} required >
                                     <option value="" disabled>--Chọn sản phẩm--</option>
                                     {san_pham.map(item => (
@@ -260,7 +262,9 @@ export default function ChitietHD() {
                                 <input type="text" className="form-control" value={sohdb} placeholder="Số hóa đơn" readOnly />
                             </div>
                             <div className="mt-3">
-                                <select name="editSanPham" className="form-control" value={newMaSanPham} onChange={e => { setNewMaSanPham(e.target.value); returnSL(e.target.value); setNewSLBan('')}} required >
+                                <label>Sản phẩm</label>
+                                <br />
+                                <select name="editSanPham" className="form-control" value={newMaSanPham} onChange={e => { setNewMaSanPham(e.target.value); returnSL(e.target.value); setNewSLBan('') }} required >
                                     <option value="" disabled>--Chọn sản phẩm--</option>
                                     {san_pham.map(item => (
                                         <option value={item.id} mydata={item.SoLuong} key={item.id}>{item.name}</option>

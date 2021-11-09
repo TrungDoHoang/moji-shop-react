@@ -156,6 +156,8 @@ function HoaDon() {
                                 <input type="text" className="form-control" value={editTotal} onChange={e => { setEditTotal(e.target.value) }} placeholder="Tổng tiền" readOnly />
                             </div>
                             <div className="mt-3">
+                                <label>Khách hàng</label>
+                                <br />
                                 <select className="form-control" value={editMaKH} onChange={e => { setEditMaKH(e.target.value) }} required >
                                     <option value="" disabled>--Chọn khách hàng--</option>
                                     {khach_hang.map(item => (
@@ -169,6 +171,8 @@ function HoaDon() {
                                 <input type="datetime-local" className="form-control" value={editNgayBan} onChange={e => { setEditNgayBan(e.target.value) }} required />
                             </div>
                             <div className="mt-3">
+                                <label>Trạng thái đơn hàng</label>
+                                <br />
                                 <select className="form-control" value={editStatus} onChange={e => { setEditStatus(e.target.value) }} required >
                                     <option value="" disabled>--Lựa chọn trạng thái đơn hàng--</option>
                                     <option value="0">Đang giao</option>

@@ -1,18 +1,25 @@
-import React, { useRef } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {StringParam, useQueryParam } from 'use-query-params'
 import './News.css'
 import $ from 'jquery'
 import NewsItem from '../../components/NewsItem'
-import { newsSelector, postsSelector } from '../../../../app/reducers/newsSlice'
+import { getTinTuc, newsSelector, postsSelector } from '../../../../app/reducers/newsSlice'
 
 export default function News() {
-    document.title = 'Tin tức về Moji'
     const news = useSelector(newsSelector)
     const posts = useSelector(postsSelector)
     const [path, setpath] = useQueryParam('slug', StringParam)
-    console.log(path)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        document.title = 'Tin tức về Moji'
+        dispatch(getTinTuc())
+        window.scrollTo(0,0)
+    },[])
+    if(news.length <= 0 || posts.length <= 0) {
+        dispatch(getTinTuc())
+    }
 
     const changTab = useRef(() => {
         const tabs = Array.from($(".tab-item"))
@@ -61,10 +68,10 @@ export default function News() {
                         {/* Tab content */}
                         <div className="tab-content">
                             <div className={`tab-pane ${path === 'tuyen_dung' ? '' : 'active'}`}>
-                                {news.map(item => <NewsItem key={item.id} titleNews={item.title} timeCreated={item.timeCreated} description={item.description} linkTo={item.linkTo} img={item.img} />)}
+                                {news.map(item => <NewsItem key={item.MaTinTuc} titleNews={item.TieuDe} timeCreated={item.NgayTao} description={item.MoTa} linkTo={item.MaTinTuc} img={item.Anh} />)}
                             </div>
                             <div className={`tab-pane ${path === 'tuyen_dung' ? 'active' : ''}`}>
-                                {posts.map(item => <NewsItem key={item.id} titleNews={item.title} timeCreated={item.timeCreated} description={item.description} linkTo={item.linkTo} img={item.img} />)}
+                                {posts.map(item => <NewsItem key={item.MaTinTuc} titleNews={item.TieuDe} timeCreated={item.NgayTao} description={item.MoTa} linkTo={item.MaTinTuc} img={item.Anh} />)}
                             </div>
                         </div>
                     </div>

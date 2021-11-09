@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { data } from 'jquery'
 import API from '../axios'
 
 export const getSan_pham = createAsyncThunk('admin/getSan_pham', () => {
@@ -32,6 +31,30 @@ export const getChu_de = createAsyncThunk('admin/getChu_de', () => {
         .then((response) => response.data)
         .catch(err => err.message)
 })
+export const updateChu_de = createAsyncThunk('admin/updateChu_de', (data) => {
+    return API.put('category/update.php', data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const createChu_de = createAsyncThunk('admin/createChu_de', (data) => {
+    return API({
+        method: 'POST',
+        url: 'category/create.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteChu_de = createAsyncThunk('admin/deleteChu_de', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'category/delete.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+
 export const getNha_cc = createAsyncThunk('admin/getNha_cc', () => {
     return API.get('nhacc/read.php')
         .then((response) => response.data)
@@ -43,13 +66,43 @@ export const getNha_xb = createAsyncThunk('admin/getNha_xb', () => {
         .catch(err => err.message)
 })
 
+export const getQuyen = createAsyncThunk('admin/getQuyen', () => {
+    return API.get('staff/quyen.php')
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const getNhan_vien = createAsyncThunk('admin/getNhan_vien', () => {
+    return API.get('staff/read.php')
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const createNhan_vien = createAsyncThunk('admin/createNhan_vien', (data) => {
+    return API.post('staff/create.php', data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const updateNhan_vien = createAsyncThunk('admin/updateNhan_vien', (data) => {
+    return API.put('staff/update.php', data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteNhan_vien = createAsyncThunk('admin/deleteNhan_vien', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'staff/delete.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+
 export const getKhach_hang = createAsyncThunk('admin/getKhach_hang', () => {
     return API.get('customer/read.php')
         .then((response) => response.data)
         .catch(err => err.message)
 })
 export const updateKhach_hang = createAsyncThunk('admin/updateKhach_hang', (data) => {
-    return API.put('customer/update.php',data)
+    return API.put('customer/update.php', data)
         .then((response) => response.data)
         .catch(err => err.message)
 })
@@ -69,7 +122,7 @@ export const getHoa_don = createAsyncThunk('admin/getHoa_don', () => {
         .catch(err => err.message)
 })
 export const updateHoa_don = createAsyncThunk('admin/updateHoa_don', (data) => {
-    return API.put('hoadon/update.php',data)
+    return API.put('hoadon/update.php', data)
         .then((response) => response.data)
         .catch(err => err.message)
 })
@@ -83,12 +136,12 @@ export const deleteHoa_don = createAsyncThunk('admin/deleteHoa_don', (data) => {
         .catch(err => err.message)
 })
 export const getCTHoa_don = createAsyncThunk('admin/getCTHoa_don', (id) => {
-    return API.get('hoadon/show.php?sohdb='+id)
+    return API.get('hoadon/show.php?sohdb=' + id)
         .then((response) => response.data)
         .catch(err => err.message)
 })
 export const updateCTHoa_don = createAsyncThunk('admin/updateCTHoa_don', (data) => {
-    return API.put('hoadon/updatect.php',data)
+    return API.put('hoadon/updatect.php', data)
         .then((response) => response.data)
         .catch(err => err.message)
 })
@@ -111,6 +164,12 @@ export const deleteCTHoa_don = createAsyncThunk('admin/deleteCTHoa_don', (data) 
         .catch(err => err.message)
 })
 
+export const getTin = createAsyncThunk('admin/getTin', () => {
+    return API.get('news/read.php')
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+
 const adminSlice = createSlice({
     name: 'admin',
     initialState: {
@@ -121,9 +180,12 @@ const adminSlice = createSlice({
         khach_hang: [],
         hoa_don: [],
         cthoa_don: [],
+        quyen: [],
+        staff: [],
+        news: [],
     },
-    reducers:{
-        
+    reducers: {
+
     },
     extraReducers: {
         [getSan_pham.fulfilled]: (state, action) => {
@@ -180,6 +242,33 @@ const adminSlice = createSlice({
         [getChu_de.rejected]: (state, action) => {
             console.log("Get chủ đề thất bại")
         },
+        [updateChu_de.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.chu_de = []
+            }
+        },
+        [updateChu_de.rejected]: (state, action) => {
+            console.log("update chủ đề thất bại")
+        },
+        [deleteChu_de.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.chu_de = []
+            }
+        },
+        [deleteChu_de.rejected]: (state, action) => {
+            console.log("Xóa chủ đề thất bại")
+        },
+        [createChu_de.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.chu_de = []
+            }
+        },
+        [createChu_de.rejected]: (state, action) => {
+            console.log("Thêm chủ đề thất bại")
+        },
 
         [getNha_cc.fulfilled]: (state, action) => {
             let data = action.payload.nhacc
@@ -227,6 +316,52 @@ const adminSlice = createSlice({
         },
         [deleteKhach_hang.rejected]: (state, action) => {
             console.log("update khách hàng thất bại")
+        },
+
+        [getQuyen.fulfilled]: (state, action) => {
+            let data = action.payload.quyen
+            if (data) {
+                state.quyen = data
+            }
+        },
+        [getQuyen.rejected]: (state, action) => {
+            console.log("Get quyền thất bại")
+        },
+        [getNhan_vien.fulfilled]: (state, action) => {
+            let data = action.payload.staff
+            if (data) {
+                state.staff = data
+            }
+        },
+        [getNhan_vien.rejected]: (state, action) => {
+            console.log("Get nhân viên thất bại")
+        },
+        [updateNhan_vien.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.staff = []
+            }
+        },
+        [updateNhan_vien.rejected]: (state, action) => {
+            console.log("update nhân viên thất bại")
+        },
+        [createNhan_vien.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.staff = []
+            }
+        },
+        [createNhan_vien.rejected]: (state, action) => {
+            console.log("create nhân viên thất bại")
+        },
+        [deleteNhan_vien.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.staff = []
+            }
+        },
+        [deleteNhan_vien.rejected]: (state, action) => {
+            console.log("update nhân viên thất bại")
         },
 
         [getHoa_don.fulfilled]: (state, action) => {
@@ -292,6 +427,16 @@ const adminSlice = createSlice({
         [createCTHoa_don.rejected]: (state, action) => {
             console.log("Thêm chi tiết hóa đơn thất bại")
         },
+
+        [getTin.fulfilled]: (state, action) => {
+            let data = action.payload
+            if(data && data.news){
+                state.news = data.news
+            }
+            if(data && data.posts) {
+                state.news = (state.news).concat(data.posts)
+            }
+        }
     }
 })
 
@@ -303,7 +448,10 @@ export const chu_deSelector = state => state.adminReducer.chu_de
 export const nha_ccSelector = state => state.adminReducer.nha_cc
 export const nha_xbSelector = state => state.adminReducer.nha_xb
 export const khach_hangSelector = state => state.adminReducer.khach_hang
+export const staffSelector = state => state.adminReducer.staff
+export const quyenSelector = state => state.adminReducer.quyen
 export const hoa_donSelector = state => state.adminReducer.hoa_don
 export const cthoa_donSelector = state => state.adminReducer.cthoa_don
+export const newsSelector = state => state.adminReducer.news
 
 export default adminReducer

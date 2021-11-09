@@ -53,11 +53,11 @@ function CreatePr() {
         dispatch(createSan_pham(data)).unwrap()
             .then(res => {
                 if (res.code) {
-                    Swal.fire('Save','<h1>'+res.message+'</h1>','success')
+                    Swal.fire('Save', '<h1>' + res.message + '</h1>', 'success')
                     location.replace('/admin/products')
                 }
                 else {
-                    alert(res.message)
+                    Swal.fire('Error!', '<h1>' + res.message + '</h1>', 'error')
                 }
             })
     }
@@ -77,6 +77,8 @@ function CreatePr() {
                             <input type="text" className="form-control" value={newTenSP} onChange={e => { setNewTenSP(e.target.value) }} placeholder="Tên sản phẩm" required />
                         </div>
                         <div className="mt-3">
+                            <label>Chủ đề</label>
+                            <br />
                             <select className="form-control" value={newMaCD} onChange={e => { setNewMaCD(e.target.value) }} required >
                                 <option value="" disabled>--Chọn chủ đề--</option>
                                 {chu_de.map(item => (
@@ -85,6 +87,8 @@ function CreatePr() {
                             </select>
                         </div>
                         <div className="mt-3">
+                            <label>Nhà xuất bản</label>
+                            <br />
                             <select className="form-control" value={newMaNXB} onChange={e => { setNewMaNXB(e.target.value) }} required >
                                 <option value="" disabled>--Chọn Nhà xuất bản--</option>
                                 {nhaxb.map(item => (
@@ -93,6 +97,8 @@ function CreatePr() {
                             </select>
                         </div>
                         <div className="mt-3">
+                            <label>Nhà cung cấp</label>
+                            <br />
                             <select className="form-control" value={newMaNCC} onChange={e => { setNewMaNCC(e.target.value) }} required >
                                 <option value="" disabled>--Chọn nhà cung cấp--</option>
                                 {nha_cc.map(item => (
@@ -101,6 +107,8 @@ function CreatePr() {
                             </select>
                         </div>
                         <div className="mt-3">
+                            <label>Thể loại sản phẩm</label>
+                            <br />
                             <select className="form-control" value={newIsSach} onChange={e => { setNewIsSach(e.target.value) }} required >
                                 <option value="" disabled>--Chọn loại sản phẩm--</option>
                                 <option value="0">Đồ dùng học tập</option>

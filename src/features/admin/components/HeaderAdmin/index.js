@@ -9,39 +9,42 @@ import { Link } from 'react-router-dom'
 
 function HeaderAdmin() {
     const dispatch = useDispatch()
+    const user = useSelector(userSelector)
     const location = useHistory()
     useEffect(() => {
-        dispatch(getUser())
         dispatch(getSan_pham())
         dispatch(getChu_de())
         dispatch(getHoa_don())
         dispatch(getKhach_hang())
         dispatch(getNha_xb())
         dispatch(getNha_cc())
+        dispatch(getUser()).unwrap()
+            .then(res => {
+                if (res && res.status === 200 && res.user.MaNV !== '0') { } else if (res && res.status === 200 && res.user.MaNV === '0') {
+                    Swal.fire('Cảnh báo', '<h1>Bạn không phải Admin để vào trang này</h1>', 'warning')
+                        .then(res => {
+                            if (res.isConfirmed) {
+                                location.replace('/')
+                            }
+                        })
+                } else {
+                    Swal.fire('Cảnh báo', '<h1>Bạn phải đăng nhập để vào trang này</h1>', 'warning')
+                        .then(res => {
+                            if (res.isConfirmed) {
+                                location.replace('/user/signin')
+                            }
+                        })
+                }
+            })
         nav()
     }, [location.location])
-    const user = useSelector(userSelector)
-    if (isEmptyObject(user)) {
-        Swal.fire('Cảnh báo', '<h1>Bạn phải đăng nhập để vào trang này</h1>', 'warning')
-        .then(res => {
-            if(res.isConfirmed){
-                location.replace('/user/signin')
-            }
-        })
-    } else if(user.MaNV == 0) {
-        Swal.fire('Cảnh báo', '<h1>Bạn không phải Admin để vào trang này</h1>', 'warning')
-        .then(res => {
-            if(res.isConfirmed){
-                location.replace('/')
-            }
-        })
-    }
 
     const nav = () => {
         $("#mySidenav").css('width', '70px');
         $("#main").css('margin-left', '70px');
         $(".logo").css('visibility', 'hidden');
         $(".logo span").css('visibility', 'visible');
+        $("a span").hide(100);
         $(".logo span").css('margin-left', '-10px');
         $(".icon-a").css('visibility', 'hidden');
         $(".icons").css('visibility', 'visible');
@@ -54,6 +57,7 @@ function HeaderAdmin() {
         $("#mySidenav").css('width', '300px');
         $("#main").css('margin-left', '300px');
         $(".logo").css('visibility', 'visible');
+        $("a span").show(400);
         $(".icon-a").css('visibility', 'visible');
         $(".icons").css('visibility', 'visible');
         $(".nav").css('display', 'block');
@@ -62,6 +66,12 @@ function HeaderAdmin() {
 
     const logOut = () => {
         dispatch(logOutAccount())
+        Swal.fire('Cảnh báo', '<h1>Bạn phải đăng nhập để vào trang này</h1>', 'warning')
+            .then(res => {
+                if (res.isConfirmed) {
+                    location.replace('/user/signin')
+                }
+            })
     }
 
     return (

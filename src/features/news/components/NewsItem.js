@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function NewsItem({img, titleNews, timeCreated, description, linkTo}) {
     return (
@@ -15,7 +16,7 @@ export default function NewsItem({img, titleNews, timeCreated, description, link
                     {description}
                 </div>
                 <div className="link-detail text-start">
-                    <a href={linkTo} target="_blank" rel="noopener noreferrer">Xem thêm</a>
+                    <Link to={`/news/detail/news?posts=${linkTo}`}>Xem thêm</Link>
                 </div>
             </div>
         </div>

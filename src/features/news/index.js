@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import News from './pages/News'
+import NewsDetail from './pages/NewsDetail'
 
 function news(props) {
     const Err404 = React.lazy(() => import('../../components/404'))
@@ -10,6 +11,7 @@ function news(props) {
         <>
             <Header />
             <Switch>
+                <Route path="/news/detail/:slug" component={NewsDetail} />
                 <Route path="/news" component={News} />
                 <Route component={Err404} />
             </Switch>

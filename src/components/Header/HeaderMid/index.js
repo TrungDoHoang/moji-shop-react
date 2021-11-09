@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
-import { useLocation } from 'react-router'
 import NavMobile from './NavMobile'
 import Logo from './Logo'
 import FormSearch from './FormSearch'
@@ -14,10 +13,9 @@ function HeaderMid() {
     const user = useSelector(userSelector)
     const dispatch = useDispatch()
     const location = useHistory()
-    const path = useLocation()
     useEffect(()=> {
         dispatch(getUser())
-    },[path])
+    },[location.location])
     const logOut = e => {
         e.preventDefault();
         dispatch(logOutAccount())

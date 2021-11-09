@@ -25,9 +25,10 @@ function Order() {
                 }
                 else {
                     dispatch(getOrder(res.user.MaKH))
+                    dispatch(getCTHoa_don())
                 }
             })
-    }, [])
+    }, [location.location])
 
     const deleteBill = id => {
         const data = {

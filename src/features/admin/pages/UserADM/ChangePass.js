@@ -85,19 +85,19 @@ function ChangePass() {
                         <p>Bạn nên cập nhập mật khẩu thường xuyên vì lý do bảo mật!</p>
                     </div>
                     <hr />
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="pass">Mật khẩu cũ: <span>(*)</span></label>
                         <input type="password" id="pass" className="main-input form-control" placeholder="Mật khẩu cũ" value={password} onChange={e => { setPassword(e.target.value) }} required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="newPass">Mật khẩu mới: <span>(*)</span></label>
                         <input type="password" id="newPass" className="main-input form-control" placeholder="Mật khẩu mới" value={newPass} onChange={e => { setNewPass(e.target.value) }} required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <label className="main-input-label" htmlFor="newPassAgain">Xác nhận mật khẩu mới: <span>(*)</span></label>
                         <input type="password" id="newPassAgain" className="main-input form-control" placeholder="Xác nhận mật khẩu mới" value={newPassAgain} onChange={e => { setNewPassAgain(e.target.value) }} required />
                     </div>
-                    <div className="m-4">
+                    <div className="mt-3">
                         <button type="submit" className="submit-button btn btn-pink">Cập nhật</button>
                     </div>
                 </form>
