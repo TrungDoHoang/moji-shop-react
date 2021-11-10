@@ -26,9 +26,9 @@ export default function SearchPage() {
         }
     }, [location.location])
 
-    if (products.length === 0) {
-        throw dispatch(productSearch(keySearch))
-    }
+    // if (products.length === 0) {
+    //     throw dispatch(productSearch(keySearch))
+    // }
     const ref = useRef(() => {
         let product = $(".searchItem > .col-lg-3.col-md-4.col-6")
         product.hide()

@@ -42,7 +42,6 @@ function Manager() {
         setEditDiaChi('')
         setEditDienThoai('')
         setEditNgaySinh('')
-        $('#main').scrollTop(0)
     }
 
     const createNV = () => {
@@ -230,6 +229,7 @@ function Manager() {
                             <button type="reset" onClick={e => {
                                 e.preventDefault()
                                 cancel()
+                                $('#main').scrollTop(0)
                             }} className="btn ms-2 btn-pink mt-5">Hủy bỏ</button>
                         </form>
                     </div>
@@ -275,6 +275,7 @@ function Manager() {
                             <button type="reset" onClick={e => {
                                 e.preventDefault()
                                 cancel()
+                                $('#main').scrollTop(0)
                             }} className="btn ms-2 btn-pink mt-5">Hủy bỏ</button>
                         </form>
                     </div>

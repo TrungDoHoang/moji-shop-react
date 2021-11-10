@@ -31,7 +31,6 @@ export default function Customer() {
         setEditDiaChi('')
         setEditDienThoai('')
         setEditNgaySinh('')
-        $('#main').scrollTop(0)
     }
     const editKH = item => {
         $('#formUpdate :input').prop('disabled', false)
@@ -171,6 +170,7 @@ export default function Customer() {
                             <button type="reset" onClick={e => {
                                 e.preventDefault()
                                 cancel()
+                                $('#main').scrollTop(0)
                             }} className="btn ms-2 btn-pink mt-5">Hủy bỏ</button>
                         </form>
                     </div>

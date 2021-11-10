@@ -29,6 +29,13 @@ function Products() {
         $("#main").scrollTop(0)
     }, [products])
 
+    useEffect(() => {
+        dispatch(getChu_de())
+        dispatch(getSan_pham())
+        dispatch(getNha_xb())
+        dispatch(getNha_cc())
+    }, [])
+
     const myRef = useRef(() => {
         $('#formUpdate :input, #formUpdate select').prop('disabled', true)
         $('#productsTable').dataTable()

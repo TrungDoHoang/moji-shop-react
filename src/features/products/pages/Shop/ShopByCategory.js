@@ -29,9 +29,9 @@ export default function ShopByCategory() {
         dispatch(productsByCat(categorySlug))
         window.scrollTo(0, 0)
     }, [location.location])
-    if (products.length === 0) {
-        throw dispatch(productsByCat(categorySlug))
-    }
+    // if (products.length === 0) {
+    //     throw dispatch(productsByCat(categorySlug))
+    // }
     
     const loadProductsEffect = useRef(() => {
         let product = $(".filter > .col-lg-3.col-md-4.col-6")
@@ -53,7 +53,7 @@ export default function ShopByCategory() {
                 $(".new-products-more").fadeOut('slow');
             }
         }
-        if (categoryName) {
+        if (categoryName && products) {
             document.title = categoryName
             return (
                 <div className="main" ref={loadProductsEffect.current}>

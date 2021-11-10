@@ -169,6 +169,29 @@ export const getTin = createAsyncThunk('admin/getTin', () => {
         .then((response) => response.data)
         .catch(err => err.message)
 })
+export const updateTin = createAsyncThunk('admin/updateTin', (data) => {
+    return API.put('news/update.php', data)
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const createTin = createAsyncThunk('admin/createTin', (data) => {
+    return API({
+        method: 'POST',
+        url: 'news/create.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
+export const deleteTin = createAsyncThunk('admin/deleteTin', (data) => {
+    return API({
+        method: 'DELETE',
+        url: 'news/delete.php',
+        data
+    })
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
 
 const adminSlice = createSlice({
     name: 'admin',
@@ -430,13 +453,31 @@ const adminSlice = createSlice({
 
         [getTin.fulfilled]: (state, action) => {
             let data = action.payload
-            if(data && data.news){
+            if (data && data.news) {
                 state.news = data.news
             }
-            if(data && data.posts) {
+            if (data && data.posts) {
                 state.news = (state.news).concat(data.posts)
             }
-        }
+        },
+        [updateTin.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.news = []
+            }
+        },
+        [deleteTin.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.news = []
+            }
+        },
+        [createTin.fulfilled]: (state, action) => {
+            let data = action.payload
+            if (data.code) {
+                state.news = []
+            }
+        },
     }
 })
 
