@@ -75,7 +75,7 @@ export default function Signin() {
                         </div>
                     </form>
                     <Link to="/" className="forgot-password main-link text-decoration-none">Quên mật khẩu</Link>
-                    <p>Hoặc đăng nhập với</p>
+                    {/* <p>Hoặc đăng nhập với</p>
                     <div className="social m-4 d-flex flex-column">
                         <a href="https://www.facebook.com" target="_blank" rel="noreferrer noopener" className="f-b-login social-link text-decoration-none d-flex align-items-center justify-content-center">
                             <ion-icon name="logo-facebook" />
@@ -85,7 +85,7 @@ export default function Signin() {
                             <ion-icon name="logo-google" />
                             Đăng nhập với Google
                         </a>
-                    </div>
+                    </div> */}
                 </div>
                 {/* </div> */}
             </div>
