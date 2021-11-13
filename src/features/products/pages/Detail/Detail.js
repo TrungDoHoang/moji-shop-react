@@ -16,7 +16,14 @@ export default function Detail() {
     const product = useSelector(productDetailSelector)
     const dispatch = useDispatch()
     useEffect(()=> {
-        dispatch(productDetail(id))
+        dispatch(productDetail(id)).unwrap()
+        .then(res => {
+            console.log(res)
+            if(res && res.SoLuong <= 0) {
+                $('.product-details-form  :input').prop('disabled', true)
+                $('.product-details-form  :input, .product-details-form :button').attr('title', 'Sản phẩm hiện đang hết hàng!')
+            }
+        })
     },[location.location])
     
     document.title = product.name

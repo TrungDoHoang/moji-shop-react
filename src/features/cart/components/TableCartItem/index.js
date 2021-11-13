@@ -66,7 +66,7 @@ export default function TableCartItem({ id, name, cost, quantity, img, soluong, 
                             <input type="number" name="quantity" value={quantityInput}
                                 onChange={e => { setQuantityInput(e.target.value) }} onBlur={quantityRequired} readOnly />
                             :
-                            <input type="number" name="quantity" value={quantityInput}
+                            <input type="number" min="1" name="quantity" value={quantityInput}
                                 onChange={e => { setQuantityInput(e.target.value) }} onBlur={quantityRequired} />
                     }
                 </form>

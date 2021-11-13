@@ -163,6 +163,11 @@ export const deleteCTHoa_don = createAsyncThunk('admin/deleteCTHoa_don', (data) 
         .then((response) => response.data)
         .catch(err => err.message)
 })
+export const getDoanh_thu = createAsyncThunk('admin/getDoanh_thu', () => {
+    return API.get('hoadon/doanhthu.php')
+        .then((response) => response.data)
+        .catch(err => err.message)
+})
 
 export const getTin = createAsyncThunk('admin/getTin', () => {
     return API.get('news/read.php')

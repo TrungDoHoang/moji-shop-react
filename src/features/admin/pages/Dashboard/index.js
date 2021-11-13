@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import $ from 'jquery'
 import slugify from 'slugify'
 import Swal from 'sweetalert2'
-import { chu_deSelector, createChu_de, deleteChu_de, getChu_de, updateChu_de } from '../../../../app/reducers/adminSlice'
+import { chu_deSelector, createChu_de, deleteChu_de, getChu_de, getDoanh_thu, updateChu_de } from '../../../../app/reducers/adminSlice'
 import HeaderCard from '../../components/HeaderCard'
+import { Bar, Line } from 'react-chartjs-2'
 
 function Dashboard() {
     const chu_de = useSelector(chu_deSelector)
@@ -12,11 +13,18 @@ function Dashboard() {
         $("#main").scrollTop(0)
         document.title = 'Dashboard'
     }, [chu_de])
+    useEffect(() => {
+        dispatch(getDoanh_thu())
+            .then(res => {
+                setDoanhthu(res.payload)
+            })
+    }, [])
     const [editMaChuDe, setEditMaChuDe] = useState('')
     const [editTenChuDe, setEditTenChuDe] = useState('')
     const [editIsSach, setEditIsSach] = useState('')
     const [newTenChuDe, setNewTenChuDe] = useState('')
     const [newIsSach, setNewIsSach] = useState('')
+    const [doanhthu, setDoanhthu] = useState('')
 
     const dispatch = useDispatch()
     if (chu_de.length <= 0) {
@@ -130,6 +138,41 @@ function Dashboard() {
     return (
         <>
             <HeaderCard />
+            <div className="col-div-8">
+                <div className="box-8 p-5 mb-5">
+                    <h2>Biểu đổ doanh thu của năm nay</h2>
+                    <Line 
+                    data={{
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September','October','November','December'],
+                        datasets: [
+                          {
+                            label: '(VNĐ)',
+                            fill: false,
+                            lineTension: 0.1,
+                            backgroundColor: 'rgba(75,192,192,0.4)',
+                            borderColor: 'rgba(75,192,192,1)',
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: 'rgba(75,192,192,1)',
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                            pointHoverBorderColor: 'rgba(220,220,220,1)',
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: doanhthu
+                          }
+                        ]
+                      }}
+
+                      />
+
+                </div>
+            </div>
             <div className="col-div-8" ref={myRef.current}>
                 <div className="box-8">
                     <div className="content-box">

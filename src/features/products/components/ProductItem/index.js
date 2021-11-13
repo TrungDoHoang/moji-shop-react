@@ -2,15 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {addToCart} from '../../../../app/reducers/cartSlice'
+import Swal from 'sweetalert2'
 
 export default function ProductItem(props) {
     const dispatch = useDispatch()
     const addItemToCart = item => {
-        item = {
-            ...item,
-            quantity: 1,
+        if(props.SoLuong > 0 ) {
+            item = {
+                ...item,
+                quantity: 1,
+            }
+            dispatch(addToCart(item))
         }
-        dispatch(addToCart(item))
+        else{
+            Swal.fire('<h1>Thông báo!</h1>', '<h1> Sản phẩm hiện đang hết hàng, vui lòng quay lại sau! </h1>', 'warning')
+        }
         // console.log(item)
     }
     return (
