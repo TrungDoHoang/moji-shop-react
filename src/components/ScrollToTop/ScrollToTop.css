@@ -17,6 +17,6 @@
 }
 
 #scroll-to-top.show {
-    opacity: 1;
+    opacity: .6;
     visibility: visible;
 }

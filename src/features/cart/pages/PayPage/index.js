@@ -15,6 +15,7 @@ function PayPage() {
     const dispatch = useDispatch()
     useEffect(() => {
         if (isEmptyObject(user)) {
+            wal.fire('Thông Báo!','<h1>Bạn phải đăng nhập để thanh toán!!! <3</h1>','warning')
             location.replace('/user/signin')
         }
         window.scrollTo(0, 0)
