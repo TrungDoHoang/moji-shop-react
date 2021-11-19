@@ -4,6 +4,7 @@ import CategoryItem from './CategoryItem'
 import './Category.css'
 import { bookCategorySelector, getCategories, toolCategorySelector } from '../../../../app/reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
+import CostSlider from '../../../../components/CostSlider'
 
 
 export default function Category() {
@@ -34,6 +35,11 @@ export default function Category() {
                 <CategoryItem key={3} name="Sách vở" categories={bookCategory} toggleOpen ={toggleOpen} />
                 <CategoryItem key={4} name="Dụng cụ học tập" categories={toolCategory} toggleOpen ={toggleOpen}/>
             </ul>
+                <div className="main-category-item">
+                    <label htmlFor="" className="text-16 p-2 ms-3">Lọc theo giá</label>
+                    <br />
+                    <CostSlider />
+                </div>
         </div>
     )
 }

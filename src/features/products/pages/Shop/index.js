@@ -1,7 +1,7 @@
 import { TweenMax } from 'gsap/gsap-core'
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts, productsSelector } from '../../../../app/reducers/productsSlice'
+import { getProducts, minMaxSelector, productsSelector } from '../../../../app/reducers/productsSlice'
 import $ from 'jquery'
 import Category from '../../components/Category'
 import CategoryMobile from '../../components/Category/CategoryMobile'
@@ -22,9 +22,11 @@ export default function Shop() {
     // const location = useHistory()
     // let currentPage =  page || 1  && page < 5 ? page : 1
     // console.log(currentPage)
-
-    // useEffect(()=> {
-    // },[location.location])
+    const minmax = useSelector(minMaxSelector)
+    useEffect(()=> {
+        if(minmax.length > 0)
+            dispatch(getProducts({ from: minmax[0], to: minmax[1]}))
+    },[minmax])
 
     // if(products){
     //     console.log(currentPage)
@@ -59,7 +61,7 @@ export default function Shop() {
         <div className="main" ref={loadProductsEffect.current}>
             <div className="container">
                 <div className="row mt-5 gx-5">
-                    <div className="col-lg-3 d-lg-block d-none">
+                    <div className="col-lg-3 d-lg-block d-none mb-5">
                         <Category />
                     </div>
                     {/* Categogy- mobile */}

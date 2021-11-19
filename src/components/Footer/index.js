@@ -5,7 +5,7 @@ import './Footer.css'
 
 function Footer() {
     return (
-        <footer>
+        <footer className="mt-5">
             <FootStart />
             <FootEnd />
         </footer>

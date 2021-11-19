@@ -120,3 +120,6 @@
         width: 85vw;
     }
 }
+.active-category-item-link {
+    color: var(--pink-light)!important;
+}

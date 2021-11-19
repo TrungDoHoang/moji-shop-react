@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import API from '../axios'
 
-export const getProducts = createAsyncThunk('products/get', () => {
+export const getProducts = createAsyncThunk('products/get', (cost, Param) => {
+    if(cost){
+        return API.get(`product/read.php?_from=${cost.from}&_to=${cost.to}`)
+                .then((response) => response.data)
+                .catch(err => err.message)
+    }
     return API.get('product/read.php')
                 .then((response) => response.data)
                 .catch(err => err.message)
@@ -11,8 +16,13 @@ export const productDetail = createAsyncThunk('products/getDetail', (id) => {
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
-export const productsByCat = createAsyncThunk('products/getByCats', (id) => {
-    return API.get(`product/readbycat.php?machude=${id}`)
+export const productsByCat = createAsyncThunk('products/getByCats', (data) => {
+    if(data.from){
+        return API.get(`product/readbycat.php?machude=${data.slug}&_from=${data.from}&_to=${data.to}`)
+                .then((response) => response.data)
+                .catch(err => err.message)
+    }
+    return API.get(`product/readbycat.php?machude=${data.slug}`)
                 .then((response) => response.data)
                 .catch(err => err.message)
 })
@@ -383,6 +393,7 @@ const productsSlice = createSlice({
         resultSearch: [],
         productDetail: {},
         productsByCategory: [],
+        minmaxCost: [],
     },
     reducers: {
         // searchProducts: (state, action) => {
@@ -403,6 +414,9 @@ const productsSlice = createSlice({
         filterByCategory: (state, action) => {
             const category = action.payload
             state.productsByCategory = state.allProducts.filter(product => product.category === category)
+        },
+        changeMinMax: (state, action) => {
+            state.minmaxCost = action.payload
         }
     },
     extraReducers:{
@@ -489,12 +503,13 @@ const productsSlice = createSlice({
 const productsReducer = productsSlice.reducer
 
 // export action
-export const { searchProducts, filterByCategory } = productsSlice.actions
+export const { changeMinMax, filterByCategory } = productsSlice.actions
 
 // selector
 export const productsSelector = state => state.productsReducer.allProducts
 export const productDetailSelector = state => state.productsReducer.productDetail
 export const productsSearchSelector = state => state.productsReducer.resultSearch
 export const productsByCategorySelector = state => state.productsReducer.productsByCategory
+export const minMaxSelector = state => state.productsReducer.minmaxCost
 
 export default productsReducer
