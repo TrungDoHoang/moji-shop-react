@@ -7,8 +7,6 @@ import Category from '../../components/Category'
 import CategoryMobile from '../../components/Category/CategoryMobile'
 import NavProduct from '../../components/NavProduct'
 import './Shop.css'
-import { useQueryParam, NumberParam } from 'use-query-params'
-import { useHistory } from 'react-router'
 import PaginatedItems from '../../components/PaginatedItems'
 
 

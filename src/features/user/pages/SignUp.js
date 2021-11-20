@@ -28,14 +28,17 @@ export default function Signup() {
             $('#passwordAgain').focus()
             return
         }
-        let data = {
-            "tendangnhap": username,
-            "email": email,
-            "MatKhau": password,
-            "TenKH": name,
-            "DiaChi": address,
-            "DienThoai": tel,
-            "NgaySinh": date
+        let data
+        if(username !== '' && password !== '' && address !== '') {
+            data = {
+                "tendangnhap": username.trim(),
+                "email": email.trim(),
+                "MatKhau": password.trim(),
+                "TenKH": name.trim(),
+                "DiaChi": address.trim(),
+                "DienThoai": tel.trim(),
+                "NgaySinh": date
+            }
         }
         dispatch(registerAPI(data)).unwrap()
             .then((registerResult) => {

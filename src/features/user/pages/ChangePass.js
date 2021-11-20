@@ -41,7 +41,7 @@ function ChangePass() {
             return
         }
         let data = {
-            newPass
+            newPass: newPass.trim()
         }
         dispatch(changePassAPI(data)).unwrap()
             .then((Result) => {

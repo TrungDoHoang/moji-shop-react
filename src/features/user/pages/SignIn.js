@@ -41,11 +41,11 @@ export default function Signin() {
                                 icon: 'success',
                                 title: '<h3>'+result.success+'</h3>',
                             })
-                            // swal.fire('Success',result.success,'success')
                             location.replace('/')
                             break
-                        case 201:
-                            alert(result.error)
+                            case 201:
+                                alert(result.error)
+                            swal.fire('<h1>Lỗi</h1>','<h3>'+result.error+'</h3>','error')
                             $('#username').focus()
                             break
                         default: return

@@ -18,7 +18,7 @@ export default function TableCartItem({ id, name, cost, quantity, img, soluong, 
     }, [])
 
     const quantityRequired = e => {
-        let val = $(e.target).val()
+        let val = $(e.target).val().trim()
         if (val < 1) {
             Swal.fire('Cảnh báo','<h1>Số lượng mua tối thiểu là 1</h1>','warning')
             $(e.target).val(1)

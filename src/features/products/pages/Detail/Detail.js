@@ -44,10 +44,10 @@ export default function Detail() {
 
     const addItemToCart = e => {
         e.preventDefault()
-        if (Number.parseInt($('#detailQuantity').val()) > 0) {
+        if (Number.parseInt($('#detailQuantity').val().trim()) > 0) {
             const item = {
                 ...product,
-                quantity: Number.parseInt($('#detailQuantity').val())
+                quantity: Number.parseInt($('#detailQuantity').val().trim())
             }
             dispatch(addToCart(item))
         }
