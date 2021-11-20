@@ -2,7 +2,6 @@
   "name": "moji-shop-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://trungdohoang.github.io/moji-shop-react",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
@@ -30,8 +29,6 @@
     "use-query-params": "^1.2.3"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
