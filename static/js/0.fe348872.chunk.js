@@ -1,0 +1,2 @@
+(this["webpackJsonpmoji-shop-react"]=this["webpackJsonpmoji-shop-react"]||[]).push([[0],{126:function(t,c,e){"use strict";e.r(c),e.d(c,"default",(function(){return i}));e(1);var n=e(5),s=e(0);function i(){return Object(s.jsxs)("div",{className:"container text-center mt-5",children:[Object(s.jsx)("div",{children:Object(s.jsx)("img",{src:"https://moji.vn/tp/T0299/img/404.png",alt:"",className:"w-50"})}),Object(s.jsx)(n.b,{to:"/",className:"btn btn-pink m-5",children:"Quay v\u1ec1 trang ch\u1ee7"})]})}}}]);
+//# sourceMappingURL=0.fe348872.chunk.js.map

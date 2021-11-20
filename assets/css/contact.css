@@ -1,0 +1,51 @@
+.breadcrumb,
+.breadcrumb-item > a {
+    font-size: 1.6rem;
+
+}
+.main-heading h3{
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+.tabs{
+    font-size: 2rem;
+}
+.tab-item{
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+.tab-item:hover{
+    color: var(--pink-light);
+}
+.tab-item.active,
+.breadcrumb-item.active{
+    color: var(--pink-light);
+}
+.tab-content{
+    margin-top: 40px;
+}
+.name-store{
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--pink-light);
+}
+.store-location,
+.store-tel,
+.store-time{
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.store{
+    margin-bottom: 3rem;
+}
+.store-location > span,
+.store-tel > span,
+.store-time > span {
+    color: var(--gray); 
+}
+.store-map, .store-map iframe{
+    width: 100%;
+    height: 185px;
+}
