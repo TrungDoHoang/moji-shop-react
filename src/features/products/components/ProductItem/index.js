@@ -27,14 +27,14 @@ export default function ProductItem(props) {
                         <img src={`/assets/images/product/${props.img}`} alt={props.name}/>
                     </Link>
                     <div className="product-action">
-                        <span className="material-icons-outlined">
+                        {/* <span className="material-icons-outlined">
                             favorite_border
                         </span>
                         <span className="d-none material-icons-outlined">
                             favorite
-                        </span>
+                        </span> */}
                         <span className="material-icons-outlined" onClick={addItemToCart.bind(this, props)}>
-                            medical_services
+                            shopping_cart
                         </span>
                         <span className="d-none material-icons-outlined">
                             work
