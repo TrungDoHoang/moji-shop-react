@@ -1,5 +1,5 @@
 import { TweenMax } from 'gsap/gsap-core'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { minMaxSelector, productsByCat, productsByCategorySelector } from '../../../../app/reducers/productsSlice'
 import $ from 'jquery'

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
-import { chu_deSelector, createSan_pham, getChu_de, getNha_cc, getNha_xb, nha_ccSelector, nha_xbSelector, san_phamSelector } from '../../../../app/reducers/adminSlice'
+import { chu_deSelector, createSan_pham, getChu_de, getNha_cc, getNha_xb, nha_ccSelector, nha_xbSelector } from '../../../../app/reducers/adminSlice'
 import { Link, useHistory } from 'react-router-dom'
 
 function CreatePr() {

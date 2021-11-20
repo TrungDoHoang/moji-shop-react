@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
-import { getUser, updateAPI, userSelector } from '../../../../app/reducers/userSlice'
+import { getUser, updateAPI } from '../../../../app/reducers/userSlice'
 
 function UserADM() {
     const location = useHistory()

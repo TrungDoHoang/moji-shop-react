@@ -8,7 +8,6 @@ import { useHistory } from 'react-router';
 
 function CostSlider() {
     const product = useSelector(san_phamSelector)
-    const productFilter = useSelector(productsByCategorySelector)
     const [from, setFrom] = useState('')
     const [to, setTo] = useState('')
     const dispatch = useDispatch()
@@ -37,8 +36,7 @@ function CostSlider() {
     }()
 
     function rangeInputChangeEventHandler(e) {
-        var rangeGroup = $(e.target).attr('name'),
-            minBtn = $(e.target).parent().children('.min'),
+        var minBtn = $(e.target).parent().children('.min'),
             maxBtn = $(e.target).parent().children('.max'),
             range_min = $(e.target).parent().children('.range_min'),
             range_max = $(e.target).parent().children('.range_max'),
@@ -50,16 +48,16 @@ function CostSlider() {
             $(minBtn).val(maxVal - 1000);
         }
         var minVal = parseInt($(minBtn).val());
-        $(range_min).html(addSeparator(minVal) + ' VNĐ');
         setFrom(minVal)
+        $(range_min).html(addSeparator(minVal) + ' VNĐ');
 
 
         if (origin === 'max' && maxVal - 1000 < minVal) {
             $(maxBtn).val(1000 + minVal);
         }
         var maxVal = parseInt($(maxBtn).val());
-        $(range_max).html(addSeparator(maxVal) + ' VNĐ');
         setTo(maxVal)
+        $(range_max).html(addSeparator(maxVal) + ' VNĐ');
     }
     const location = useHistory()
     useEffect(() => {

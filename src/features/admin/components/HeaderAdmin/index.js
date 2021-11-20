@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import $, { isEmptyObject } from 'jquery'
+import $ from 'jquery'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, logOutAccount, userSelector } from '../../../../app/reducers/userSlice'
 import Swal from 'sweetalert2'

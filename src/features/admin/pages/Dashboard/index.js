@@ -5,7 +5,7 @@ import slugify from 'slugify'
 import Swal from 'sweetalert2'
 import { chu_deSelector, createChu_de, deleteChu_de, getChu_de, getDoanh_thu, updateChu_de } from '../../../../app/reducers/adminSlice'
 import HeaderCard from '../../components/HeaderCard'
-import { Bar, Line } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 
 function Dashboard() {
     const chu_de = useSelector(chu_deSelector)

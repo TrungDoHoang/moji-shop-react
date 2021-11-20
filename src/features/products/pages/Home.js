@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { getProducts, productsSelector } from '../../../app/reducers/productsSlice'
 import { getUser } from '../../../app/reducers/userSlice'
 import { useDispatch, useSelector } from 'react-redux';
