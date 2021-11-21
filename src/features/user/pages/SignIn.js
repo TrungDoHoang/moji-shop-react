@@ -6,11 +6,12 @@ import swal from 'sweetalert2'
 import { useHistory } from 'react-router'
 import $ from 'jquery'
 import './User.css'
+import { Input, PasswordInput } from '@mantine/core'
 
 export default function Signin() {
     document.title = 'Đăng nhập'
     const dispatch = useDispatch()
-    const [username, setUsername] = useState('') 
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const location = useHistory()
@@ -21,12 +22,12 @@ export default function Signin() {
         timer: 3000,
         timerProgressBar: true,
         didOpen: (toast) => {
-          toast.addEventListener('mouseenter', swal.stopTimer)
-          toast.addEventListener('mouseleave', swal.resumeTimer)
+            toast.addEventListener('mouseenter', swal.stopTimer)
+            toast.addEventListener('mouseleave', swal.resumeTimer)
         }
-      })
-    
-    const signin = async(e) => {
+    })
+
+    const signin = async (e) => {
         e.preventDefault()
         let data = {
             "username": username,
@@ -34,17 +35,17 @@ export default function Signin() {
         }
         dispatch(loginAPI(data)).unwrap()
             .then((result) => {
-                if(result){
-                    switch(result.code) {
+                if (result) {
+                    switch (result.code) {
                         case 200:
                             Toast.fire({
                                 icon: 'success',
-                                title: '<h3>'+result.success+'</h3>',
+                                title: '<h3>' + result.success + '</h3>',
                             })
                             location.replace('/')
                             break
-                            case 201:
-                            swal.fire('<h1>Lỗi</h1>','<h3>'+result.error+'</h3>','error')
+                        case 201:
+                            swal.fire('<h1>Lỗi</h1>', '<h3>' + result.error + '</h3>', 'error')
                             $('#username').focus()
                             break
                         default: return
@@ -64,10 +65,27 @@ export default function Signin() {
                     </div>
                     <form onSubmit={signin} className="main-form">
                         <div className="m-4">
-                            <input type="text" id="username" className="main-input form-control" value={username} onChange={e => {setUsername(e.target.value)}} required placeholder="Nhập email hoặc tên đăng nhập" />
+                            <Input
+                                type="text"
+                                placeholder="Nhập email hoặc tên đăng nhập (*)"
+                                size="md"
+                                className="main-input"
+                                value={username}
+                                onChange={e => { setUsername(e.target.value) }}
+                                required
+                            />
+                            {/* <input type="text" id="username" className="main-input form-control" value={username} onChange={e => { setUsername(e.target.value) }} required placeholder="Nhập email hoặc tên đăng nhập" /> */}
                         </div>
                         <div className="m-4">
-                            <input type="password" className="main-input form-control" value={password} onChange={e => {setPassword(e.target.value)}} required placeholder="Mật khẩu " />
+                            <PasswordInput
+                                placeholder="Mật khẩu (*)"
+                                className="main-input"
+                                size="md"
+                                value={password}
+                                onChange={e => { setPassword(e.target.value) }}
+                                required
+                            />
+                            {/* <input type="password" className="main-input form-control" value={password} onChange={e => { setPassword(e.target.value) }} required placeholder="Mật khẩu " /> */}
                         </div>
                         <div className="m-4">
                             <button type="submit" className="submit-button btn btn-pink">Đăng nhập</button>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { chu_deSelector, hoa_donSelector, khach_hangSelector, san_phamSelector } from '../../../../app/reducers/adminSlice'
 
 function HeaderCard() {
@@ -12,28 +13,28 @@ function HeaderCard() {
             <div className="clearfix" />
             <br />
             <div className="col-div-3">
-                <div className="box">
+                <Link to="/admin/customer" className="box d-block">
                     <p>{khach_hang.length}<br /><span>Khách Hàng</span></p>
                     <i className="fa fa-users box-icon" />
-                </div>
+                </Link>
             </div>
             <div className="col-div-3">
-                <div className="box">
+                <Link to="/admin/products" className="box d-block">
                     <p>{products.length}<br /><span>Sản phẩm</span></p>
                     <i className="fa fa-list box-icon" />
-                </div>
+                </Link>
             </div>
             <div className="col-div-3">
-                <div className="box">
+                <Link to="/admin/bill" className="box d-block">
                     <p>{don_hang.length}<br /><span>Đơn hàng</span></p>
                     <i className="fa fa-shopping-bag box-icon" />
-                </div>
+                </Link>
             </div>
             <div className="col-div-3">
-                <div className="box">
-                    <p>{chu_de.length} <br /><span>Loại sản phẩm</span></p>
+                <Link to="/admin/dashboard" className="box d-block">
+                    <p>{chu_de.length} <br /><span>Loại hàng</span></p>
                     <i className="fa fa-tasks box-icon" />
-                </div>
+                </Link>
             </div>
             <div className="clearfix" />
             <br /><br />

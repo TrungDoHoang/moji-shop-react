@@ -11,31 +11,31 @@ function Sidenav() {
             <NavLink to="/admin/dashboard" title="DashBoard" activeClassName="active" className="icon-a d-flex align-items-center">
                 <i className="fa fa-dashboard icons" />
                 <span>
-                    &nbsp;&nbsp;Dashboard
+                    &nbsp;&nbsp;Trang admin
                 </span>
             </NavLink>
             <NavLink to="/admin/products" title="Sản phẩm" activeClassName="active" className="icon-a d-flex align-items-center">
                 <i className="fa fa-list icons" />
                 <span>
-                    &nbsp;&nbsp;Products
+                    &nbsp;&nbsp;Sản phẩm
                 </span>
             </NavLink>
             <NavLink to="/admin/customer" title="Khách hàng" activeClassName="active" className="icon-a d-flex align-items-center">
                 <i className="fa fa-users icons" />
                 <span>
-                    &nbsp;&nbsp;Customers
+                    &nbsp;&nbsp;Khách hàng
                 </span>
             </NavLink>
             <NavLink to="/admin/bill" title="Hóa đơn" activeClassName="active" className="icon-a d-flex align-items-center">
                 <i className="fa fa-shopping-bag icons" />
                 <span>
-                    &nbsp;&nbsp;Orders
+                    &nbsp;&nbsp;Đơn hàng
                 </span>
             </NavLink>
             <NavLink to="/admin/news" title="Tin tức" activeClassName="active" className="icon-a d-flex align-items-center">
                 <i className="fa fa-list-alt icons" />
                 <span>
-                    &nbsp;&nbsp;News
+                    &nbsp;&nbsp;Tin tức
                 </span>
             </NavLink>
             {
@@ -43,7 +43,7 @@ function Sidenav() {
                 <NavLink to="/admin/manager" title="Quản lý nhân viên" activeClassName="active" className="icon-a d-flex align-items-center">
                     <i className="fa fa-users icons"></i>
                     <span>
-                        &nbsp;&nbsp;Manager Staff
+                        &nbsp;&nbsp;Nhân viên
                     </span>
                 </NavLink>
                 :
@@ -52,7 +52,7 @@ function Sidenav() {
             <NavLink to="/admin/account" title="Thông tin tài khoản" activeClassName="active" className="icon-a d-flex align-items-center">
                 <i className="fa fa-user-circle icons" />
                 <span>
-                    &nbsp;&nbsp;Accounts
+                    &nbsp;&nbsp;Thông tin tài khoản
                 </span>
             </NavLink>
         </div>

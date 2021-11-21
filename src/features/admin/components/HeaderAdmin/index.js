@@ -44,7 +44,7 @@ function HeaderAdmin() {
         $("#main").css('margin-left', '70px');
         $(".logo").css('visibility', 'hidden');
         $(".logo span").css('visibility', 'visible');
-        $("a span").hide(100);
+        $("#mySidenav a span").hide(100);
         $(".logo span").css('margin-left', '-10px');
         $(".icon-a").css('visibility', 'hidden');
         $(".icons").css('visibility', 'visible');
@@ -57,7 +57,7 @@ function HeaderAdmin() {
         $("#mySidenav").css('width', '300px');
         $("#main").css('margin-left', '300px');
         $(".logo").css('visibility', 'visible');
-        $("a span").show(400);
+        $("#mySidenav a span").show(400);
         $(".icon-a").css('visibility', 'visible');
         $(".icons").css('visibility', 'visible');
         $(".nav").css('display', 'block');
@@ -77,8 +77,8 @@ function HeaderAdmin() {
     return (
         <div className="head">
             <div className="col-div-6">
-                <span style={{ fontSize: '30px', cursor: 'pointer', color: '#272c4a' }} className="nav" onClick={nav}>☰ Dashboard</span>
-                <span style={{ fontSize: '30px', cursor: 'pointer', color: '#272c4a' }} className="nav2" onClick={nav2}>☰ Dashboard</span>
+                <span style={{ fontSize: '30px', cursor: 'pointer', color: '#272c4a' }} className="nav" onClick={nav}>☰ Trang Admin</span>
+                <span style={{ fontSize: '30px', cursor: 'pointer', color: '#272c4a' }} className="nav2" onClick={nav2}>☰ Trang Admin</span>
             </div>
             <div className="col-div-6">
                 <Link to="/admin/account" className="profile text-decoration-none">

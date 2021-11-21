@@ -7,6 +7,7 @@ import { changePassAPI, getUser, logOutAccount, userSelector } from '../../../ap
 import InfomationUser from '../components/InfomationUser/InfomationUser'
 import './User.css'
 import Swal from 'sweetalert2'
+import { PasswordInput } from '@mantine/core'
 
 function ChangePass() {
     const user = useSelector(userSelector)
@@ -85,15 +86,40 @@ function ChangePass() {
                         <hr />
                         <div className="m-4">
                             <label className="main-input-label" htmlFor="pass">Mật khẩu cũ: <span>(*)</span></label>
-                            <input type="password" id="pass" className="main-input form-control" placeholder="Mật khẩu cũ" value={password} onChange={e => {setPassword(e.target.value)}} required />
+                            <PasswordInput
+                                placeholder="Mật khẩu cũ"
+                                className="main-input"
+                                size="md"
+                                id="pass"
+                                value={password}
+                                onChange={e => { setPassword(e.target.value) }}
+                                required
+                            />
+                            {/* <input type="password" id="pass" className="main-input form-control" placeholder="Mật khẩu cũ" value={password} onChange={e => {setPassword(e.target.value)}} required /> */}
                         </div>
                         <div className="m-4">
                             <label className="main-input-label" htmlFor="newPass">Mật khẩu mới: <span>(*)</span></label>
-                            <input type="password" id="newPass" className="main-input form-control" placeholder="Mật khẩu mới" value={newPass} onChange={e => {setNewPass(e.target.value)}} required />
+                            <PasswordInput
+                                placeholder="Mật khẩu mới"
+                                className="main-input"
+                                size="md"
+                                id="newPass"
+                                value={newPass}
+                                onChange={e => { setNewPass(e.target.value) }}
+                                required
+                            />
                         </div>
                         <div className="m-4">
                             <label className="main-input-label" htmlFor="newPassAgain">Xác nhận mật khẩu mới: <span>(*)</span></label>
-                            <input type="password" id="newPassAgain" className="main-input form-control" placeholder="Xác nhận mật khẩu mới" value={newPassAgain} onChange={e => {setNewPassAgain(e.target.value)}} required />
+                            <PasswordInput
+                                placeholder="Xác nhận mật khẩu mới"
+                                className="main-input"
+                                size="md"
+                                id="newPassAgain"
+                                value={newPassAgain}
+                                onChange={e => { setNewPassAgain(e.target.value) }}
+                                required
+                            />
                         </div>
                         <div className="m-4">
                             <button type="submit" className="submit-button btn btn-pink">Cập nhật</button>
