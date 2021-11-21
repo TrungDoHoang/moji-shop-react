@@ -134,6 +134,7 @@ function InfoUser() {
                         </div>
                         <div className="m-4">
                             <Input
+                                type="email"
                                 placeholder="Email (*)"
                                 size="md"
                                 className="main-input"

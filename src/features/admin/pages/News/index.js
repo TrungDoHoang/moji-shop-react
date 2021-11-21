@@ -177,7 +177,7 @@ function News() {
                     <p>Danh sách các tin tức
                         <span>
                             <button type="button" className="btn btn-pink ms-3" onClick={() => { createNews() }}>
-                                Thêm sản phẩm
+                                Thêm tin tức
                             </button>
                         </span>
                     </p>
@@ -251,7 +251,7 @@ function News() {
                                     setEditAnh(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
                                 }} />
                                 <span className="d-flex">
-                                    <input type="text" id="filenameEdit" className="form-control" value={editAnh} onChange={e => { setEditAnh(e.target.value) }} placeholder="Ảnh sản phẩm" required />
+                                    <input type="text" id="filenameEdit" className="form-control" value={editAnh} onChange={e => { setEditAnh(e.target.value) }} placeholder="Ảnh tin tức" required />
                                     <input id="upFileEdit" type="button" className="btn btn-pink" value="..." />
                                 </span>
                             </div>
@@ -313,7 +313,7 @@ function News() {
                                     setNewAnh(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
                                 }} />
                                 <span className="d-flex">
-                                    <input type="text" id="filenameNew" className="form-control" value={newAnh} onChange={e => { setNewAnh(e.target.value) }} placeholder="Ảnh sản phẩm" required />
+                                    <input type="text" id="filenameNew" className="form-control" value={newAnh} onChange={e => { setNewAnh(e.target.value) }} placeholder="Ảnh tin tức" required />
                                     <input id="upFileNew" type="button" className="btn btn-pink" value="..." />
                                 </span>
                             </div>

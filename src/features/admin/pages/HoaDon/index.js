@@ -141,7 +141,7 @@ function HoaDon() {
             </div>
             <div id="update" className="box-8 mt-5">
                 <div className="content-box">
-                    <p>Chỉnh sửa khách hàng</p>
+                    <p>Chỉnh sửa hóa đơn</p>
                     <br />
                     <div>
                         <form id="formUpdate" onSubmit={updateSubmit}>

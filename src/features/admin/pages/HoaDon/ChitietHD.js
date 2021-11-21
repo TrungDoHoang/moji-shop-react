@@ -166,7 +166,7 @@ export default function ChitietHD() {
         <div className="col-div-8" ref={myRef.current}>
             <div className="box-8">
                 <div className="content-box">
-                    <p>Danh sách các khách hàng <span>
+                    <p>Danh sách chi tiết hóa đơn <span>
                         <button type="button" className="btn btn-pink" onClick={() => location.goBack()}>
                             Trở về
                         </button>
