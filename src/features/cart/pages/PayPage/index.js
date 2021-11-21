@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import wal from 'sweetalert2'
 import { cartSelector, payBill } from '../../../../app/reducers/cartSlice'
+import { getProducts } from '../../../../app/reducers/productsSlice'
 import { userSelector } from '../../../../app/reducers/userSlice'
 import TableCartItem from '../../components/TableCartItem'
 
@@ -39,6 +40,7 @@ function PayPage() {
             .then(res => {
                 if (res.code === 200) {
                     wal.fire('Success!',res.success,'success')
+                    dispatch(getProducts())
                     location.replace('/')
                 }
                 else wal.fire('Error!',res.error,'error')

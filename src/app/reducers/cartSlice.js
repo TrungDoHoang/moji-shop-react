@@ -41,6 +41,9 @@ const cartSlice = createSlice({
             else {
                 state.productsInCart.find(item => item.id === product.id).quantity += product.quantity
             }
+            if(state.productsInCart.find(item => item.id === product.id).quantity > state.productsInCart.find(item => item.id === product.id).SoLuong){
+                state.productsInCart.find(item => item.id === product.id).quantity = state.productsInCart.find(item => item.id === product.id).SoLuong
+            }
             localStorage.setItem('cart', JSON.stringify(state.productsInCart))
         },
         updateCart: (state, action) => {
