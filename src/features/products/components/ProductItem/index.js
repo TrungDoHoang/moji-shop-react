@@ -6,6 +6,17 @@ import Swal from 'sweetalert2'
 
 export default function ProductItem(props) {
     const dispatch = useDispatch()
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
     const addItemToCart = item => {
         if(props.SoLuong > 0 ) {
             item = {
@@ -13,6 +24,10 @@ export default function ProductItem(props) {
                 quantity: 1,
             }
             dispatch(addToCart(item))
+            Toast.fire({
+                icon: 'success',
+                title: '<h3>Đã thêm ' + props.name + ' vào giỏ hàng!!</h3>',
+            })
         }
         else{
             Swal.fire('<h1>Thông báo!</h1>', '<h1> Sản phẩm hiện đang hết hàng, vui lòng quay lại sau! </h1>', 'warning')

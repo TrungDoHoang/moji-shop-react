@@ -22,7 +22,7 @@ export default function ScrollToTop() {
     })
     return (
         <div id="scroll-to-top" ref={myRef.current} className="d-flex justify-content-center align-items-center">
-            <ion-icon name="arrow-up-outline"></ion-icon>
+            <ion-icon name="arrow-up-outline" style={{color: '#FF9800'}}></ion-icon>
         </div>
     )
 }
