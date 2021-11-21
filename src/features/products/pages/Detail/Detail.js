@@ -15,17 +15,17 @@ export default function Detail() {
 
     const product = useSelector(productDetailSelector)
     const dispatch = useDispatch()
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(productDetail(id)).unwrap()
-        .then(res => {
-            console.log(res)
-            if(res && res.SoLuong <= 0) {
-                $('.product-details-form  :input').prop('disabled', true)
-                $('.product-details-form  :input, .product-details-form :button').attr('title', 'Sản phẩm hiện đang hết hàng!')
-            }
-        })
-    },[location.location])
-    
+            .then(res => {
+                console.log(res)
+                if (res && res.SoLuong <= 0) {
+                    $('.product-details-form  :input').prop('disabled', true)
+                    $('.product-details-form  :input, .product-details-form :button').attr('title', 'Sản phẩm hiện đang hết hàng!')
+                }
+            })
+    }, [location.location])
+
     document.title = product.name
     let categoryName = product['TenChuDe']
 
@@ -33,11 +33,11 @@ export default function Detail() {
     const quantityRequired = e => {
         let val = $(e.target).val()
         if (val < 1) {
-            Swal.fire('Cảnh báo','<h1>Số lượng mua tối thiểu là 1</h1>','warning')
+            Swal.fire('Cảnh báo', '<h1>Số lượng mua tối thiểu là 1</h1>', 'warning')
             $(e.target).val(1)
         }
-        if(val > product.SoLuong) {
-            Swal.fire('Cảnh báo','<h1>Số lượng mua tối đa là ' + product.SoLuong+'</h1>','warning')
+        if (val > product.SoLuong) {
+            Swal.fire('Cảnh báo', '<h1>Số lượng mua tối đa là ' + product.SoLuong + '</h1>', 'warning')
             $(e.target).val(product.SoLuong)
         }
     }
@@ -97,14 +97,22 @@ export default function Detail() {
                                         Nhà cung cấp: {product.TenNCC}
                                     </div>
                                     <div className="product-details-id text-start">
-                                        {product.TenNXB === "" ? "": `Nhà xuất bản: ${product.TenNXB}`}
+                                        {product.TenNXB === "" ? "" : `Nhà xuất bản: ${product.TenNXB}`}
                                     </div>
                                     <div className="product-details-id text-start">
                                         Số lượng hiện có: {product.SoLuong} sản phẩm
                                     </div>
+                                    {
+                                        product.SoLuong <= 0 &&
+                                        <div className="product-details-id text-start" 
+                                            style={{color: 'red', fontSize: '24px', fontWeight: 'bold', }}>
+                                            Hết hàng
+                                        </div>
+                                    }
                                     <div className="product-details-cost text-start">
                                         {(product.cost).toLocaleString()}đ
                                     </div>
+
                                     <form onSubmit={addItemToCart} className="product-details-form text-start">
                                         <div className="form-check-quantity d-flex align-items-center w-50">
                                             <label htmlFor="quantity" className="w-50"> Số lượng: </label>
