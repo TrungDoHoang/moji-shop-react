@@ -11,6 +11,7 @@ function Products() {
     const chu_de = useSelector(chu_deSelector)
     const nhaxb = useSelector(nha_xbSelector)
     const nha_cc = useSelector(nha_ccSelector)
+    const [pathImage, setPathImage] = useState(undefined)
     const dispatch = useDispatch()
     if (products.length <= 0) {
         throw dispatch(getSan_pham())
@@ -28,6 +29,13 @@ function Products() {
         document.title = "Products"
         $("#main").scrollTop(0)
     }, [products])
+
+    useEffect(() => {
+        // clear the URL image
+        return () => {
+            URL.revokeObjectURL(pathImage)
+        }
+    },[pathImage])
 
     useEffect(() => {
         dispatch(getChu_de())
@@ -72,6 +80,7 @@ function Products() {
         setEditIsSach('')
         setEditAnh('')
         setEditMaNCC('')
+        setPathImage(undefined)
         $('#main').scrollTop(0)
     }
     const updateSubmit = e => {
@@ -250,19 +259,30 @@ function Products() {
                             <div className="mt-3">
                                 <label>Số lượng</label>
                                 <br />
-                                <input type="number" min="10" className="form-control" value={editSL} onChange={e => { setEditSL(e.target.value) }} placeholder="Tên sản phẩm" required />
+                                <input type="number" min="0" className="form-control" value={editSL} onChange={e => { setEditSL(e.target.value) }} placeholder="Tên sản phẩm" required />
                             </div>
                             <div className="mt-3">
                                 <label>Ảnh</label>
                                 <br />
                                 <input type="file" hidden id="fileEdit" onChange={e => {
-                                    $('#filenameEdit').val(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
-                                    setEditAnh(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
-                                }} />
+                                    if(e.target.files[0].type.split('/')[0] === 'image'){
+                                        $('#filenameNew').val(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
+                                        setEditAnh(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
+                                        let path = URL.createObjectURL(e.target.files[0])
+                                        setPathImage(path)
+                                    }
+                                    else{
+                                        Swal.fire('Error!', '<h1>Bạn phải chọn file là ảnh </h1>', 'error')
+                                        e.target.value = null
+                                    }
+                                }}
+                                    accept="image/*" 
+                                />
                                 <span className="d-flex">
                                     <input type="text" id="filenameEdit" className="form-control" value={editAnh} onChange={e => { setEditAnh(e.target.value) }} placeholder="Ảnh sản phẩm" required />
                                     <input id="upFileEdit" type="button" className="btn btn-pink" value="..." />
                                 </span>
+                                {pathImage&&<img src={pathImage} width="200"/>}
                             </div>
                             <div className="mt-3">
                                 <label>Mô tả</label>

@@ -4,7 +4,7 @@ import CategoryItem from './CategoryItem'
 import './Category.css'
 import { bookCategorySelector, getCategories, toolCategorySelector } from '../../../../app/reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
-import CostSlider from '../../../../components/CostSlider'
+import CostSlider from '../CostSlider'
 
 
 export default function Category() {

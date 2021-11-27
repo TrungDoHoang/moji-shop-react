@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import $ from 'jquery'
 import './CostSlider.css'
-import {getSan_pham, san_phamSelector} from '../../app/reducers/adminSlice'
+import {getSan_pham, san_phamSelector} from '../../../../app/reducers/adminSlice'
 import { useDispatch, useSelector } from 'react-redux';
-import { changeMinMax, productsByCategorySelector } from '../../app/reducers/productsSlice';
+import { changeMinMax, productsByCategorySelector } from '../../../../app/reducers/productsSlice';
 import { useHistory } from 'react-router';
 
 function CostSlider() {
@@ -73,8 +73,8 @@ function CostSlider() {
 
     return (
         <div className="rangeslider mb-5">
-            <input className="min" name="range_1" type="range" step="1000" onMouseUp={mouseUp} min={minmax[1]} onInput={rangeInputChangeEventHandler} max={minmax[0]} defaultValue={minmax[1]} />
-            <input className="max" name="range_1" type="range" step="1000" onMouseUp={mouseUp} min={minmax[1]} onInput={rangeInputChangeEventHandler} max={minmax[0]} defaultValue={minmax[0]} />
+            <input className="min" name="range_1" type="range" step="1000" onBlur={mouseUp} onMouseUp={mouseUp} min={minmax[1]} onInput={rangeInputChangeEventHandler} max={minmax[0]} defaultValue={minmax[1]} />
+            <input className="max" name="range_1" type="range" step="1000" onBlur={mouseUp} onMouseUp={mouseUp} min={minmax[1]} onInput={rangeInputChangeEventHandler} max={minmax[0]} defaultValue={minmax[0]} />
             <span className="range_min light left">{minmax[1].toLocaleString()} VNĐ</span>
             <span className="range_max light right">{minmax[0].toLocaleString()} VNĐ</span>
             

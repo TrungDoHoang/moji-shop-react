@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,6 +17,7 @@ function CreatePr() {
     const [newAnh, setNewAnh] = useState('')
     const [newMoTa, setNewMoTa] = useState('')
     const [newIsSach, setNewIsSach] = useState(0)
+    const [pathImage, setPathImage] = useState(undefined)
     const chu_de = useSelector(chu_deSelector)
     const nhaxb = useSelector(nha_xbSelector)
     const nha_cc = useSelector(nha_ccSelector)
@@ -31,6 +32,12 @@ function CreatePr() {
     if (nha_cc.length <= 0) {
         throw dispatch(getNha_cc())
     }
+
+    useEffect(() => {
+        return () => {
+            URL.revokeObjectURL(pathImage)
+        }
+    },[pathImage])
 
     const myRef = useRef(() => {
         $("#upFileNew").click(function () {
@@ -129,13 +136,24 @@ function CreatePr() {
                             <label>Ảnh</label>
                             <br />
                             <input type="file" hidden id="fileNew" onChange={e => {
-                                $('#filenameNew').val(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
-                                setNewAnh(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
-                            }} />
+                                if(e.target.files[0].type.split('/')[0] === 'image'){
+                                    $('#filenameNew').val(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
+                                    setNewAnh(e.target.value.split('\\')[e.target.value.split('\\').length - 1])
+                                    let path = URL.createObjectURL(e.target.files[0])
+                                    setPathImage(path)
+                                }
+                                else{
+                                    Swal.fire('Error!', '<h1>Bạn phải chọn file là ảnh </h1>', 'error')
+                                    e.target.value = null
+                                }
+                            }}
+                                accept="image/*"  
+                            />
                             <span className="d-flex">
                                 <input type="text" id="filenameNew" className="form-control" value={newAnh} onChange={e => { setNewAnh(e.target.value) }} placeholder="Ảnh sản phẩm" required />
                                 <input id="upFileNew" type="button" className="btn btn-pink" value="..." />
                             </span>
+                            {pathImage&&<img src={pathImage} width="200"/>}
                         </div>
                         <div className="mt-3">
                             <label>Mô tả</label>

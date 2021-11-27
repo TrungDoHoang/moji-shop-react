@@ -36,7 +36,7 @@ function HeaderMid() {
                     <div className="header-logon col-3 col-md-4 col-lg-3 mt-4">
                         { !isEmptyObject(user) ? 
                         (<><NavLink to="/user/info" className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">
-                            {user.TenKH}
+                            {user.TenKH ? user.TenKH : location.replace('/admin')}
                         </NavLink>
                         <NavLink to="/user/signin" onClick={logOut} className="link__logon d-none d-lg-inline-block d-md-inline-block header__link text-decoration-none">
                             Thoát

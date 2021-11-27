@@ -42,7 +42,8 @@ export default function Signin() {
                                 icon: 'success',
                                 title: '<h3>' + result.success + '</h3>',
                             })
-                            location.replace('/')
+                            // location.replace('/')
+                            location.goBack()
                             break
                         case 201:
                             swal.fire('<h1>Lỗi</h1>', '<h3>' + result.error + '</h3>', 'error')
